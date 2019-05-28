@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,4 +56,9 @@ public class MainActivity extends AppCompatActivity implements GameService.GameS
             gameServiceBound = false;
         }
     };
+
+    // Listener Methods
+    public void updatePlayerPosition(Location location){
+        // do nothing
+    }
 }

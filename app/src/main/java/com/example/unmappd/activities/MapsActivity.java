@@ -1,5 +1,9 @@
 package com.example.unmappd.activities;
 
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.location.Location;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -11,9 +15,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GameService.GameServiceListener{
 
     private GoogleMap mMap;
+    protected GameService gameService;
+    protected boolean gameServiceBound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +48,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng bamberg = new LatLng(49.898135, 10.9027636);
         mMap.addMarker(new MarkerOptions().position(bamberg).title("Marker in Bamberg"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bamberg));
+    }
+
+    // ===== Game Service Connection =====
+
+    private ServiceConnection gameServiceCon = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            GameService.LocalBinder binder = (GameService.LocalBinder) service;
+            gameService = binder.getService();
+            gameServiceBound = true;
+            gameService.registerListener(MapsActivity.this);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+
+            gameServiceBound = false;
+        }
+    };
+
+    // Listener Methods
+
+    public void updatePlayerPosition(Location location){
+        // do nothing
     }
 }
