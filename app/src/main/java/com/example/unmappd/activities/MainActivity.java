@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
+import android.os.Binder;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements GameService.GameS
                 bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
             }
         });
+
+        Log.d("test", "created Main");
     }
 
     // ===== Game Service Connection =====
@@ -60,5 +64,7 @@ public class MainActivity extends AppCompatActivity implements GameService.GameS
     // Listener Methods
     public void updatePlayerPosition(Location location){
         // do nothing
+        Log.d("test", "Main listened");
     }
+
 }

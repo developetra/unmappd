@@ -6,12 +6,14 @@ import android.location.Location;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.unmappd.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -20,6 +22,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     protected GameService gameService;
     protected boolean gameServiceBound;
+    Location mLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Log.d("test", "created Maps");
     }
 
 
@@ -48,6 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng bamberg = new LatLng(49.898135, 10.9027636);
         mMap.addMarker(new MarkerOptions().position(bamberg).title("Marker in Bamberg"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(bamberg));
+
     }
 
     // ===== Game Service Connection =====
@@ -72,6 +77,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // Listener Methods
 
     public void updatePlayerPosition(Location location){
-        // do nothing
+        mMap.clear();
+        LatLng newPos = new LatLng(location.getLatitude(), location.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(newPos).title("Aktuelle Position"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(newPos));
+        Log.d("test", "Maps listened");
+
     }
 }

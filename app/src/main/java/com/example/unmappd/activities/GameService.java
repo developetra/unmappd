@@ -12,11 +12,15 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameService extends Service {
+
+    private static final long MINIMUM_TIME_BETWEEN_UPDATE = 1;
+    private static final long MINIMUM_DISTANCECHANGE_FOR_UPDATE = 1;
 
     private final IBinder binder = new LocalBinder();
     private final List<GameServiceListener> listeners = new ArrayList<GameServiceListener>();
@@ -27,6 +31,7 @@ public class GameService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        Log.d("test", "start GameService");
         initLocationManager();
         return Service.START_NOT_STICKY;
     }
@@ -65,6 +70,7 @@ public class GameService extends Service {
     // Event Handling - Location Manager
 
     private void initLocationManager() {
+        Log.d("test", "init LocManager");
         LocationManager locService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener locListener = new LocationListener() {
 
@@ -99,7 +105,7 @@ public class GameService extends Service {
             return;
         }
 
-        locService.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 2, locListener);
+        locService.requestLocationUpdates(LocationManager.GPS_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATE, MINIMUM_DISTANCECHANGE_FOR_UPDATE, locListener);
 
     }
 }
