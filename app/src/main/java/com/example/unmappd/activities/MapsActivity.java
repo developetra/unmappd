@@ -1,6 +1,8 @@
 package com.example.unmappd.activities;
 
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
 import android.os.IBinder;
@@ -28,11 +30,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // Bind to service
+        Intent bindIntent = new Intent(MapsActivity.this, GameService.class);
+        bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
         Log.d("test", "created Maps");
+        Log.d("test", "Service bound to Maps");
     }
 
 
@@ -81,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng newPos = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.addMarker(new MarkerOptions().position(newPos).title("Aktuelle Position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newPos));
-        Log.d("test", "Maps listened");
+        Log.d("test", "Maps is updating player position");
 
     }
 }

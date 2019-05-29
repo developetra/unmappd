@@ -19,7 +19,7 @@ import java.util.List;
 
 public class GameService extends Service {
 
-    private static final long MINIMUM_TIME_BETWEEN_UPDATE = 1;
+    private static final long MINIMUM_TIME_BETWEEN_UPDATE = 1000;
     private static final long MINIMUM_DISTANCECHANGE_FOR_UPDATE = 1;
 
     private final IBinder binder = new LocalBinder();
@@ -31,7 +31,7 @@ public class GameService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.d("test", "start GameService");
+        Log.d("test", "GameService started");
         initLocationManager();
         return Service.START_NOT_STICKY;
     }
@@ -70,32 +70,28 @@ public class GameService extends Service {
     // Event Handling - Location Manager
 
     private void initLocationManager() {
-        Log.d("test", "init LocManager");
+        Log.d("test", "LocationManager initialized");
         LocationManager locService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener locListener = new LocationListener() {
 
             @Override
             public void onLocationChanged(Location location) {
+                Log.d("test", "Location changed");
                 playerPosition = location;
+                // Inform all listeners about changed player position
                 for (GameServiceListener listener : listeners){
                     listener.updatePlayerPosition(location);
                 }
             }
 
             @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-
-            }
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
 
             @Override
-            public void onProviderEnabled(String provider) {
-
-            }
+            public void onProviderEnabled(String provider) {}
 
             @Override
-            public void onProviderDisabled(String provider) {
-
-            }
+            public void onProviderDisabled(String provider) {}
         };
 
         if (ActivityCompat.checkSelfPermission(this,
