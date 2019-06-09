@@ -14,17 +14,33 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
+import com.example.unmappd.backend.EstimationCalculator;
+import com.example.unmappd.backend.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameService extends Service {
+
+    // Service
 
     private static final long MINIMUM_TIME_BETWEEN_UPDATE = 1000;
     private static final long MINIMUM_DISTANCECHANGE_FOR_UPDATE = 1;
 
     private final IBinder binder = new LocalBinder();
     private final List<GameServiceListener> listeners = new ArrayList<GameServiceListener>();
-    private Location playerPosition;
+
+    // Game
+
+    private int gameRounds; // TODO refactor as enum
+
+    protected LocationManager locService;
+    protected LocationListener locListener;
+
+    private Location playerPosition = null;
+    private ArrayList<Player> players = new ArrayList<>();
+
+    private final EstimationCalculator calculator = new EstimationCalculator();
 
     // ===== Service Methods =====
 
