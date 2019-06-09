@@ -28,8 +28,8 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
     }
 
-    public void startMap (View view){
-        Intent intent = new Intent(this, MapsActivity.class);
+    public void startEstimation (View view){
+        Intent intent = new Intent(this, EstimationActivity.class);
         startActivity(intent);
     }
 

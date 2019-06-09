@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity{
     private void startGameService() {
         Log.d("test", "Starting game service");
         Intent serviceIntent = new Intent(getApplicationContext(), GameService.class);
-//        serviceIntent.putExtra(GameService.FIELD_ID_IDENTIFIER, selectedFieldId);
-//        serviceIntent.putExtra(GameDuration.IDENTIFIER, selectedGameDuration.getValue());
         startService(serviceIntent);
     }
 
