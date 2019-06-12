@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.unmappd.R;
 
@@ -26,6 +28,26 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         // Bind to Game Service
         Intent bindIntent = new Intent(SetupActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
+
+        // Rounds Spinner
+        Spinner roundsSpinner = (Spinner) findViewById(R.id.rounds_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> roundsAdapter = ArrayAdapter.createFromResource(this,
+                R.array.rounds_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        roundsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        roundsSpinner.setAdapter(roundsAdapter);
+
+        // Players Spinner
+        Spinner PlayersSpinner = (Spinner) findViewById(R.id.players_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> playersAdapter = ArrayAdapter.createFromResource(this,
+                R.array.players_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        playersAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        PlayersSpinner.setAdapter(playersAdapter);
     }
 
     public void startEstimation (View view){
