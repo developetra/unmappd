@@ -1,30 +1,50 @@
 package com.example.unmappd.backend;
 
-import org.ejml.data.DMatrixRMaj;
 import org.ejml.simple.SimpleMatrix;
 
 public class EstimationCalculator {
 
-    public static void main(String[] args) {
+    public static void calculateEstimation(String[] args) {
 
         int [] guesses = {70,90,30,70};
         int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
-        int [] playerPos = {0,0};
+        double [] playerPos = {0,0};
 
+        SimpleMatrix residualV;
+        SimpleMatrix designM;
+        SimpleMatrix correctionV;
 
-        // calculate residuals data
-        double residualVData [][] = {{0},{0},{0},{0}};
+        double correctionVLength = 100; // set initial value so that while loop runs at least once
 
-        for(int i = 0; i < residualVData.length; i++){
-            residualVData[i][0] = guesses[i]
-                    - Math.sqrt(Math.pow(landmarks[i][0] - playerPos[0], 2) + Math.pow(landmarks[i][1] - playerPos[1],2));
+        while(correctionVLength >= 0.001) {
+
+            residualV = computeResDataMatrix(guesses, landmarks, playerPos);
+            designM = computeDesignMatrix(landmarks, playerPos);
+
+            correctionV = computeCorrectionVector(residualV, designM);
+
+            correctionVLength = (Math.sqrt(Math.pow(correctionV.get(0), 2) + Math.pow(correctionV.get(1), 2)));
+
+            System.out.println(correctionVLength);
+
+            playerPos[0] = playerPos[0] + correctionV.get(0);
+            playerPos[1] = playerPos[1] + correctionV.get(1);
+
+            System.out.println(playerPos[0]);
+            System.out.println(playerPos[1]);
+            System.out.println();
         }
 
-        // put residual data in matrix
-        SimpleMatrix residualV = new SimpleMatrix(residualVData);
+    }
 
-        residualV.print();
+    private static SimpleMatrix computeCorrectionVector(SimpleMatrix residualV, SimpleMatrix designM) {
+        // compute correction vector
+        SimpleMatrix correctionV = designM.mult(designM.transpose()).invert().mult(designM).mult(residualV);
 
+        return correctionV;
+    }
+
+    private static SimpleMatrix computeDesignMatrix(int[][] landmarks, double[] playerPos) {
         // calculate design matrix data
         double [][] designMData = {{0,0,0,0},{0,0,0,0}};
 
@@ -50,12 +70,24 @@ public class EstimationCalculator {
         }
 
         // put design matrix data in matrix
-        SimpleMatrix designM = new SimpleMatrix(designMData);
-
-        designM.print();
-
-        // compute correction vector
-        SimpleMatrix correctionV = designM.mult(designM.transpose()).invert().mult(designM).mult(residualV);
-        correctionV.print();
+        return new SimpleMatrix(designMData);
     }
+
+    private static SimpleMatrix computeResDataMatrix(int[] guesses, int[][] landmarks, double[] playerPos) {
+        // calculate residuals data
+        double residualVData [][] = {{0},{0},{0},{0}};
+
+        for(int i = 0; i < residualVData.length; i++){
+            residualVData[i][0] = guesses[i]
+                    - Math.sqrt(Math.pow(landmarks[i][0] - playerPos[0], 2) + Math.pow(landmarks[i][1] - playerPos[1],2));
+        }
+
+        // put residual data in matrix
+        SimpleMatrix residualV = new SimpleMatrix(residualVData);
+
+        // residualV.print();
+        return residualV;
+    }
+
+
 }
