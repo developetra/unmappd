@@ -44,7 +44,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameServiceBound = true;
             gameService.registerListener(EstimationActivity.this);
             Log.d("test", "created Setup");
-            Log.d("test", "Service bound to Setup");
+            Log.d("test", "Service bound to Estimation");
         }
 
         @Override
