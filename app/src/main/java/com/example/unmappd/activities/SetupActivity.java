@@ -12,9 +12,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.unmappd.R;
+import com.example.unmappd.backend.Game;
+import com.example.unmappd.backend.Player;
+
+import java.util.ArrayList;
 
 public class SetupActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
@@ -84,10 +89,63 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         });
     }
 
+
     public void startEstimation (View view){
+        // Get number of rounds and players
+        Spinner roundsspinner = findViewById(R.id.rounds_spinner);
+        int numberOfRounds = roundsspinner.getSelectedItemPosition() +1;
+        Spinner playersspinner = findViewById(R.id.players_spinner);
+        int numberOfPlayers = playersspinner.getSelectedItemPosition();
+
+        // Get player names
+        EditText inputName1 = findViewById(R.id.editText1);
+        String name1 = inputName1.getText().toString();
+        Player player1 = new Player(name1, 0);
+        EditText inputName2 = findViewById(R.id.editText2);
+        String name2 = inputName2.getText().toString();
+        Player player2 = new Player(name2, 0);
+        EditText inputName3 = findViewById(R.id.editText3);
+        String name3 = inputName3.getText().toString();
+        Player player3 = new Player(name3, 0);
+        EditText inputName4 = findViewById(R.id.editText4);
+        String name4 = inputName4.getText().toString();
+        Player player4 = new Player(name4, 0);
+
+        // List of players
+        ArrayList<Player> players = new ArrayList<>();
+
+        // Add players to List
+        switch (numberOfPlayers){
+            case 0:
+                players.add(player1);
+                break;
+            case 1:
+                players.add(player1);
+                players.add(player2);
+                break;
+            case 2:
+                players.add(player1);
+                players.add(player2);
+                players.add(player3);
+                break;
+            case 3:
+                players.add(player1);
+                players.add(player2);
+                players.add(player3);
+                players.add(player4);
+                break;
+        }
+
+        // Create new Game and set rounds and players
+        Game currentGame = new Game(numberOfRounds, players);
+
+        Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
+
+        // Open new Activity
         Intent intent = new Intent(this, EstimationActivity.class);
         startActivity(intent);
     }
+
 
     // ===== Game Service Connection =====
 
@@ -109,6 +167,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
             gameServiceBound = false;
         }
     };
+
 
     // ===== Listener Methods =====
 

@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Player {
 
+    // Constructor
+    public Player(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
     private String name;
     private int score;
     private ArrayList<Object> guesses = new ArrayList<>();  // TODO save guesses in an appropriate way
