@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Unmappd</string>
     <string name="title_activity_maps">Map</string>
+    <string name="select_players">Select players</string>
+    <string name="setup_game">Setup Game</string>
+    <string name="select_rounds">Select rounds</string>
+    <string name="name_player_1">Name player 1</string>
+    <string name="name_player_2">Name player 2</string>
+    <string name="name_player_3">Name player 3</string>
+    <string name="name_player_4">Name player 4</string>
 
     <string-array name="rounds_array">
         <item>1</item>
