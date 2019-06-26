@@ -42,7 +42,13 @@ public class GameService extends Service {
 
     private final EstimationCalculator calculator = new EstimationCalculator();
 
-    // ===== Service Methods =====
+    // ===== Getter and Setter Methods
+
+    public Location getPlayerPosition(){
+        return playerPosition;
+    }
+
+    // ===== Service Methods
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -58,7 +64,7 @@ public class GameService extends Service {
     }
 
 
-    // ===== Local Binder =====
+    // ===== Local Binder
 
     public class LocalBinder extends Binder {
         GameService getService() {
@@ -66,7 +72,7 @@ public class GameService extends Service {
         }
     }
 
-    // ===== Game Service Listener Methods =====
+    // ===== Game Service Listener Methods
 
     public void registerListener(GameServiceListener listener) {
         listeners.add(listener);
@@ -78,12 +84,11 @@ public class GameService extends Service {
 
     public interface GameServiceListener {
 
-        // ...
         void updatePlayerPosition(Location location);
     }
 
 
-    // Event Handling - Location Manager
+    // ===== Event Handling - Location Manager
 
     private void initLocationManager() {
         Log.d("test", "LocationManager initialized");

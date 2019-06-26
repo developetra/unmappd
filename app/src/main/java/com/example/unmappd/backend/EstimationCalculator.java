@@ -1,14 +1,35 @@
 package com.example.unmappd.backend;
 
+import android.location.Location;
+
 import org.ejml.simple.SimpleMatrix;
 
 public class EstimationCalculator {
 
-    public static void calculateEstimation(String[] args) {
+    // TODO Andere Repräsentation Lat Long Werte (siehe Folien)
+    // TODO Parameterübergabe guesses, landmarks, playerPos
+    // TODO Parameterwerte in Arrays speichern
 
+    // public static void calculateEstimation(Location playerPosition) {
+    public static void main(String[] args){
         int [] guesses = {70,90,30,70};
         int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
         double [] playerPos = {0,0};
+
+
+        // TODO Refactoring
+        // Get offset from Lat / Long value
+        long base = Math.round(((12.118765 * 100) % 1) * 10000);
+        System.out.println(base);
+
+        // Get base from coordinates
+        double i = 12.118765 * 100;
+        int o = (int) i;
+        double p = o;
+        p = p / 100;
+        System.out.println(p);
+
+
 
         SimpleMatrix residualV;
         SimpleMatrix designM;
