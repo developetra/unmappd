@@ -10,11 +10,13 @@ public class EstimationCalculator {
     // TODO Parameterübergabe guesses, landmarks, playerPos
     // TODO Parameterwerte in Arrays speichern
 
+    private static final double MAX_DEVIATION = 0.001;
+
     // public static void calculateEstimation(Location playerPosition) {
     public static void main(String[] args){
         int [] guesses = {70,90,30,70};
         int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
-        double [] playerPos = {0,0};
+        double [] estimation = {0,0};
 
 
         // TODO Refactoring
@@ -35,38 +37,43 @@ public class EstimationCalculator {
         SimpleMatrix designM;
         SimpleMatrix correctionV;
 
-        double correctionVLength = 100; // set initial value so that while loop runs at least once
+        double correctionVLength = Double.MAX_VALUE; // set initial value to highest value to that loop always executes
 
-        while(correctionVLength >= 0.001) {
+        while(correctionVLength >= MAX_DEVIATION) {
 
-            residualV = computeResDataMatrix(guesses, landmarks, playerPos);
-            designM = computeDesignMatrix(landmarks, playerPos);
+            residualV = computeResDataMatrix(guesses, landmarks, estimation);
+            designM = computeDesignMatrix(landmarks, estimation);
 
             correctionV = computeCorrectionVector(residualV, designM);
 
-            correctionVLength = (Math.sqrt(Math.pow(correctionV.get(0), 2) + Math.pow(correctionV.get(1), 2)));
+            correctionVLength = calcVecLength(correctionV);
 
             System.out.println(correctionVLength);
 
-            playerPos[0] = playerPos[0] + correctionV.get(0);
-            playerPos[1] = playerPos[1] + correctionV.get(1);
+            estimation[0] = estimation[0] + correctionV.get(0);
+            estimation[1] = estimation[1] + correctionV.get(1);
 
-            System.out.println(playerPos[0]);
-            System.out.println(playerPos[1]);
+            System.out.println(estimation[0]);
+            System.out.println(estimation[1]);
             System.out.println();
         }
 
     }
 
+    private static double calcVecLength(SimpleMatrix correctionV) {
+
+        return Math.sqrt(Math.pow(correctionV.get(0), 2) + Math.pow(correctionV.get(1), 2));
+    }
+
     private static SimpleMatrix computeCorrectionVector(SimpleMatrix residualV, SimpleMatrix designM) {
-        // compute correction vector
+
         SimpleMatrix correctionV = designM.mult(designM.transpose()).invert().mult(designM).mult(residualV);
 
         return correctionV;
     }
 
     private static SimpleMatrix computeDesignMatrix(int[][] landmarks, double[] playerPos) {
-        // calculate design matrix data
+
         double [][] designMData = {{0,0,0,0},{0,0,0,0}};
 
         int x = 0;
@@ -95,7 +102,7 @@ public class EstimationCalculator {
     }
 
     private static SimpleMatrix computeResDataMatrix(int[] guesses, int[][] landmarks, double[] playerPos) {
-        // calculate residuals data
+
         double residualVData [][] = {{0},{0},{0},{0}};
 
         for(int i = 0; i < residualVData.length; i++){
@@ -106,7 +113,6 @@ public class EstimationCalculator {
         // put residual data in matrix
         SimpleMatrix residualV = new SimpleMatrix(residualVData);
 
-        // residualV.print();
         return residualV;
     }
 
