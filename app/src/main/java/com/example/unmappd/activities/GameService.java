@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.example.unmappd.backend.EstimationCalculator;
+import com.example.unmappd.backend.Game;
 import com.example.unmappd.backend.Player;
 
 import java.util.ArrayList;
@@ -38,14 +39,20 @@ public class GameService extends Service {
     protected LocationListener locListener;
 
     private Location playerPosition = null;
-    private ArrayList<Player> players = new ArrayList<>();
+    private Game game;
 
     private final EstimationCalculator calculator = new EstimationCalculator();
 
     // ===== Getter and Setter Methods
 
     public Location getPlayerPosition(){
+
         return playerPosition;
+    }
+
+    public void setGame(Game game){
+
+        this.game = game;
     }
 
     // ===== Service Methods

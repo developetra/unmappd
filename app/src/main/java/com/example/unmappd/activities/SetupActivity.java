@@ -139,10 +139,17 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         // Create new Game and set rounds and players
         Game currentGame = new Game(numberOfRounds, players);
 
+        //gameService.setGame(currentGame);
+
         Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
+        Log.d("test", "Number of Players is "+ String.valueOf(numberOfPlayers));
 
         // Open new Activity
         Intent intent = new Intent(this, EstimationActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("numberOfPlayers", numberOfPlayers+1);
+        b.putInt("playerIndex", 1);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
