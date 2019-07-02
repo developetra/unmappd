@@ -1,9 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.MapsActivity" />
+    android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.MapsActivity"
+        tools:layout_editor_absoluteX="-71dp"
+        tools:layout_editor_absoluteY="-134dp">
+
+
+    </fragment>
+
+    <LinearLayout
+        android:layout_width="373dp"
+        android:layout_height="287dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!--<Button
+            <!-android:id="@+id/button2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="61dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:background="@drawable/button_background"-->
+        <!--android:fontFamily="sans-serif-medium"-->
+        <!--android:text="Landmark 2 &#10; Straße &#10; Entfernung"-->
+        <!--android:textColor="#FFFCFC" />-->
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp">
+
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:button="@null"
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="50dp"
+                android:text="Landmark 1 &#10; Straße &#10; Entfernung"
+                android:textColor="#FFFCFC"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:button="@null"
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="50dp"
+                android:text="Landmark 2 &#10; Straße &#10; Entfernung"
+                android:textColor="#FFFCFC"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:button="@null"
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="50dp"
+                android:text="Landmark 3 &#10; Straße &#10; Entfernung"
+                android:textColor="#FFFCFC"
+                android:onClick="onRadioButtonClicked"/>
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:button="@null"
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="50dp"
+                android:text="Landmark 4 &#10; Straße &#10; Entfernung"
+                android:textColor="#FFFCFC"
+                android:onClick="onRadioButtonClicked"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
