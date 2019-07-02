@@ -12,15 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
+import com.example.unmappd.backend.Game;
+import com.example.unmappd.backend.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EstimationActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
     protected GameService gameService;
     protected boolean gameServiceBound;
 
+    // starting with 1
     private int numberOfPlayers;
     // playerIndex starting with 1
     private int playerIndex;
@@ -30,28 +37,34 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estimation);
 
+        // Update playerIndex and numberOfPlayers
+        Bundle b = this.getIntent().getExtras();
+        numberOfPlayers = b.getInt("numberOfPlayers");
+        playerIndex = b.getInt("playerIndex");
+
         // Bind to Game Service
         Intent bindIntent = new Intent(EstimationActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
 
-        Bundle b = this.getIntent().getExtras();
-        numberOfPlayers = b.getInt("numberOfPlayers");
-        playerIndex = b.getInt("playerIndex");
         Log.d("test", "numberOfPlayers is" + String.valueOf(numberOfPlayers));
         Log.d("test", "playerIndex is" + String.valueOf(playerIndex));
 
-        //TextView nameView = (TextView)findViewById(R.id.playerName);
-        //nameView.setText("TEST");
+        //TODO Auswahl und Anzeigen von 4 Landmarken in der Nähe
     }
 
     public void startMap (View view){
 
         // TODO save information to players
 
+        EditText distance1 = findViewById(R.id.distanceLandmark1);
+        EditText distance2 = findViewById(R.id.distanceLandmark2);
+        EditText distance3 = findViewById(R.id.distanceLandmark3);
+        EditText distance4 = findViewById(R.id.distanceLandmark4);
 
-        // load activity again for next player
+        // gameService.getGame().getPlayers().get(playerIndex-1).setGuess
+
+        // if next player -> load activity again
         if(playerIndex < numberOfPlayers) {
-            // reload activity for next player
             Intent refresh = new Intent(this, EstimationActivity.class);
             Bundle b = new Bundle();
             b.putInt("numberOfPlayers", numberOfPlayers);
@@ -60,7 +73,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             startActivity(refresh);
         }
         else {
-            // start map activity
+            // if no next player -> start map activity
             Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         }
@@ -73,11 +86,17 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             GameService.LocalBinder binder = (GameService.LocalBinder) service;
-            GameService gameService = binder.getService();
+            gameService = binder.getService();
             gameServiceBound = true;
             gameService.registerListener(EstimationActivity.this);
             Log.d("test", "created Setup");
             Log.d("test", "Service bound to Estimation");
+
+            // Init UI with player name
+
+            TextView nameView = (TextView)findViewById(R.id.playerName);
+            ArrayList<Player> players = gameService.getGame().getPlayers();
+            nameView.setText(players.get(playerIndex-1).getName());
         }
 
         @Override

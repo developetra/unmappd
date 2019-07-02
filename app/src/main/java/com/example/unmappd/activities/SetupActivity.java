@@ -139,7 +139,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         // Create new Game and set rounds and players
         Game currentGame = new Game(numberOfRounds, players);
 
-        //gameService.setGame(currentGame);
+        gameService.setGame(currentGame);
 
         Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
         Log.d("test", "Number of Players is "+ String.valueOf(numberOfPlayers));
@@ -161,7 +161,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             GameService.LocalBinder binder = (GameService.LocalBinder) service;
-            GameService gameService = binder.getService();
+            gameService = binder.getService();
             gameServiceBound = true;
             gameService.registerListener(SetupActivity.this);
             Log.d("test", "created Setup");

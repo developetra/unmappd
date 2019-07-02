@@ -55,6 +55,11 @@ public class GameService extends Service {
         this.game = game;
     }
 
+    public Game getGame(){
+
+        return this.game;
+    }
+
     // ===== Service Methods
 
     @Override
