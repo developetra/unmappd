@@ -51,7 +51,7 @@
         android:layout_marginBottom="8dp"
         android:background="#FCFBFB"
         android:fontFamily="sans-serif-light"
-        android:text="Explore Bamberg's nicest places of culture and food!"
+        android:text="Explore Bamberg's nicest places of culture and beer!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/startButton"
