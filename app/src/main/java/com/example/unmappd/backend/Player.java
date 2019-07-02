@@ -26,4 +26,8 @@ public class Player {
     public ArrayList getGuesses() {
         return guesses;
     }
+
+    public void addGuess(int distance){
+        guesses.add(distance);
+    }
 }

@@ -37,7 +37,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estimation);
 
-        // Update playerIndex and numberOfPlayers
+        // Update playerIndex and numberOfPlayers from intent
         Bundle b = this.getIntent().getExtras();
         numberOfPlayers = b.getInt("numberOfPlayers");
         playerIndex = b.getInt("playerIndex");
@@ -54,14 +54,22 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     public void startMap (View view){
 
-        // TODO save information to players
+        // Save user input to user
 
-        EditText distance1 = findViewById(R.id.distanceLandmark1);
-        EditText distance2 = findViewById(R.id.distanceLandmark2);
-        EditText distance3 = findViewById(R.id.distanceLandmark3);
-        EditText distance4 = findViewById(R.id.distanceLandmark4);
+        EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
+        EditText inputdistance2 = findViewById(R.id.distanceLandmark2);
+        EditText inputdistance3 = findViewById(R.id.distanceLandmark3);
+        EditText inputdistance4 = findViewById(R.id.distanceLandmark4);
 
-        // gameService.getGame().getPlayers().get(playerIndex-1).setGuess
+        int distance1 = Integer.parseInt(inputdistance1.getText().toString());
+        int distance2 = Integer.parseInt(inputdistance2.getText().toString());
+        int distance3 = Integer.parseInt(inputdistance3.getText().toString());
+        int distance4 = Integer.parseInt(inputdistance4.getText().toString());
+
+        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance1);
+        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
+        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
+        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
 
         // if next player -> load activity again
         if(playerIndex < numberOfPlayers) {
@@ -91,12 +99,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameService.registerListener(EstimationActivity.this);
             Log.d("test", "created Setup");
             Log.d("test", "Service bound to Estimation");
-
-            // Init UI with player name
-
-            TextView nameView = (TextView)findViewById(R.id.playerName);
-            ArrayList<Player> players = gameService.getGame().getPlayers();
-            nameView.setText(players.get(playerIndex-1).getName());
+            initUI();
         }
 
         @Override
@@ -105,6 +108,15 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameServiceBound = false;
         }
     };
+
+    private void initUI() {
+        // Init UI with player name
+        TextView nameView = (TextView)findViewById(R.id.playerName);
+        ArrayList<Player> players = gameService.getGame().getPlayers();
+        nameView.setText(players.get(playerIndex-1).getName());
+
+        Log.d("test", "Estimation UI initialized");
+    }
 
     // ===== Listener Methods =====
 
