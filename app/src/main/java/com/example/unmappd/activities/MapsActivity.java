@@ -46,6 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location mLocation;
     private Location currentLocation;
     private Marker pMarker;
+    MarkerOptions playerMarker = new MarkerOptions();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +85,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng lm3 = new LatLng(49.894568, 10.889364);
     LatLng lm4 = new LatLng(49.891111, 10.883208);
 
+    private Marker lm1Marker;
+    MarkerOptions lm1MarkerOptions = new MarkerOptions();
+
+
+    private Marker lm2Marker;
+    MarkerOptions lm2MarkerOptions = new MarkerOptions();
+
+    private Marker lm3Marker;
+    MarkerOptions lm3MarkerOptions = new MarkerOptions();
+
+    private Marker lm4Marker;
+    MarkerOptions lm4MarkerOptions = new MarkerOptions();
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
+        lm1MarkerOptions.position(lm1);
+        lm1Marker = mMap.addMarker(lm1MarkerOptions);
 
-        mMap.addMarker(new MarkerOptions().position(lm1).title("Marker LM1"));
-        mMap.addMarker(new MarkerOptions().position(lm2).title("Marker LM2"));
-        mMap.addMarker(new MarkerOptions().position(lm3).title("Marker LM3"));
-        mMap.addMarker(new MarkerOptions().position(lm4).title("Marker LM4"));
+        lm1MarkerOptions.position(lm2);
+        lm2Marker = mMap.addMarker(lm1MarkerOptions);
+
+        lm1MarkerOptions.position(lm3);
+        lm3Marker = mMap.addMarker(lm1MarkerOptions);
+
+        lm1MarkerOptions.position(lm4);
+        lm4Marker = mMap.addMarker(lm1MarkerOptions);
+//
+//        mMap.addMarker(new MarkerOptions().position(lm1).title("Marker LM1"));
+//        mMap.addMarker(new MarkerOptions().position(lm2).title("Marker LM2"));
+//        mMap.addMarker(new MarkerOptions().position(lm3).title("Marker LM3"));
+//        mMap.addMarker(new MarkerOptions().position(lm4).title("Marker LM4"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(lm1));
         mMap.animateCamera(CameraUpdateFactory.zoomTo( 14.0f ) );
 
@@ -123,10 +148,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // Listener Methods
    // Marker playerMarker;
-    MarkerOptions playerMarker = new MarkerOptions();
+
 
     public void updatePlayerPosition(Location location){
-
+        currentLocation = location;
         LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if(pMarker == null){
@@ -147,21 +172,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (((RadioButton) view).isChecked()) {
             RadioGroup raGroup = (RadioGroup) findViewById(R.id.radioGroup);
             raGroup.setVisibility(View.GONE);
-            mMap.clear();
+            //mMap.clear();
         }
 
         switch (view.getId()) {
             case R.id.radioButton1:
-                mMap.addMarker(new MarkerOptions().position(lm1).title("Marker LM1"));
+                lm2Marker.remove();
+                lm3Marker.remove();
+                lm4Marker.remove();
                 break;
             case R.id.radioButton2:
-                mMap.addMarker(new MarkerOptions().position(lm2).title("Marker LM2"));
+                lm1Marker.remove();
+                lm3Marker.remove();
+                lm4Marker.remove();
                 break;
             case R.id.radioButton3:
-                mMap.addMarker(new MarkerOptions().position(lm3).title("Marker LM3"));
+                lm2Marker.remove();
+                lm1Marker.remove();
+                lm4Marker.remove();
                 break;
             case R.id.radioButton4:
-                mMap.addMarker(new MarkerOptions().position(lm4).title("Marker LM4"));
+                lm2Marker.remove();
+                lm3Marker.remove();
+                lm1Marker.remove();
                 break;
 
         }
