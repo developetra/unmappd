@@ -2,12 +2,10 @@ package com.example.unmappd.activities;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
 import android.os.IBinder;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
-import com.example.unmappd.backend.Game;
 import com.example.unmappd.backend.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 
+
+/**
+ * This class serves at activity where the players can enter their distance guesses.
+ *
+ * @author Franziska Barckmann
+ */
 public class EstimationActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
     protected GameService gameService;
@@ -52,9 +54,18 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         //TODO Auswahl und Anzeigen von 4 Landmarken in der Nähe
     }
 
+    private void initUI() {
+        // Init UI with player name
+        TextView nameView = (TextView)findViewById(R.id.playerName);
+        ArrayList<Player> players = gameService.getGame().getPlayers();
+        nameView.setText(players.get(playerIndex-1).getName());
+
+        Log.d("test", "Estimation UI initialized");
+    }
+
     public void startMap (View view){
 
-        // Save user input to user
+        // Save user input to player object
 
         EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
         EditText inputdistance2 = findViewById(R.id.distanceLandmark2);
@@ -108,15 +119,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameServiceBound = false;
         }
     };
-
-    private void initUI() {
-        // Init UI with player name
-        TextView nameView = (TextView)findViewById(R.id.playerName);
-        ArrayList<Player> players = gameService.getGame().getPlayers();
-        nameView.setText(players.get(playerIndex-1).getName());
-
-        Log.d("test", "Estimation UI initialized");
-    }
 
     // ===== Listener Methods =====
 
