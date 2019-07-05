@@ -132,6 +132,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", json);
         LandmarkDatabase database = new Gson().fromJson(json, LandmarkDatabase.class);
         ArrayList<Landmark> landmarks = database.getLandmarks();
-        Log.d("test", "Json: " + landmarks);
+        Log.d("test", "Json mit Landmarks: " + landmarks);
     }
 }
