@@ -4,6 +4,11 @@ import android.location.Location;
 
 import org.ejml.simple.SimpleMatrix;
 
+/**
+ * This class calculates the estimated position of the player by using the information of distances to four landmarks.
+ *
+ * @author Franziska Barckmann, Ann-Kathrin Schmid, Petra Langenbacher
+ */
 public class EstimationCalculator {
 
     // TODO Andere Repräsentation Lat Long Werte (siehe Folien)
@@ -31,7 +36,7 @@ public class EstimationCalculator {
         p = p / 100;
         System.out.println(p);
 
-
+        // TODO Umrechnung LatLong in Kartesische Werte zur Berechnung
 
         SimpleMatrix residualV;
         SimpleMatrix designM;
