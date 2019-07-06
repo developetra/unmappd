@@ -1,4 +1,6 @@
-package com.example.unmappd.backend;
+package com.example.unmappd.data;
+
+import com.example.unmappd.data.Player;
 
 import java.util.ArrayList;
 

@@ -15,8 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.example.unmappd.backend.EstimationCalculator;
-import com.example.unmappd.backend.Game;
-import com.example.unmappd.backend.Player;
+import com.example.unmappd.data.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +96,7 @@ public class GameService extends Service {
     public interface GameServiceListener {
 
         void updatePlayerPosition(Location location);
+        // void playerReachedTarget(); // TODO Add function in MapsActivity (hier geht es im Game weiter)
     }
 
 
@@ -138,4 +138,19 @@ public class GameService extends Service {
         locService.requestLocationUpdates(LocationManager.GPS_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATE, MINIMUM_DISTANCECHANGE_FOR_UPDATE, locListener);
 
     }
+
+//    public void onPlayerReachedLandmark() {
+//         TODO adjust score?
+//         for(GameServiceListener listener : listeners) {
+//            listener.updatePlayerScore();
+//        }
+//        voidinitNextRound();
+//    }
+
+//    public voidinitNextRound(){
+//        TODO empty current landmarks
+//        TODO empty current guesses
+//        TODO pick landmarks or next round
+//        TODO notify listeners
+//    }
 }

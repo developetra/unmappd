@@ -1,4 +1,4 @@
-package com.example.unmappd.backend;
+package com.example.unmappd.data;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class Player {
 
     private String name;
     private int score;
-    private ArrayList<Object> guesses = new ArrayList<>();  // TODO save guesses in an appropriate way
+    private ArrayList<Object> guesses = new ArrayList<>();
 
 
     public String getName() {
@@ -25,5 +25,13 @@ public class Player {
 
     public ArrayList getGuesses() {
         return guesses;
+    }
+
+    public void addGuess(int distance){
+        guesses.add(distance);
+    }
+
+    public void removeGuesses(){
+        guesses = null;
     }
 }

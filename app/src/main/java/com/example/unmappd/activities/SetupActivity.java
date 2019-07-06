@@ -16,8 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.unmappd.R;
-import com.example.unmappd.backend.Game;
-import com.example.unmappd.backend.Player;
+import com.example.unmappd.data.Game;
+import com.example.unmappd.data.Player;
 
 import java.util.ArrayList;
 

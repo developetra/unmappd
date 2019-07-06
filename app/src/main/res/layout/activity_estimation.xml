@@ -79,8 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="distance" />
+                        android:inputType="number"/>
 
                     <TextView
                         android:id="@+id/textViewDistanceLandmark1"
@@ -144,8 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="distance" />
+                        android:inputType="number"/>
 
                     <TextView
                         android:id="@+id/textViewDistanceLandmark2"
@@ -209,8 +207,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="distance" />
+                        android:inputType="number"/>
 
                     <TextView
                         android:id="@+id/textViewDistanceLandmark3"
@@ -274,8 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="distance" />
+                        android:inputType="number"/>
 
                     <TextView
                         android:id="@+id/textViewDistanceLandmark4"
