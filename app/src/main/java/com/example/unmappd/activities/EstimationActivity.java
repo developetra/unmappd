@@ -72,13 +72,14 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     public void startMap (View view){
 
-        // Try to save user input to player object
-
+        // Get user input
         EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
         EditText inputdistance2 = findViewById(R.id.distanceLandmark2);
         EditText inputdistance3 = findViewById(R.id.distanceLandmark3);
         EditText inputdistance4 = findViewById(R.id.distanceLandmark4);
 
+        // Check that input is given (not empty)
+        // TODO check for wrong user input e.g. "200,03"
         if( TextUtils.isEmpty(inputdistance1.getText())){
             inputdistance1.setError( "Please enter a distance." );}
         else if (TextUtils.isEmpty(inputdistance2.getText())){
@@ -88,7 +89,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         else if (TextUtils.isEmpty(inputdistance4.getText())){
             inputdistance4.setError( "Please enter a distance." );}
         else{
-
+            // user input given -> save guesses
             int distance1 = Integer.parseInt(inputdistance1.getText().toString());
             int distance2 = Integer.parseInt(inputdistance2.getText().toString());
             int distance3 = Integer.parseInt(inputdistance3.getText().toString());
@@ -98,7 +99,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
-
 
             // if next player -> load activity again
             if(playerIndex < numberOfPlayers) {
@@ -114,7 +114,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
                 Intent intent = new Intent(this, MapsActivity.class);
                 startActivity(intent);
             }
-
         }
     }
 
