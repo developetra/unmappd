@@ -1,4 +1,4 @@
-package com.example.unmappd.backend;
+package com.example.unmappd.data;
 
 public class Landmark {
     private String name;
@@ -6,15 +6,24 @@ public class Landmark {
     private String latitude;
     private String path;
 
-    // Default Constructor
-    public Landmark() {
-        super();
-    }
+    // ===== Static Class Methods =====
+
+    /**
+     * Use mercator projection to transform latitude and longitude values to cartesian coordinates.
+     */
+    // TODO
+    // public static double[] toCartesian(double lat, double lng) {}
+
+    /**
+     * Use mercator projection to transform cartesian coordinates to latitude and longitude values.
+     */
+    // TODO
+    // public static double[] toLatLng(double x, double y) {}
 
     // Constructor
     public Landmark(String name, String longitude, String latitude, String path) {
         this.name = name;
-        this. longitude = longitude;
+        this.longitude = longitude;
         this.latitude = latitude;
         this.path = path;
     }
@@ -31,4 +40,5 @@ public class Landmark {
     public String getPath(){
         return path;
     }
+
 }

@@ -24,19 +24,18 @@ public class EstimationCalculator {
         double [] estimation = {0,0};
 
 
-        // TODO Refactoring
-        // Get offset from Lat / Long value
-        long base = Math.round(((12.118765 * 100) % 1) * 10000);
-        System.out.println(base);
+//        // TODO Refactoring
+//        // Get offset from Lat / Long value
+//        long base = Math.round(((12.118765 * 100) % 1) * 10000);
+//        System.out.println(base);
+//
+//        // Get base from coordinates
+//        double i = 12.118765 * 100;
+//        int o = (int) i;
+//        double p = o;
+//        p = p / 100;
+//        System.out.println(p);
 
-        // Get base from coordinates
-        double i = 12.118765 * 100;
-        int o = (int) i;
-        double p = o;
-        p = p / 100;
-        System.out.println(p);
-
-        // TODO Umrechnung LatLong in Kartesische Werte zur Berechnung
 
         SimpleMatrix residualV;
         SimpleMatrix designM;

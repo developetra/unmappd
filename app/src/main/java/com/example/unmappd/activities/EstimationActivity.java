@@ -14,9 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
-import com.example.unmappd.backend.Landmark;
-import com.example.unmappd.backend.LandmarkDatabase;
-import com.example.unmappd.backend.Player;
+import com.example.unmappd.data.Landmark;
+import com.example.unmappd.data.LandmarkDatabase;
+import com.example.unmappd.data.Player;
 import com.google.gson.Gson;
 
 import java.io.IOException;
