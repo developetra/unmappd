@@ -15,13 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
-import com.example.unmappd.data.Landmark;
-import com.example.unmappd.data.LandmarkDatabase;
 import com.example.unmappd.data.Player;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -58,7 +53,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "numberOfPlayers is" + String.valueOf(numberOfPlayers));
         Log.d("test", "playerIndex is" + String.valueOf(playerIndex));
 
-        readJson ();
         //TODO Auswahl und Anzeigen von 4 Landmarken in der Nähe
     }
 
@@ -147,30 +141,4 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "Setup is updating player position");
     }
 
-    // ===== Get Landmarks from json =====
-
-
-
-
-    public void readJson () {
-        String json = null;
-        // convert json to String
-        try {
-            InputStream is = getAssets().open("database.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        Log.d("test", json);
-
-        // convert json String to List of Landmarks
-        Landmark[] landmarkList = new Gson().fromJson(json, Landmark[].class);
-
-        Log.d("test", "LM List: " + landmarkList[1].getName());
-    }
 }

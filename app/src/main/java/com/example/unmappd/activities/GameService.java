@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.example.unmappd.backend.EstimationCalculator;
 import com.example.unmappd.data.Game;
+import com.example.unmappd.data.Landmark;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,7 @@ public class GameService extends Service {
 
     private Location playerPosition = null;
     private Game game;
+    private Landmark[] landmarkList;
 
     private final EstimationCalculator calculator = new EstimationCalculator();
 
@@ -64,8 +66,12 @@ public class GameService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.d("test", "GameService started");
+        // load landmarks from json
+        this.landmarkList = Landmark.readJson(this);
+
         initLocationManager();
+        Log.d("test", "GameService started");
+
         return Service.START_NOT_STICKY;
     }
 
