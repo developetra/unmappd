@@ -2,18 +2,26 @@ package com.example.unmappd.data;
 
 import java.util.ArrayList;
 
+/**
+ * Class Player - Represents a player of the game that is defined by his name and his score.
+ *
+ * @author Franziska Barckmann
+ */
 public class Player {
-
-    // Constructor
-    public Player(String name, int score) {
-        this.name = name;
-        this.score = score;
-    }
 
     private String name;
     private int score;
     private ArrayList<Integer> guesses = new ArrayList<>();
 
+    /**
+     * Constructor.
+     * @param name - name as a String
+     * @param score - score as an int
+     */
+    public Player(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
 
     public String getName() {
         return name;

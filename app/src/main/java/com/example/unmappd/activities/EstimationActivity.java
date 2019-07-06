@@ -8,24 +8,20 @@ import android.location.Location;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
-import com.example.unmappd.data.Landmark;
-import com.example.unmappd.data.LandmarkDatabase;
 import com.example.unmappd.data.Player;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 
 /**
- * This class serves at activity where the players can enter their distance guesses.
+ * EstimationActivity - This class serves as activity where the players can enter their distance guesses.
  *
  * @author Franziska Barckmann
  */
@@ -38,6 +34,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     private int numberOfPlayers;
     // playerIndex starting with 1
     private int playerIndex;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +53,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "numberOfPlayers is" + String.valueOf(numberOfPlayers));
         Log.d("test", "playerIndex is" + String.valueOf(playerIndex));
 
-        readJson ();
         //TODO Auswahl und Anzeigen von 4 Landmarken in der Nähe
     }
 
@@ -71,22 +67,33 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     public void startMap (View view){
 
-        // Save user input to player object
-
+        // Get user input
         EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
         EditText inputdistance2 = findViewById(R.id.distanceLandmark2);
         EditText inputdistance3 = findViewById(R.id.distanceLandmark3);
         EditText inputdistance4 = findViewById(R.id.distanceLandmark4);
 
-        int distance1 = Integer.parseInt(inputdistance1.getText().toString());
-        int distance2 = Integer.parseInt(inputdistance2.getText().toString());
-        int distance3 = Integer.parseInt(inputdistance3.getText().toString());
-        int distance4 = Integer.parseInt(inputdistance4.getText().toString());
+        // Check that input is given (not empty)
+        // TODO check for wrong user input e.g. "200,03"
+        if( TextUtils.isEmpty(inputdistance1.getText())){
+            inputdistance1.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance2.getText())){
+            inputdistance2.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance3.getText())){
+            inputdistance3.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance4.getText())){
+            inputdistance4.setError( "Please enter a distance." );}
+        else{
+            // user input given -> save guesses
+            int distance1 = Integer.parseInt(inputdistance1.getText().toString());
+            int distance2 = Integer.parseInt(inputdistance2.getText().toString());
+            int distance3 = Integer.parseInt(inputdistance3.getText().toString());
+            int distance4 = Integer.parseInt(inputdistance4.getText().toString());
 
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance1);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance1);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
 
 
         // if next player -> load activity again
@@ -136,23 +143,4 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "Setup is updating player position");
     }
 
-    // ===== Get Landmarks from json =====
-
-    public void readJson () {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("database.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Log.d("test", json);
-        LandmarkDatabase database = new Gson().fromJson(json, LandmarkDatabase.class);
-        ArrayList<Landmark> landmarks = database.getLandmarks();
-        Log.d("test", "Json: " + landmarks);
-    }
 }

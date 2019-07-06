@@ -1,24 +1,20 @@
-{
-  "database": {
-    "landmark": [
+[
       {
         "name": "landmark1",
-        "longitude": "10",
-        "latitude": "10",
+        "longitude": 49.8852207,
+        "latitude": 10.8816621,
         "path": "path"
       },
       {
         "name": "landmark2",
-        "longitude": "10",
-        "latitude": "10",
+        "longitude": 10,
+        "latitude": 10,
         "path": "path"
       },
       {
         "name": "landmark3",
-        "longitude": "10",
-        "latitude": "10",
+        "longitude": 10,
+        "latitude": 10,
         "path": "path"
       }
     ]
-  }
-}

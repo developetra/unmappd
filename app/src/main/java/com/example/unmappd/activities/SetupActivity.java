@@ -21,11 +21,21 @@ import com.example.unmappd.data.Player;
 
 import java.util.ArrayList;
 
+/**
+ * Setup Activity - This class serves as activity where a new game can be created with a chosen number of rounds and players.
+ *
+ * @author Petra Langenbscher
+ */
 public class SetupActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
     protected GameService gameService;
     protected boolean gameServiceBound;
 
+
+    /**
+     * Initialises Ui elements and adapts name input fields to chosen number of players.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +100,28 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
     }
 
 
+    /**
+     * Calls method to create a new game and starts a new activity to start estimation process.
+     * @param view
+     */
     public void startEstimation (View view){
+        int numberOfPlayers = initGame();
+
+        // Open new Activity
+        Intent intent = new Intent(this, EstimationActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("numberOfPlayers", numberOfPlayers+1);
+        b.putInt("playerIndex", 1);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+
+    /**
+     * Creates a new game with chosen number of rounds, number of players and names of players.
+     * @return number of players
+     */
+    private int initGame() {
         // Get number of rounds and players
         Spinner roundsspinner = findViewById(R.id.rounds_spinner);
         int numberOfRounds = roundsspinner.getSelectedItemPosition() +1;
@@ -143,19 +174,13 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
         Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
         Log.d("test", "Number of Players is "+ String.valueOf(numberOfPlayers));
-
-        // Open new Activity
-        Intent intent = new Intent(this, EstimationActivity.class);
-        Bundle b = new Bundle();
-        b.putInt("numberOfPlayers", numberOfPlayers+1);
-        b.putInt("playerIndex", 1);
-        intent.putExtras(b);
-        startActivity(intent);
+        return numberOfPlayers;
     }
 
 
-    // ===== Game Service Connection =====
-
+    /**
+     * Game Service Connection.
+     */
     private ServiceConnection gameServiceCon = new ServiceConnection() {
 
         @Override
@@ -176,8 +201,10 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
     };
 
 
-    // ===== Listener Methods =====
-
+    /**
+     * Updates player position - NOT used in this activity.
+     * @param location
+     */
     public void updatePlayerPosition(Location location){
         // do nothing
         Log.d("test", "Setup is updating player position");
