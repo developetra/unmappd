@@ -148,8 +148,12 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     // ===== Get Landmarks from json =====
 
+
+
+
     public void readJson () {
         String json = null;
+        // convert json to String
         try {
             InputStream is = getAssets().open("database.json");
             int size = is.available();
@@ -160,9 +164,12 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
         Log.d("test", json);
-        LandmarkDatabase database = new Gson().fromJson(json, LandmarkDatabase.class);
-        ArrayList<Landmark> landmarks = database.getLandmarks();
-        Log.d("test", "Json: " + landmarks);
+
+        // convert json String to List of Landmarks
+        Landmark[] landmarkList = new Gson().fromJson(json, Landmark[].class);
+
+        Log.d("test", "LM List: " + landmarkList[1].getName());
     }
 }

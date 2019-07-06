@@ -2,8 +2,8 @@ package com.example.unmappd.data;
 
 public class Landmark {
     private String name;
-    private String longitude;
-    private String latitude;
+    private int longitude;
+    private int latitude;
     private String path;
 
     // ===== Static Class Methods =====
@@ -21,7 +21,7 @@ public class Landmark {
     // public static double[] toLatLng(double x, double y) {}
 
     // Constructor
-    public Landmark(String name, String longitude, String latitude, String path) {
+    public Landmark(String name, int longitude, int latitude, String path) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -31,10 +31,10 @@ public class Landmark {
     public String getName(){
         return name;
     }
-    public String getLongitude(){
+    public int getLongitude(){
         return longitude;
     }
-    public String getLatitude(){
+    public int getLatitude(){
         return latitude;
     }
     public String getPath(){
