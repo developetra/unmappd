@@ -5,7 +5,7 @@ import android.location.Location;
 import org.ejml.simple.SimpleMatrix;
 
 /**
- * This class calculates the estimated position of the player by using the information of distances to four landmarks.
+ * EstimationCalculator - This class calculates the estimated position of the player by using the information of distances to four landmarks.
  *
  * @author Franziska Barckmann, Ann-Kathrin Schmid, Petra Langenbacher
  */

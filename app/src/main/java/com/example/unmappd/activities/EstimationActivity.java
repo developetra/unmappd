@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 /**
- * This class serves at activity where the players can enter their distance guesses.
+ * EstimationActivity - This class serves as activity where the players can enter their distance guesses.
  *
  * @author Franziska Barckmann
  */
@@ -38,6 +38,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     private int numberOfPlayers;
     // playerIndex starting with 1
     private int playerIndex;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
