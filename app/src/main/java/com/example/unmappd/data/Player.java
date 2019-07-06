@@ -12,7 +12,7 @@ public class Player {
 
     private String name;
     private int score;
-    private ArrayList<Object> guesses = new ArrayList<>();
+    private ArrayList<Integer> guesses = new ArrayList<>();
 
 
     public String getName() {
@@ -23,11 +23,11 @@ public class Player {
         return score;
     }
 
-    public ArrayList getGuesses() {
+    public ArrayList<Integer> getGuesses() {
         return guesses;
     }
 
-    public void addGuess(int distance){
+    public void addGuess(Integer distance){
         guesses.add(distance);
     }
 

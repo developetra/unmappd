@@ -88,6 +88,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
         gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
 
+
         // if next player -> load activity again
         if(playerIndex < numberOfPlayers) {
             Intent refresh = new Intent(this, EstimationActivity.class);
@@ -98,6 +99,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             startActivity(refresh);
         }
         else {
+
+            gameService.processGuesses();
             // if no next player -> start map activity
             Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);

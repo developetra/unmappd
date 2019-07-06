@@ -16,6 +16,7 @@ import android.util.Log;
 
 import com.example.unmappd.backend.EstimationCalculator;
 import com.example.unmappd.data.Game;
+import com.example.unmappd.data.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +138,14 @@ public class GameService extends Service {
 
         locService.requestLocationUpdates(LocationManager.GPS_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATE, MINIMUM_DISTANCECHANGE_FOR_UPDATE, locListener);
 
+    }
+
+    public void processGuesses(){
+
+        for(Player p : game.getPlayers()){
+
+            calculator.calculateEstimation(playerPosition, landmarkList);
+        }
     }
 
 //    public void onPlayerReachedLandmark() {
