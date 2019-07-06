@@ -8,6 +8,7 @@ import android.location.Location;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -72,36 +73,48 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     public void startMap (View view){
 
-        // Save user input to player object
-
+        // Get user input
         EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
         EditText inputdistance2 = findViewById(R.id.distanceLandmark2);
         EditText inputdistance3 = findViewById(R.id.distanceLandmark3);
         EditText inputdistance4 = findViewById(R.id.distanceLandmark4);
 
-        int distance1 = Integer.parseInt(inputdistance1.getText().toString());
-        int distance2 = Integer.parseInt(inputdistance2.getText().toString());
-        int distance3 = Integer.parseInt(inputdistance3.getText().toString());
-        int distance4 = Integer.parseInt(inputdistance4.getText().toString());
+        // Check that input is given (not empty)
+        // TODO check for wrong user input e.g. "200,03"
+        if( TextUtils.isEmpty(inputdistance1.getText())){
+            inputdistance1.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance2.getText())){
+            inputdistance2.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance3.getText())){
+            inputdistance3.setError( "Please enter a distance." );}
+        else if (TextUtils.isEmpty(inputdistance4.getText())){
+            inputdistance4.setError( "Please enter a distance." );}
+        else{
+            // user input given -> save guesses
+            int distance1 = Integer.parseInt(inputdistance1.getText().toString());
+            int distance2 = Integer.parseInt(inputdistance2.getText().toString());
+            int distance3 = Integer.parseInt(inputdistance3.getText().toString());
+            int distance4 = Integer.parseInt(inputdistance4.getText().toString());
 
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance1);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
-        gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance1);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
+            gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
 
-        // if next player -> load activity again
-        if(playerIndex < numberOfPlayers) {
-            Intent refresh = new Intent(this, EstimationActivity.class);
-            Bundle b = new Bundle();
-            b.putInt("numberOfPlayers", numberOfPlayers);
-            b.putInt("playerIndex", playerIndex+1);
-            refresh.putExtras(b);
-            startActivity(refresh);
-        }
-        else {
-            // if no next player -> start map activity
-            Intent intent = new Intent(this, MapsActivity.class);
-            startActivity(intent);
+            // if next player -> load activity again
+            if(playerIndex < numberOfPlayers) {
+                Intent refresh = new Intent(this, EstimationActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("numberOfPlayers", numberOfPlayers);
+                b.putInt("playerIndex", playerIndex+1);
+                refresh.putExtras(b);
+                startActivity(refresh);
+            }
+            else {
+                // if no next player -> start map activity
+                Intent intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
