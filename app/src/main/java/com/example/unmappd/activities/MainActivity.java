@@ -13,10 +13,19 @@ import android.widget.Button;
 
 import com.example.unmappd.R;
 
+/**
+ * MainActivity - Requests permission to access fine location and shows a button to start the game.
+ *
+ * @authors: Franziska Barckmann, Petra Langenbacher, Ann-Kathrin Schmid
+ */
 public class MainActivity extends AppCompatActivity{
 
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 5;
 
+    /**
+     * Calls methods to request permissions and initialise the UI elements when activity is created.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +38,9 @@ public class MainActivity extends AppCompatActivity{
         Log.d("test", "created Main");
     }
 
+    /**
+     * Requests permission to access fine location.
+     */
     private void requestPermission() {
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,
@@ -57,6 +69,9 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * Initialises UI elements.
+     */
     private void initUI() {
 
         Button startGameButton = findViewById(R.id.startButton);
@@ -71,6 +86,9 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * Starts GameService.
+     */
     private void startGameService() {
         Log.d("test", "Starting game service");
         Intent serviceIntent = new Intent(getApplicationContext(), GameService.class);
