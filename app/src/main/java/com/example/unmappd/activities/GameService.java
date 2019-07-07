@@ -17,6 +17,8 @@ import android.util.Log;
 import com.example.unmappd.backend.EstimationCalculator;
 import com.example.unmappd.data.Game;
 import com.example.unmappd.data.Landmark;
+import com.example.unmappd.data.Player;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -192,6 +194,27 @@ public class GameService extends Service {
         // TODO finalize calculation
         // calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
         // TODO updatePlayerScore();
+        updatePlayerScore(game.getPlayers().get(0));
+    }
+
+    private void updatePlayerScore(Player player) {
+        int score = player.getScore();
+        //Was bekommt man vom EstimationCalculator? Eine Location? LatLng?
+        Location calculatedPosition = null;     //TODO get Calculated Position from EstimationCalculator + evtl resolce as Location
+        float distanceGuessPlayer = playerPosition.distanceTo(calculatedPosition);
+        if (distanceGuessPlayer < 100){
+            //score = score + ?
+        }else if(distanceGuessPlayer >100 && distanceGuessPlayer <200 ){
+            //score = score + ?
+        }else if(distanceGuessPlayer >200 && distanceGuessPlayer <300 ){
+            //score = score + ?
+        }else if(distanceGuessPlayer >300 && distanceGuessPlayer <400 ){
+            //score = score + ?
+        }else if(distanceGuessPlayer <500){
+            //score = score + ?
+        }
+
+
     }
 
 //    public void onPlayerReachedLandmark() {
