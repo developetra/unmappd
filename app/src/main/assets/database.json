@@ -78,9 +78,76 @@
     "path": "path"
   },
   {
-    "name": "Brauerei Kaiserdom",
-    "longitude": 49.9048073,
-    "latitude": 10.8533869,
+    "name": "Bamberger Dom",
+    "longitude": 49.8914816,
+    "latitude": 10.8847276,
+    "path": "path"
+  },
+  {
+    "name": "Rosengarten",
+    "longitude": 49.8921679,
+    "latitude": 10.8815758,
+    "path": "path"
+  },
+  {
+    "name": "Untere Brücke",
+    "longitude": 49.8918239,
+    "latitude": 10.8855118,
+    "path": "path"
+  },
+  {
+    "name": "Neue Residenz",
+    "longitude": 49.89179,
+    "latitude": 10.8802391,
+    "path": "path"
+  },
+  {
+    "name": "Residenzschloss Geyerswörth",
+    "longitude": 49.8911055,
+    "latitude": 10.8864066,
+    "path": "path"
+  },
+  {
+    "name": "Altes Rathaus",
+    "longitude": 49.8916158,
+    "latitude": 10.8846561,
+    "path": "path"
+  },
+  {
+    "name": "Am Kranen",
+    "longitude": 49.8924546,
+    "latitude": 10.8846436,
+    "path": "path"
+  },
+  {
+    "name": "Alte Hofhaltung",
+    "longitude": 49.8911676,
+    "latitude": 10.8792314,
+    "path": "path"
+  },
+  {
+    "name": "Kloster St. Michael",
+    "longitude": 49.893672,
+    "latitude": 10.8750047,
+    "path": "path"
+  },
+  {
+    "name": "Schleuse 100 Ludwig-Main-Donau-Kanal",
+    "longitude": 49.8879778,
+    "latitude": 10.8879873,
+    "path": "path"
+  },
+  {
+    "name": "Kunstgalerien Böttingerhaus",
+    "longitude": 49.8892315,
+    "latitude": 10.8840692,
+    "path": "path"
+  },
+  {
+    "name": "Internationales Künstlerhaus Villa Concordia",
+    "longitude": 49.888092,
+    "latitude": 10.8863647,
     "path": "path"
   }
+
 ]
