@@ -19,6 +19,10 @@ import com.example.unmappd.data.Game;
 import com.example.unmappd.data.Landmark;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameService extends Service {
@@ -205,26 +209,62 @@ public class GameService extends Service {
      */
     public void initNextRound(){
 
-        //TODO check if there is a next round
+        //check if there is a next round
+        if(gameRounds>=1){
+            gameRounds = gameRounds -1;
 
-        //empty current selected landmarks
-        selectedLandmarks.clear();
+            //empty current selected landmarks
+            selectedLandmarks.clear();
 
-        // remove visited landmark from landmarkLIst
-        landmarkList.remove(targetLandmark);
+            // remove visited landmark from landmarkLIst
+            landmarkList.remove(targetLandmark);
 
-        //remove current guesses of players
-        game.clearAllGuesses();
+            //remove current guesses of players
+            game.clearAllGuesses();
 
-        //clear target landmark
-        targetLandmark = null;
+            //clear target landmark
+            targetLandmark = null;
 
-        //TODO pick landmarks or next round
+            // pick closest landmarks
+            selectedLandmarks = pickLandmarks();
+            Log.d("test", String.valueOf(selectedLandmarks));
 
-        //TODO notify listeners
+            //TODO notify listeners
+        } else{
+            //TODO show end score
+        }
+
+
+
 
     }
-    public void pickLandmarks(){
+    public ArrayList<Landmark> pickLandmarks(){
 
+        // arraylist with the closest landmarks
+        ArrayList<Landmark> closestLandmarks = new ArrayList<Landmark>();
+
+        // hashmap with landmarks and their distance to the position of the player
+        HashMap<Float, Landmark> landmarkMap = new HashMap<Float, Landmark>();
+
+        // fill hashmap with landmarks
+        for (Landmark current : landmarkList){
+            Location currentLocation = new Location("");
+            currentLocation.setLatitude(current.getLatitude());
+            currentLocation.setLongitude(current.getLongitude());
+            float distance = playerPosition.distanceTo(currentLocation);
+            landmarkMap.put(distance, current);
+        }
+
+        // sort a list with the keys of the hashmap
+        List sortedDistances = new ArrayList(landmarkMap.keySet());
+        Collections.sort(sortedDistances);
+
+        // add the closest landmarks to arraylist
+        closestLandmarks.add(landmarkMap.get(sortedDistances.get(0)));
+        closestLandmarks.add(landmarkMap.get(sortedDistances.get(1)));
+        closestLandmarks.add(landmarkMap.get(sortedDistances.get(2)));
+        closestLandmarks.add(landmarkMap.get(sortedDistances.get(3)));
+
+        return closestLandmarks;
     }
 }
