@@ -172,7 +172,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
         gameService.setGame(currentGame);
 
-        //TODO remove? gameService.initFirstGame();
+        gameService.initFirstGame();
 
         Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
         Log.d("test", "Number of Players is "+ String.valueOf(numberOfPlayers));

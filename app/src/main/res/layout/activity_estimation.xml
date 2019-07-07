@@ -88,15 +88,15 @@
                             android:id="@+id/textViewDirectionLandmark1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10pt"
+                            android:layout_marginTop="10dp"
                             android:text="Distance in meters:" />
 
                         <EditText
                             android:id="@+id/distanceLandmark1"
                             android:layout_width="match_parent"
                             android:layout_height="15dp"
-                            android:layout_marginTop="5pt"
-                            android:layout_marginBottom="15pt"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -109,7 +109,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10pt"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -148,15 +148,15 @@
                             android:id="@+id/textViewDirectionLandmark2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10pt"
+                            android:layout_marginTop="10dp"
                             android:text="Distance in meters:" />
 
                         <EditText
                             android:id="@+id/distanceLandmark2"
                             android:layout_width="match_parent"
                             android:layout_height="15dp"
-                            android:layout_marginTop="5pt"
-                            android:layout_marginBottom="15pt"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -170,7 +170,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10pt"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -209,15 +209,15 @@
                             android:id="@+id/textViewDirectionLandmark3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10pt"
+                            android:layout_marginTop="10dp"
                             android:text="Distance in meters:" />
 
                         <EditText
                             android:id="@+id/distanceLandmark3"
                             android:layout_width="match_parent"
                             android:layout_height="15dp"
-                            android:layout_marginTop="5pt"
-                            android:layout_marginBottom="15pt"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -231,7 +231,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="184dp"
-                android:layout_marginTop="10pt"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -270,15 +270,15 @@
                             android:id="@+id/textViewDirectionLandmark4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10pt"
+                            android:layout_marginTop="10dp"
                             android:text="Distance in meters:" />
 
                         <EditText
                             android:id="@+id/distanceLandmark4"
                             android:layout_width="match_parent"
                             android:layout_height="15dp"
-                            android:layout_marginTop="5pt"
-                            android:layout_marginBottom="15pt"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />

@@ -48,6 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker pMarker;
     MarkerOptions playerMarker = new MarkerOptions();
 
+    private ArrayList<Landmark> landmarks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ArrayList<Landmark> landmarks = gameService.getSelectedLandmarks();
+        // TODO fixen
 
         lm1 = new LatLng(landmarks.get(0).getLatitude(), landmarks.get(0).getLongitude());
         lm2 = new LatLng(landmarks.get(1).getLatitude(), landmarks.get(1).getLongitude());
@@ -145,7 +147,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             gameService = binder.getService();
             gameServiceBound = true;
             gameService.registerListener(MapsActivity.this);
-            initUI();
+
+            landmarks = gameService.getSelectedLandmarks();
         }
 
         @Override
@@ -155,15 +158,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-    private void initUI() {
-        Location currentPos = gameService.getPlayerPosition();
-
-        //calculate and display distances to landmarks and title
-//        changeTextOfButton(lm1Marker, currentPos, R.id.radioButton1);
-//        changeTextOfButton(lm2Marker, currentPos, R.id.radioButton2);
-//        changeTextOfButton(lm3Marker, currentPos, R.id.radioButton3);
-//        changeTextOfButton(lm4Marker, currentPos, R.id.radioButton4);
-    }
 
     private void changeTextOfButton(Marker lmMarker, Location currentPos, int radioButton) {
         Location targetLocation = new Location("");

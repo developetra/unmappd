@@ -88,7 +88,6 @@ public class GameService extends Service {
 
         // load landmarks from json
         this.landmarkList = Landmark.readJson(this);
-        selectedLandmarks = pickLandmarks();
 
         initLocationManager();
         Log.d("test", "GameService started");
@@ -267,5 +266,10 @@ public class GameService extends Service {
         closestLandmarks.add(landmarkMap.get(sortedDistances.get(3)));
 
         return closestLandmarks;
+    }
+
+    public void initFirstGame(){
+
+        selectedLandmarks = pickLandmarks();
     }
 }
