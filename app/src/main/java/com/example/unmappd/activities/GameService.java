@@ -56,6 +56,10 @@ public class GameService extends Service {
 
     // ===== Getter and Setter Methods
 
+    public ArrayList<Landmark> getSelectedLandmarks(){
+        return selectedLandmarks;
+    }
+
     public Location getPlayerPosition(){
 
         return playerPosition;
