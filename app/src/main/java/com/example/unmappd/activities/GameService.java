@@ -56,10 +56,6 @@ public class GameService extends Service {
 
     // ===== Getter and Setter Methods
 
-    public ArrayList<Landmark> getSelectedLandmarks(){
-        return selectedLandmarks;
-    }
-
     public Location getPlayerPosition(){
 
         return playerPosition;
@@ -92,6 +88,7 @@ public class GameService extends Service {
 
         // load landmarks from json
         this.landmarkList = Landmark.readJson(this);
+        selectedLandmarks = pickLandmarks();
 
         initLocationManager();
         Log.d("test", "GameService started");

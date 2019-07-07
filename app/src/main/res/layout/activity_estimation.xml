@@ -27,74 +27,142 @@
 
                 <TextView
                     android:id="@+id/playerName"
-                    android:layout_width="192dp"
+                    android:layout_width="402dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Player 1"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:text="- Name of player -"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:paddingBottom="20dp"
+                    android:text="Please estimate the distances from your position to the four landmarks listed below."
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nameLandmark1"
-                        android:layout_width="192dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Landmark 1" />
-
-                    <ImageView
-                        android:id="@+id/imageLandmark1"
-                        android:layout_width="190dp"
-                        android:layout_height="121dp"
-                        app:srcCompat="@drawable/bambger_mainimg" />
-                </LinearLayout>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textViewDirectionLandmark1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Distance to landmark" />
+                    <LinearLayout
+                        android:layout_width="190dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/distanceLandmark1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number"/>
+                        <ImageView
+                            android:id="@+id/imageLandmark1"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            app:srcCompat="@drawable/bambger_mainimg" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textViewDistanceLandmark1"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Direction to landmark" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/directionLandmark1"
+                        <TextView
+                            android:id="@+id/nameLandmark1"
+                            android:layout_width="192dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Landmark 1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/textViewDirectionLandmark1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10pt"
+                            android:text="Distance in meters:" />
+
+                        <EditText
+                            android:id="@+id/distanceLandmark1"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5pt"
+                            android:layout_marginBottom="15pt"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10pt"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="192dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageLandmark2"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            app:srcCompat="@drawable/bambger_mainimg" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="direction" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/nameLandmark2"
+                            android:layout_width="192dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Landmark 1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/textViewDirectionLandmark2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10pt"
+                            android:text="Distance in meters:" />
+
+                        <EditText
+                            android:id="@+id/distanceLandmark2"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5pt"
+                            android:layout_marginBottom="15pt"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -103,126 +171,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10pt"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="192dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nameLandmark2"
-                        android:layout_width="192dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_height="wrap_content"
-                        android:text="Landmark 1" />
-
-                    <ImageView
-                        android:id="@+id/imageLandmark2"
-                        android:layout_width="190dp"
-                        android:layout_height="121dp"
-                        app:srcCompat="@drawable/bambger_mainimg" />
-                </LinearLayout>
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textViewDirectionLandmark2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Distance to landmark" />
-
-                    <EditText
-                        android:id="@+id/distanceLandmark2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number"/>
-
-                    <TextView
-                        android:id="@+id/textViewDistanceLandmark2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Direction to landmark" />
-
-                    <EditText
-                        android:id="@+id/directionLandmark2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="direction" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10pt"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="192dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nameLandmark3"
+                    <LinearLayout
                         android:layout_width="192dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_height="wrap_content"
-                        android:text="Landmark 1" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageLandmark3"
-                        android:layout_width="190dp"
-                        android:layout_height="121dp"
-                        app:srcCompat="@drawable/bambger_mainimg" />
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/imageLandmark3"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            app:srcCompat="@drawable/bambger_mainimg" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textViewDirectionLandmark3"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Distance to landmark" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/distanceLandmark3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number"/>
+                        <TextView
+                            android:id="@+id/nameLandmark3"
+                            android:layout_width="192dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Landmark 1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                    <TextView
-                        android:id="@+id/textViewDistanceLandmark3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Direction to landmark" />
+                        <TextView
+                            android:id="@+id/textViewDirectionLandmark3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10pt"
+                            android:text="Distance in meters:" />
 
-                    <EditText
-                        android:id="@+id/directionLandmark3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="direction" />
+                        <EditText
+                            android:id="@+id/distanceLandmark3"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5pt"
+                            android:layout_marginBottom="15pt"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -231,62 +232,59 @@
                 android:layout_width="match_parent"
                 android:layout_height="184dp"
                 android:layout_marginTop="10pt"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="192dp"
-                    android:layout_height="143dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/nameLandmark4"
-                        android:layout_width="192dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Landmark 1" />
-
-                    <ImageView
-                        android:id="@+id/imageLandmark4"
-                        android:layout_width="190dp"
-                        android:layout_height="124dp"
-                        app:srcCompat="@drawable/bambger_mainimg" />
-                </LinearLayout>
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="143dp"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textViewDirectionLandmark4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Distance to landmark" />
+                    <LinearLayout
+                        android:layout_width="192dp"
+                        android:layout_height="143dp"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/distanceLandmark4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number"/>
+                        <ImageView
+                            android:id="@+id/imageLandmark4"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_marginLeft="10dp"
+                            app:srcCompat="@drawable/bambger_mainimg" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textViewDistanceLandmark4"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Direction to landmark" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/directionLandmark4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        android:text="direction" />
+                        <TextView
+                            android:id="@+id/nameLandmark4"
+                            android:layout_width="192dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Landmark 1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/textViewDirectionLandmark4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10pt"
+                            android:text="Distance in meters:" />
+
+                        <EditText
+                            android:id="@+id/distanceLandmark4"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5pt"
+                            android:layout_marginBottom="15pt"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
