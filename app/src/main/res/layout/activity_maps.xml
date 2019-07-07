@@ -20,8 +20,8 @@
     </fragment>
 
     <LinearLayout
-        android:layout_width="373dp"
-        android:layout_height="287dp"
+        android:layout_width="380dp"
+        android:layout_height="230dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,10 +56,10 @@
                 android:background="@drawable/button_background"
                 android:button="@null"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="50dp"
-                android:text="Landmark 1 &#10; Straße &#10; Entfernung"
-                android:textColor="#FFFCFC"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="Landmark 1 &#10;Entfernung"
+                android:textColor="#FFFCFC" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
@@ -71,10 +71,10 @@
                 android:background="@drawable/button_background"
                 android:button="@null"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="50dp"
-                android:text="Landmark 2 &#10; Straße &#10; Entfernung"
-                android:textColor="#FFFCFC"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="Landmark 2 &#10;Entfernung"
+                android:textColor="#FFFCFC" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
@@ -86,10 +86,10 @@
                 android:background="@drawable/button_background"
                 android:button="@null"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="50dp"
-                android:text="Landmark 3 &#10; Straße &#10; Entfernung"
-                android:textColor="#FFFCFC"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="Landmark 3 &#10;Entfernung"
+                android:textColor="#FFFCFC" />
 
             <RadioButton
                 android:id="@+id/radioButton4"
@@ -101,10 +101,10 @@
                 android:background="@drawable/button_background"
                 android:button="@null"
                 android:fontFamily="sans-serif-medium"
+                android:onClick="onRadioButtonClicked"
                 android:paddingLeft="50dp"
-                android:text="Landmark 4 &#10; Straße &#10; Entfernung"
-                android:textColor="#FFFCFC"
-                android:onClick="onRadioButtonClicked"/>
+                android:text="Landmark 4 &#10;Entfernung"
+                android:textColor="#FFFCFC" />
 
         </RadioGroup>
 

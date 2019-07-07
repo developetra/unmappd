@@ -100,25 +100,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial
+
         lm1MarkerOptions.position(lm1);
         lm1Marker = mMap.addMarker(lm1MarkerOptions);
+        lm1Marker.setTitle("Landmark1");
 
         lm1MarkerOptions.position(lm2);
         lm2Marker = mMap.addMarker(lm1MarkerOptions);
+        lm1Marker.setTitle("Landmark2");
 
         lm1MarkerOptions.position(lm3);
         lm3Marker = mMap.addMarker(lm1MarkerOptions);
+        lm1Marker.setTitle("Landmark3");
 
         lm1MarkerOptions.position(lm4);
         lm4Marker = mMap.addMarker(lm1MarkerOptions);
-//
-//        mMap.addMarker(new MarkerOptions().position(lm1).title("Marker LM1"));
-//        mMap.addMarker(new MarkerOptions().position(lm2).title("Marker LM2"));
-//        mMap.addMarker(new MarkerOptions().position(lm3).title("Marker LM3"));
-//        mMap.addMarker(new MarkerOptions().position(lm4).title("Marker LM4"));
+        lm1Marker.setTitle("Landmark4");
+
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(lm1));
         mMap.animateCamera(CameraUpdateFactory.zoomTo( 14.0f ) );
+        //mMap.getUiSettings().setMapToolbarEnabled(false);
 
     }
 
@@ -135,6 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             gameService = binder.getService();
             gameServiceBound = true;
             gameService.registerListener(MapsActivity.this);
+            initUI();
         }
 
         @Override
@@ -144,8 +147,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-    // Listener Methods
-   // Marker playerMarker;
+    private void initUI() {
+        Location currentPos = gameService.getPlayerPosition();
+
+        //calculate and display distances to landmarks and title
+//        changeTextOfButton(lm1Marker, currentPos, R.id.radioButton1);
+//        changeTextOfButton(lm2Marker, currentPos, R.id.radioButton2);
+//        changeTextOfButton(lm3Marker, currentPos, R.id.radioButton3);
+//        changeTextOfButton(lm4Marker, currentPos, R.id.radioButton4);
+    }
+
+    private void changeTextOfButton(Marker lmMarker, Location currentPos, int radioButton) {
+        Location targetLocation = new Location("");
+        targetLocation.setLongitude(lmMarker.getPosition().longitude);
+        targetLocation.setLatitude(lmMarker.getPosition().latitude);
+
+
+        float distance = currentPos.distanceTo(targetLocation);
+        int distanceRounded = Math.round(distance);
+        Button btn = (Button) findViewById(radioButton);
+        btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m");
+
+    }
+
 
 
     public void updatePlayerPosition(Location location){
@@ -156,8 +180,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             playerMarker.position(currentLatLng).title("Your Position");
             playerMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             pMarker = mMap.addMarker(playerMarker);
+
+            changeTextOfButton(lm1Marker, currentLocation, R.id.radioButton1);
+            changeTextOfButton(lm2Marker, currentLocation, R.id.radioButton2);
+            changeTextOfButton(lm3Marker, currentLocation, R.id.radioButton3);
+            changeTextOfButton(lm4Marker, currentLocation, R.id.radioButton4);
+
         }else{
             pMarker.setPosition(currentLatLng);
+
         }
 
         //mMap.addMarker(new MarkerOptions().position(newPos).title("Aktuelle Position"));
