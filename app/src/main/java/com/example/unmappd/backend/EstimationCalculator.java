@@ -6,6 +6,7 @@ import com.example.unmappd.data.Landmark;
 
 import org.ejml.simple.SimpleMatrix;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ public class EstimationCalculator {
 
     private static final double MAX_DEVIATION = 0.001;
 
-    public static void calculateEstimation(Location playerPosition, ArrayList<Integer>distanceList, ArrayList<Landmark> landmarkList) {
+    public static void calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
     //public static void main(String[] args){
         int [] guesses = {70,90,30,70};
         int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
@@ -45,7 +46,7 @@ public class EstimationCalculator {
         SimpleMatrix designM;
         SimpleMatrix correctionV;
 
-        double correctionVLength = Double.MAX_VALUE; // set initial value to highest value to that loop always executes
+        double correctionVLength = Double.MAX_VALUE; // set initial value to highest value so that loop always executes
 
         while(correctionVLength >= MAX_DEVIATION) {
 
