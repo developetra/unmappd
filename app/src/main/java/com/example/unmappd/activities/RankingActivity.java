@@ -159,4 +159,8 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
         // do nothing
         Log.d("test", "Setup is updating player position");
     }
+
+    public void playerReachedTarget(boolean endOfGame){
+        // do nothing
+    }
 }

@@ -178,4 +178,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "Setup is updating player position");
     }
 
+    public void playerReachedTarget(boolean endOfGame){
+        // do nothing
+    }
+
 }
