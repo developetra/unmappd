@@ -235,6 +235,8 @@ public class GameService extends Service {
         selectedLandmarks.add(landmarkList.get(1));
         selectedLandmarks.add(landmarkList.get(2));
         selectedLandmarks.add(landmarkList.get(3));
+
+        //TODO pickLandmarks()
     }
     public void pickLandmarks(){
 

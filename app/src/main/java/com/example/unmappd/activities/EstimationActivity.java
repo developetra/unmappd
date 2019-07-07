@@ -81,15 +81,15 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
             landmarkNameView1.setText(landmarkList.get(i).getName());
 
-//            // set landmark image
-//            String imageIdString = "imageLandmark" + index;
-//            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
-//
-//            ImageView landmarkImageView1 = (ImageView) findViewById(imageIdInt);
-//            String mDrawableName = landmarkList.get(index).getPath();
-//            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
-//            Drawable drawable = res.getDrawable(resID);
-//            landmarkImageView1.setImageDrawable(drawable);
+            // set landmark image
+            String imageIdString = "imageLandmark" + index;
+            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
+
+            ImageView landmarkImageView1 = (ImageView) findViewById(imageIdInt);
+            String mDrawableName = landmarkList.get(i).getPath();
+            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
+            Drawable drawable = res.getDrawable(resID);
+            landmarkImageView1.setImageDrawable(drawable);
         }
 
         Log.d("test", "Estimation UI initialized");

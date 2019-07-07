@@ -33,7 +33,7 @@
     "name": "Brauerei KLosterbräu",
     "longitude": 49.889257,
     "latitude": 10.8850083,
-    "path": "brauerei_klosterbräu"
+    "path": "brauerei_klosterbraeu"
   },
   {
     "name": "Brauerei Fässla",
@@ -69,7 +69,7 @@
     "name": "Ambräusianum",
     "longitude": 49.891758,
     "latitude": 10.8824043,
-    "path": "ambräusianum"
+    "path": "ambraeusianum"
   },
   {
     "name": "Bamberger Dom",
@@ -87,7 +87,7 @@
     "name": "Untere Brücke",
     "longitude": 49.8918239,
     "latitude": 10.8855118,
-    "path": "untere_brücke"
+    "path": "untere_bruecke"
   },
   {
     "name": "Neue Residenz",
@@ -99,7 +99,7 @@
     "name": "Residenzschloss Geyerswörth",
     "longitude": 49.8911055,
     "latitude": 10.8864066,
-    "path": "residenzschloss_geyerswörth"
+    "path": "residenzschloss_geyerswoerth"
   },
   {
     "name": "Altes Rathaus",
