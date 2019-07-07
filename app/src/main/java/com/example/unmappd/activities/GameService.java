@@ -38,12 +38,12 @@ public class GameService extends Service {
     protected LocationManager locService;
     protected LocationListener locListener;
 
-    private Landmark[] landmarkList;
+    private List<Landmark> landmarkList;
 
-    private Location playerPosition;
+    private Location playerPosition = null;
 
     // TODO set targetlandmark in Map Activity
-    private Landmark targetLandmark;
+    private Landmark targetLandmark = null;
 
     private Game game;
     private ArrayList<Landmark> selectedLandmarks;
@@ -84,6 +84,7 @@ public class GameService extends Service {
 
         // load landmarks from json
         this.landmarkList = Landmark.readJson(this);
+        initFirstGame();
 
         initLocationManager();
         Log.d("test", "GameService started");
@@ -210,6 +211,9 @@ public class GameService extends Service {
         //empty current selected landmarks
         selectedLandmarks.clear();
 
+        // remove visited landmark from landmarkLIst
+        landmarkList.remove(targetLandmark);
+
         //remove current guesses of players
         game.clearAllGuesses();
 
@@ -227,9 +231,12 @@ public class GameService extends Service {
 
         selectedLandmarks = new ArrayList<>();
 
-        selectedLandmarks.add(landmarkList[0]);
-        selectedLandmarks.add(landmarkList[1]);
-        selectedLandmarks.add(landmarkList[2]);
-        selectedLandmarks.add(landmarkList[3]);
+        selectedLandmarks.add(landmarkList.get(0));
+        selectedLandmarks.add(landmarkList.get(1));
+        selectedLandmarks.add(landmarkList.get(2));
+        selectedLandmarks.add(landmarkList.get(3));
+    }
+    public void pickLandmarks(){
+
     }
 }

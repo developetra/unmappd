@@ -70,16 +70,16 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Resources res = getResources();
 
         // Load landmark information for every landmark
-        for (int i = 0; i <= landmarkList.size() -1; i++) {
+        for (int i = 0; i < landmarkList.size(); i++) {
 
-            int index = i + 1;
+            int index = i+1;
 
             // set landmark name
-            String nameIdString = "nameLandmark" + index;
+            String nameIdString = "nameLandmark" + index ;
             int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
 
             TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
-            landmarkNameView1.setText(landmarkList.get(index).getName());
+            landmarkNameView1.setText(landmarkList.get(i).getName());
 
 //            // set landmark image
 //            String imageIdString = "imageLandmark" + index;

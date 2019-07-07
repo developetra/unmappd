@@ -9,6 +9,9 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Class Landmark - Represents a landmark that is defined by its name, picture and location.
@@ -29,7 +32,7 @@ public class Landmark {
      * @return
      *  list of landmark objects
      */
-    public static Landmark[] readJson (Context context) {
+    public static List<Landmark> readJson (Context context) {
         String json = null;
         // convert json to String
         try {
@@ -46,9 +49,11 @@ public class Landmark {
         Log.d("test", json);
 
         // convert json String to List of Landmarks
-        Landmark[] landmarkList = new Gson().fromJson(json, Landmark[].class);
+        Landmark[] landmarkArray = new Gson().fromJson(json, Landmark[].class);
 
-        Log.d("test", "LM List: " + landmarkList[0].getLongitude());
+        Log.d("test", "LM List: " + landmarkArray[0].getLongitude());
+
+        List<Landmark> landmarkList = Arrays.asList(landmarkArray);
 
         return landmarkList;
     }
