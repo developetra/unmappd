@@ -65,22 +65,22 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         ArrayList<Player> players = gameService.getGame().getPlayers();
         nameView.setText(players.get(playerIndex-1).getName());
 
-        // Init UI with landmark content
+        // Get current selected landmarks
         ArrayList<Landmark> landmarkList = gameService.getSelectedLandmarks();
         Resources res = getResources();
 
-        // For every landmark
-//        for (int i = 0; i <= landmarkList.size() -1; i++) {
-//
-//            int index = i + 1;
-//
-//            // set landmark name
-//            String nameIdString = "nameLandmark" + index;
-//            int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
-//
-//            TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
-//            landmarkNameView1.setText(landmarkList.get(index).getName());
-//
+        // Load landmark information for every landmark
+        for (int i = 0; i < landmarkList.size(); i++) {
+
+            int index = i+1;
+
+            // set landmark name
+            String nameIdString = "nameLandmark" + index ;
+            int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
+
+            TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
+            landmarkNameView1.setText(landmarkList.get(i).getName());
+
 //            // set landmark image
 //            String imageIdString = "imageLandmark" + index;
 //            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
@@ -90,7 +90,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 //            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
 //            Drawable drawable = res.getDrawable(resID);
 //            landmarkImageView1.setImageDrawable(drawable);
-//        }
+        }
 
         Log.d("test", "Estimation UI initialized");
     }
