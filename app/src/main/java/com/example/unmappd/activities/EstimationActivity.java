@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +14,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
+import com.example.unmappd.data.Landmark;
 import com.example.unmappd.data.Player;
 
 import java.util.ArrayList;
@@ -53,7 +57,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "numberOfPlayers is" + String.valueOf(numberOfPlayers));
         Log.d("test", "playerIndex is" + String.valueOf(playerIndex));
 
-        //TODO Auswahl und Anzeigen von 4 Landmarken in der Nähe
     }
 
     private void initUI() {
@@ -61,6 +64,33 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         TextView nameView = (TextView)findViewById(R.id.playerName);
         ArrayList<Player> players = gameService.getGame().getPlayers();
         nameView.setText(players.get(playerIndex-1).getName());
+
+        // Init UI with landmark content
+        ArrayList<Landmark> landmarkList = gameService.getSelectedLandmarks();
+        Resources res = getResources();
+
+        // For every landmark
+        for (int i = 0; i <= landmarkList.size() -1; i++) {
+
+            int index = i + 1;
+
+            // set landmark name
+            String nameIdString = "nameLandmark" + index;
+            int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
+
+            TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
+            landmarkNameView1.setText(landmarkList.get(index).getName());
+
+            // set landmark image
+            String imageIdString = "imageLandmark" + index;
+            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
+
+            ImageView landmarkImageView1 = (ImageView) findViewById(imageIdInt);
+            String mDrawableName = landmarkList.get(index).getPath();
+            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
+            Drawable drawable = res.getDrawable(resID);
+            landmarkImageView1.setImageDrawable(drawable);
+        }
 
         Log.d("test", "Estimation UI initialized");
     }

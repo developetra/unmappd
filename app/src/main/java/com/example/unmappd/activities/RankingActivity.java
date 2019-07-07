@@ -13,9 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
-import com.example.unmappd.data.Player;
-
-import java.util.ArrayList;
 
 public class RankingActivity extends AppCompatActivity implements GameService.GameServiceListener {
 
@@ -72,7 +69,7 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(gameService.getGame().getPlayers().get(0).getScore());
+                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
                 break;
             case 2:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -83,10 +80,10 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(gameService.getGame().getPlayers().get(0).getScore());
+                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
                 // player 2
                 nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(gameService.getGame().getPlayers().get(1).getScore());
+                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
                 break;
             case 3:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -97,13 +94,13 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(gameService.getGame().getPlayers().get(0).getScore());
+                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
                 // player 2
                 nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(gameService.getGame().getPlayers().get(1).getScore());
+                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
                 // player 3
                 nameP3View.setText(gameService.getGame().getPlayers().get(2).getName());
-                scoreP3View.setText(gameService.getGame().getPlayers().get(2).getScore());
+                scoreP3View.setText(String.valueOf(gameService.getGame().getPlayers().get(2).getScore()));
                 break;
             case 4:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -114,16 +111,16 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
                 scoreP4View.setVisibility(View.VISIBLE);
                 // player 1
                 nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(gameService.getGame().getPlayers().get(0).getScore());
+                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
                 // player 2
                 nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(gameService.getGame().getPlayers().get(1).getScore());
+                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
                 // player 3
                 nameP3View.setText(gameService.getGame().getPlayers().get(2).getName());
-                scoreP3View.setText(gameService.getGame().getPlayers().get(2).getScore());
+                scoreP3View.setText(String.valueOf(gameService.getGame().getPlayers().get(2).getScore()));
                 // player 4
                 nameP4View.setText(gameService.getGame().getPlayers().get(3).getName());
-                scoreP4View.setText(gameService.getGame().getPlayers().get(3).getScore());
+                scoreP4View.setText(String.valueOf(gameService.getGame().getPlayers().get(3).getScore()));
                 break;
         }
 
@@ -144,8 +141,9 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
             gameService.registerListener(RankingActivity.this);
             Log.d("test", "created Setup");
             Log.d("test", "Service bound to Estimation");
-            //TODO fix bug of initUI()
-            //initUI();
+
+            // initialize UI dynamically
+            initUI();
         }
 
         @Override

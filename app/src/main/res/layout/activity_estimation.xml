@@ -47,7 +47,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/nameLandmark1"
                         android:layout_width="192dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -56,7 +56,7 @@
                         android:text="Landmark 1" />
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/imageLandmark1"
                         android:layout_width="190dp"
                         android:layout_height="121dp"
                         app:srcCompat="@drawable/bambger_mainimg" />
@@ -111,7 +111,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/nameLandmark2"
                         android:layout_width="192dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginLeft="5dp"
@@ -120,7 +120,7 @@
                         android:text="Landmark 1" />
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/imageLandmark2"
                         android:layout_width="190dp"
                         android:layout_height="121dp"
                         app:srcCompat="@drawable/bambger_mainimg" />
@@ -175,7 +175,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/nameLandmark3"
                         android:layout_width="192dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginLeft="5dp"
@@ -184,7 +184,7 @@
                         android:text="Landmark 1" />
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/imageLandmark3"
                         android:layout_width="190dp"
                         android:layout_height="121dp"
                         app:srcCompat="@drawable/bambger_mainimg" />
@@ -239,7 +239,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/nameLandmark4"
                         android:layout_width="192dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -248,7 +248,7 @@
                         android:text="Landmark 1" />
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/imageLandmark4"
                         android:layout_width="190dp"
                         android:layout_height="124dp"
                         app:srcCompat="@drawable/bambger_mainimg" />

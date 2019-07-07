@@ -67,6 +67,11 @@ public class GameService extends Service {
         return this.game;
     }
 
+    public ArrayList<Landmark> getSelectedLandmarks(){
+
+        return selectedLandmarks;
+    }
+
     public void setTargetLandmark(Landmark targetLandmark){
 
         this.targetLandmark = targetLandmark;
@@ -186,7 +191,6 @@ public class GameService extends Service {
     }
 
 //    public void onPlayerReachedLandmark() {
-//         TODO adjust score?
 //         for(GameServiceListener listener : listeners) {
 //            listener.updatePlayerScore();
 //        }
