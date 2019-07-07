@@ -61,4 +61,21 @@ public class Game {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+
+    /**
+     * Returns the number of players.
+     * @return
+     */
+    public int getNumberOfPlayers(){
+        return players.size();
+    }
+
+    /**
+     * Clears the guesses of all players.
+     */
+    public void clearAllGuesses(){
+        for(Player p : players){
+            p.removeGuesses();
+        }
+    }
 }

@@ -65,7 +65,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "Estimation UI initialized");
     }
 
-    public void startMap (View view){
+    public void startRanking (View view){
 
         // Get user input
         EditText inputdistance1 = findViewById(R.id.distanceLandmark1);
@@ -95,6 +95,9 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
 
+            // start processing of the guess of a player
+            gameService.processGuess(playerIndex-1);
+
             // if next player -> load activity again
             if(playerIndex < numberOfPlayers) {
                 Intent refresh = new Intent(this, EstimationActivity.class);
@@ -106,7 +109,11 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             }
             else {
                 // if no next player -> start map activity
-                Intent intent = new Intent(this, MapsActivity.class);
+                //TODO start Ranking Aktivity, not Map
+                // Ranking starts Map or shows new game button
+
+                Intent intent = new Intent(this, RankingActivity.class);
+                //Intent intent = new Intent(this, MapsActivity.class);
                 startActivity(intent);
             }
         }

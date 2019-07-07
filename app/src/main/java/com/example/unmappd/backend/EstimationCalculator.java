@@ -2,7 +2,12 @@ package com.example.unmappd.backend;
 
 import android.location.Location;
 
+import com.example.unmappd.data.Landmark;
+
 import org.ejml.simple.SimpleMatrix;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * EstimationCalculator - This class calculates the estimated position of the player by using the information of distances to four landmarks.
@@ -12,13 +17,12 @@ import org.ejml.simple.SimpleMatrix;
 public class EstimationCalculator {
 
     // TODO Andere Repräsentation Lat Long Werte (siehe Folien)
-    // TODO Parameterübergabe guesses, landmarks, playerPos
     // TODO Parameterwerte in Arrays speichern
 
     private static final double MAX_DEVIATION = 0.001;
 
-    // public static void calculateEstimation(Location playerPosition) {
-    public static void main(String[] args){
+    public static void calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
+    //public static void main(String[] args){
         int [] guesses = {70,90,30,70};
         int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
         double [] estimation = {0,0};
@@ -41,7 +45,7 @@ public class EstimationCalculator {
         SimpleMatrix designM;
         SimpleMatrix correctionV;
 
-        double correctionVLength = Double.MAX_VALUE; // set initial value to highest value to that loop always executes
+        double correctionVLength = Double.MAX_VALUE; // set initial value to highest value so that loop always executes
 
         while(correctionVLength >= MAX_DEVIATION) {
 

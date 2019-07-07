@@ -40,6 +40,6 @@ public class Player {
     }
 
     public void removeGuesses(){
-        guesses = null;
+        guesses.clear();
     }
 }

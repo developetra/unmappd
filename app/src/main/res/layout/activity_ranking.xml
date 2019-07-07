@@ -6,4 +6,157 @@
     android:layout_height="match_parent"
     tools:context=".activities.RankingActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="108dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namePlayer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Name Player 1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/scorePlayer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Score Player 1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namePlayer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Name Player 2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/scorePlayer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Score Player 2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/InputPlayer1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namePlayer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Name Player 3"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/scorePlayer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Score Player 3"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/InputPlayer2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/namePlayer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Name Player 4"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/scorePlayer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Score Player 4"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/startMapButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentEnd="false"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginBottom="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:onClick="startMap"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="50dp"
+                    android:paddingBottom="10dp"
+                    android:text="Continue"
+                    android:textColor="#FFFCFC" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
