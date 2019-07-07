@@ -40,10 +40,10 @@ public class GameService extends Service {
 
     private Landmark[] landmarkList;
 
-    private Location playerPosition = null;
+    private Location playerPosition;
 
     // TODO set targetlandmark in Map Activity
-    private Landmark targetLandmark = null;
+    private Landmark targetLandmark;
 
     private Game game;
     private ArrayList<Landmark> selectedLandmarks;
@@ -218,7 +218,18 @@ public class GameService extends Service {
 
         //TODO pick landmarks or next round
 
+
         //TODO notify listeners
 
+    }
+
+    public void initFirstGame(){
+
+        selectedLandmarks = new ArrayList<>();
+
+        selectedLandmarks.add(landmarkList[0]);
+        selectedLandmarks.add(landmarkList[1]);
+        selectedLandmarks.add(landmarkList[2]);
+        selectedLandmarks.add(landmarkList[3]);
     }
 }
