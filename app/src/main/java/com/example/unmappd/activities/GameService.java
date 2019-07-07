@@ -38,7 +38,7 @@ public class GameService extends Service {
     protected LocationManager locService;
     protected LocationListener locListener;
 
-    private Landmark[] landmarkList;
+    private List<Landmark> landmarkList;
 
     private Location playerPosition = null;
 
@@ -210,6 +210,9 @@ public class GameService extends Service {
         //empty current selected landmarks
         selectedLandmarks.clear();
 
+        // remove visited landmark from landmarkLIst
+        landmarkList.remove(targetLandmark);
+
         //remove current guesses of players
         game.clearAllGuesses();
 
@@ -219,6 +222,9 @@ public class GameService extends Service {
         //TODO pick landmarks or next round
 
         //TODO notify listeners
+
+    }
+    public void pickLandmarks(){
 
     }
 }

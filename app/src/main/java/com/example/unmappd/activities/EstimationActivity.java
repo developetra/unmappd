@@ -70,27 +70,27 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Resources res = getResources();
 
         // For every landmark
-        for (int i = 0; i <= landmarkList.size() -1; i++) {
-
-            int index = i + 1;
-
-            // set landmark name
-            String nameIdString = "nameLandmark" + index;
-            int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
-
-            TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
-            landmarkNameView1.setText(landmarkList.get(index).getName());
-
-            // set landmark image
-            String imageIdString = "imageLandmark" + index;
-            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
-
-            ImageView landmarkImageView1 = (ImageView) findViewById(imageIdInt);
-            String mDrawableName = landmarkList.get(index).getPath();
-            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
-            Drawable drawable = res.getDrawable(resID);
-            landmarkImageView1.setImageDrawable(drawable);
-        }
+//        for (int i = 0; i <= landmarkList.size() -1; i++) {
+//
+//            int index = i + 1;
+//
+//            // set landmark name
+//            String nameIdString = "nameLandmark" + index;
+//            int nameIdInt = res.getIdentifier(nameIdString, "id", getPackageName());
+//
+//            TextView landmarkNameView1 = (TextView) findViewById(nameIdInt);
+//            landmarkNameView1.setText(landmarkList.get(index).getName());
+//
+//            // set landmark image
+//            String imageIdString = "imageLandmark" + index;
+//            int imageIdInt = res.getIdentifier(imageIdString, "id", getPackageName());
+//
+//            ImageView landmarkImageView1 = (ImageView) findViewById(imageIdInt);
+//            String mDrawableName = landmarkList.get(index).getPath();
+//            int resID = res.getIdentifier(mDrawableName, "drawable", getPackageName());
+//            Drawable drawable = res.getDrawable(resID);
+//            landmarkImageView1.setImageDrawable(drawable);
+//        }
 
         Log.d("test", "Estimation UI initialized");
     }
