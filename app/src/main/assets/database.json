@@ -1,20 +1,86 @@
 [
-      {
-        "name": "landmark1",
-        "longitude": 49.8852207,
-        "latitude": 10.8816621,
-        "path": "path"
-      },
-      {
-        "name": "landmark2",
-        "longitude": 10,
-        "latitude": 10,
-        "path": "path"
-      },
-      {
-        "name": "landmark3",
-        "longitude": 10,
-        "latitude": 10,
-        "path": "path"
-      }
-    ]
+  {
+    "name": "Brauerei Mahr",
+    "longitude": 49.8901327,
+    "latitude": 10.9043481,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Keesmann",
+    "longitude": 49.8904222,
+    "latitude": 10.9034151,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Greifenklau",
+    "longitude": 49.8837999,
+    "latitude": 10.8798981,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Heller",
+    "longitude": 49.8837995,
+    "latitude": 10.873332,
+    "path": "path"
+  },
+  {
+    "name": "Rauchbierbrauerei Schlenkerla",
+    "longitude": 49.89171,
+    "latitude": 10.8827313,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Spezial",
+    "longitude": 49.89686,
+    "latitude": 10.8906183,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei KLosterbräu",
+    "longitude": 49.889257,
+    "latitude": 10.8850083,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Fässla",
+    "longitude": 49.8972318,
+    "latitude": 10.8906014,
+    "path": "path"
+  },
+  {
+    "name": "Fässla Keller",
+    "longitude": 49.8930854,
+    "latitude": 10.909466,
+    "path": "path"
+  },
+  {
+    "name": "Spezial Keller",
+    "longitude": 49.884708,
+    "latitude": 10.8854123,
+    "path": "path"
+  },
+  {
+    "name": "Wilde Rose Keller",
+    "longitude": 49.8839662,
+    "latitude": 10.8847579,
+    "path": "path"
+  },
+  {
+    "name": "Einhornskeller",
+    "longitude": 49.8909534,
+    "latitude": 10.8726992,
+    "path": "path"
+  },
+  {
+    "name": "Ambräusianum",
+    "longitude": 49.891758,
+    "latitude": 10.8824043,
+    "path": "path"
+  },
+  {
+    "name": "Brauerei Kaiserdom",
+    "longitude": 49.9048073,
+    "latitude": 10.8533869,
+    "path": "path"
+  }
+]
