@@ -20,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.unmappd.R;
+import com.example.unmappd.data.Landmark;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.Map;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
@@ -78,14 +80,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
 
 
-    LatLng lm1 = new LatLng(49.898135, 10.9027636);
+    LatLng lm1;
     LatLng lm2 = new LatLng(49.891796, 10.894640);
     LatLng lm3 = new LatLng(49.894568, 10.889364);
     LatLng lm4 = new LatLng(49.891111, 10.883208);
 
     private Marker lm1Marker;
     MarkerOptions lm1MarkerOptions = new MarkerOptions();
-
 
     private Marker lm2Marker;
     MarkerOptions lm2MarkerOptions = new MarkerOptions();
@@ -101,22 +102,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        ArrayList<Landmark> landmarks = gameService.getSelectedLandmarks();
+
+        lm1 = new LatLng(landmarks.get(0).getLatitude(), landmarks.get(0).getLongitude());
+        lm2 = new LatLng(landmarks.get(1).getLatitude(), landmarks.get(1).getLongitude());
+        lm3 = new LatLng(landmarks.get(2).getLatitude(), landmarks.get(2).getLongitude());
+        lm4 = new LatLng(landmarks.get(3).getLatitude(), landmarks.get(3).getLongitude());
+
         lm1MarkerOptions.position(lm1);
+        lm2MarkerOptions.position(lm2);
+        lm3MarkerOptions.position(lm3);
+        lm4MarkerOptions.position(lm4);
+
         lm1Marker = mMap.addMarker(lm1MarkerOptions);
-        lm1Marker.setTitle("Landmark1");
+        lm1Marker.setTitle(landmarks.get(0).getName());
 
-        lm1MarkerOptions.position(lm2);
-        lm2Marker = mMap.addMarker(lm1MarkerOptions);
-        lm1Marker.setTitle("Landmark2");
+        lm2Marker = mMap.addMarker(lm2MarkerOptions);
+        lm2Marker.setTitle(landmarks.get(1).getName());
 
-        lm1MarkerOptions.position(lm3);
-        lm3Marker = mMap.addMarker(lm1MarkerOptions);
-        lm1Marker.setTitle("Landmark3");
+        lm3Marker = mMap.addMarker(lm3MarkerOptions);
+        lm3Marker.setTitle(landmarks.get(2).getName());
 
-        lm1MarkerOptions.position(lm4);
-        lm4Marker = mMap.addMarker(lm1MarkerOptions);
-        lm1Marker.setTitle("Landmark4");
-
+        lm4Marker = mMap.addMarker(lm4MarkerOptions);
+        lm4Marker.setTitle(landmarks.get(3).getName());
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(lm1));
         mMap.animateCamera(CameraUpdateFactory.zoomTo( 14.0f ) );
