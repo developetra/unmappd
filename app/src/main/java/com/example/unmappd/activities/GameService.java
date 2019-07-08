@@ -194,7 +194,7 @@ public class GameService extends Service {
         // TODO finalize calculation
         // calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
         // TODO updatePlayerScore();
-        updatePlayerScore(game.getPlayers().get(0));
+        //updatePlayerScore(game.getPlayers().get(0));
     }
 
     private void updatePlayerScore(Player player) {

@@ -98,43 +98,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Marker lm4Marker;
     MarkerOptions lm4MarkerOptions = new MarkerOptions();
+    private boolean serviceConnected = false;
+    private boolean mapReady = false;
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // TODO fixen
 
-        lm1 = new LatLng(landmarks.get(0).getLatitude(), landmarks.get(0).getLongitude());
-        lm2 = new LatLng(landmarks.get(1).getLatitude(), landmarks.get(1).getLongitude());
-        lm3 = new LatLng(landmarks.get(2).getLatitude(), landmarks.get(2).getLongitude());
-        lm4 = new LatLng(landmarks.get(3).getLatitude(), landmarks.get(3).getLongitude());
+        mapReady = true;
+        displaySelectedLandmarks();
 
-        lm1MarkerOptions.position(lm1);
-        lm2MarkerOptions.position(lm2);
-        lm3MarkerOptions.position(lm3);
-        lm4MarkerOptions.position(lm4);
-
-        lm1Marker = mMap.addMarker(lm1MarkerOptions);
-        lm1Marker.setTitle(landmarks.get(0).getName());
-
-        lm2Marker = mMap.addMarker(lm2MarkerOptions);
-        lm2Marker.setTitle(landmarks.get(1).getName());
-
-        lm3Marker = mMap.addMarker(lm3MarkerOptions);
-        lm3Marker.setTitle(landmarks.get(2).getName());
-
-        lm4Marker = mMap.addMarker(lm4MarkerOptions);
-        lm4Marker.setTitle(landmarks.get(3).getName());
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(lm1));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(lm2));
         mMap.animateCamera(CameraUpdateFactory.zoomTo( 14.0f ) );
         //mMap.getUiSettings().setMapToolbarEnabled(false);
 
     }
 
+    private void displaySelectedLandmarks() {
+        if(serviceConnected==true && mapReady==true){
+            lm1 = new LatLng(landmarks.get(0).getLatitude(), landmarks.get(0).getLongitude());
+            lm2 = new LatLng(landmarks.get(1).getLatitude(), landmarks.get(1).getLongitude());
+            lm3 = new LatLng(landmarks.get(2).getLatitude(), landmarks.get(2).getLongitude());
+            lm4 = new LatLng(landmarks.get(3).getLatitude(), landmarks.get(3).getLongitude());
 
+            lm1MarkerOptions.position(lm1);
+            lm2MarkerOptions.position(lm2);
+            lm3MarkerOptions.position(lm3);
+            lm4MarkerOptions.position(lm4);
+
+            lm1Marker = mMap.addMarker(lm1MarkerOptions);
+            lm1Marker.setTitle(landmarks.get(0).getName());
+
+            lm2Marker = mMap.addMarker(lm2MarkerOptions);
+            lm2Marker.setTitle(landmarks.get(1).getName());
+
+            lm3Marker = mMap.addMarker(lm3MarkerOptions);
+            lm3Marker.setTitle(landmarks.get(2).getName());
+
+            lm4Marker = mMap.addMarker(lm4MarkerOptions);
+            lm4Marker.setTitle(landmarks.get(3).getName());
+        }
+    }
 
 
     // ===== Game Service Connection =====
@@ -148,7 +154,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             gameServiceBound = true;
             gameService.registerListener(MapsActivity.this);
 
+            //direkt aus Service holen, nicht in field schreiben
             landmarks = gameService.getSelectedLandmarks();
+            serviceConnected = true;
+            displaySelectedLandmarks();
         }
 
         @Override
@@ -159,23 +168,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     };
 
 
-    private void changeTextOfButton(Marker lmMarker, Location currentPos, int radioButton) {
-        Location targetLocation = new Location("");
-        targetLocation.setLongitude(lmMarker.getPosition().longitude);
-        targetLocation.setLatitude(lmMarker.getPosition().latitude);
+    private void changeTextOfButton(Marker lmMarker, int radioButton) {
+        if(serviceConnected==true && mapReady==true) {
 
+            Location targetLocation = new Location("");
+            targetLocation.setLongitude(lmMarker.getPosition().longitude);
+            targetLocation.setLatitude(lmMarker.getPosition().latitude);
 
-        float distance = currentPos.distanceTo(targetLocation);
-        int distanceRounded = Math.round(distance);
-        Button btn = (Button) findViewById(radioButton);
-        btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m");
+            Location currentLocation = gameService.getPlayerPosition();
+            float distance = currentLocation.distanceTo(targetLocation);
+            int distanceRounded = Math.round(distance);
+            Button btn = (Button) findViewById(radioButton);
+            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m");
+        }
 
     }
 
 
 
     public void updatePlayerPosition(Location location){
-        currentLocation = location;
+        currentLocation = gameService.getPlayerPosition();
         LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if(pMarker == null){
@@ -183,10 +195,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             playerMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
             pMarker = mMap.addMarker(playerMarker);
 
-            changeTextOfButton(lm1Marker, currentLocation, R.id.radioButton1);
-            changeTextOfButton(lm2Marker, currentLocation, R.id.radioButton2);
-            changeTextOfButton(lm3Marker, currentLocation, R.id.radioButton3);
-            changeTextOfButton(lm4Marker, currentLocation, R.id.radioButton4);
+            changeTextOfButton(lm1Marker, R.id.radioButton1);
+            changeTextOfButton(lm2Marker, R.id.radioButton2);
+            changeTextOfButton(lm3Marker, R.id.radioButton3);
+            changeTextOfButton(lm4Marker, R.id.radioButton4);
 
         }else{
             pMarker.setPosition(currentLatLng);

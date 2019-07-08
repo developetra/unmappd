@@ -1,146 +1,146 @@
 [
   {
     "name": "Brauerei Mahr",
-    "longitude": 49.8901327,
-    "latitude": 10.9043481,
+    "latitude": 49.8901327,
+    "longitude": 10.9043481,
     "path": "brauerei_mahr"
   },
   {
     "name": "Brauerei Keesmann",
-    "longitude": 49.8904222,
-    "latitude": 10.9034151,
+    "latitude": 49.8904222,
+    "longitude": 10.9034151,
     "path": "brauerei_keesmann"
   },
   {
     "name": "Brauerei Greifenklau",
-    "longitude": 49.8837999,
-    "latitude": 10.8798981,
+    "latitude": 49.8837999,
+    "longitude": 10.8798981,
     "path": "brauerei_greifenklau"
   },
   {
     "name": "Rauchbierbrauerei Schlenkerla",
-    "longitude": 49.89171,
-    "latitude": 10.8827313,
+    "latitude": 49.89171,
+    "longitude": 10.8827313,
     "path": "brauerei_schlenkerla"
   },
   {
     "name": "Brauerei Spezial",
-    "longitude": 49.89686,
-    "latitude": 10.8906183,
+    "latitude": 49.89686,
+    "longitude": 10.8906183,
     "path": "brauerei_spezial"
   },
   {
     "name": "Brauerei KLosterbräu",
-    "longitude": 49.889257,
-    "latitude": 10.8850083,
+    "latitude": 49.889257,
+    "longitude": 10.8850083,
     "path": "brauerei_klosterbraeu"
   },
   {
     "name": "Brauerei Fässla",
-    "longitude": 49.8972318,
-    "latitude": 10.8906014,
+    "latitude": 49.8972318,
+    "longitude": 10.8906014,
     "path": "brauerei_faessla"
   },
   {
     "name": "Fässla Keller",
-    "longitude": 49.8930854,
-    "latitude": 10.909466,
+    "latitude": 49.8930854,
+    "longitude": 10.909466,
     "path": "faessla_keller"
   },
   {
     "name": "Spezial Keller",
-    "longitude": 49.884708,
-    "latitude": 10.8854123,
+    "latitude": 49.884708,
+    "longitude": 10.8854123,
     "path": "spezial_keller"
   },
   {
     "name": "Wilde Rose Keller",
-    "longitude": 49.8839662,
-    "latitude": 10.8847579,
+    "latitude": 49.8839662,
+    "longitude": 10.8847579,
     "path": "wilderose_keller"
   },
   {
     "name": "Einhornskeller",
-    "longitude": 49.8909534,
-    "latitude": 10.8726992,
+    "latitude": 49.8909534,
+    "longitude": 10.8726992,
     "path": "einhornskeller"
   },
   {
     "name": "Ambräusianum",
-    "longitude": 49.891758,
-    "latitude": 10.8824043,
+    "latitude": 49.891758,
+    "longitude": 10.8824043,
     "path": "ambraeusianum"
   },
   {
     "name": "Bamberger Dom",
-    "longitude": 49.8914816,
-    "latitude": 10.8847276,
+    "latitude": 49.8914816,
+    "longitude": 10.8847276,
     "path": "dom"
   },
   {
     "name": "Rosengarten",
-    "longitude": 49.8921679,
-    "latitude": 10.8815758,
+    "latitude": 49.8921679,
+    "longitude": 10.8815758,
     "path": "rosengarten"
   },
   {
     "name": "Untere Brücke",
-    "longitude": 49.8918239,
-    "latitude": 10.8855118,
+    "latitude": 49.8918239,
+    "longitude": 10.8855118,
     "path": "untere_bruecke"
   },
   {
     "name": "Neue Residenz",
-    "longitude": 49.89179,
-    "latitude": 10.8802391,
+    "latitude": 49.89179,
+    "longitude": 10.8802391,
     "path": "neue_residenz"
   },
   {
     "name": "Residenzschloss Geyerswörth",
-    "longitude": 49.8911055,
-    "latitude": 10.8864066,
+    "latitude": 49.8911055,
+    "longitude": 10.8864066,
     "path": "residenzschloss_geyerswoerth"
   },
   {
     "name": "Altes Rathaus",
-    "longitude": 49.8916158,
-    "latitude": 10.8846561,
+    "latitude": 49.8916158,
+    "longitude": 10.8846561,
     "path": "altes_rathaus"
   },
   {
     "name": "Am Kranen",
-    "longitude": 49.8924546,
-    "latitude": 10.8846436,
+    "latitude": 49.8924546,
+    "longitude": 10.8846436,
     "path": "am_kranen"
   },
   {
     "name": "Alte Hofhaltung",
-    "longitude": 49.8911676,
-    "latitude": 10.8792314,
+    "latitude": 49.8911676,
+    "longitude": 10.8792314,
     "path": "alte_hofhaltung"
   },
   {
     "name": "Kloster St. Michael",
-    "longitude": 49.893672,
-    "latitude": 10.8750047,
+    "latitude": 49.893672,
+    "longitude": 10.8750047,
     "path": "kloster"
   },
   {
     "name": "Schleuse 100 Ludwig-Main-Donau-Kanal",
-    "longitude": 49.8879778,
-    "latitude": 10.8879873,
+    "latitude": 49.8879778,
+    "longitude": 10.8879873,
     "path": "schleuse100"
   },
   {
     "name": "Kunstgalerien Böttingerhaus",
-    "longitude": 49.8892315,
-    "latitude": 10.8840692,
+    "latitude": 49.8892315,
+    "longitude": 10.8840692,
     "path": "kunstgallerie_boettingerhaus"
   },
   {
     "name": "Internationales Künstlerhaus Villa Concordia",
-    "longitude": 49.888092,
-    "latitude": 10.8863647,
+    "latitude": 49.888092,
+    "longitude": 10.8863647,
     "path": "villa_concordia"
   }
 
