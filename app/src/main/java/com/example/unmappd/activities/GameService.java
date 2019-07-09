@@ -193,23 +193,23 @@ public class GameService extends Service {
 
         double[] result = calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
 
-        Log.d("test", Double.toString(result[0]));
-        Log.d("test", Double.toString(result[0]));
+        Log.d("test", "playerposition Long: " + playerPosition.getLongitude());
+        Log.d("test", "playerposition Lat: " + playerPosition.getLatitude());
+        Log.d("test", "estimated position Long: " + result[0]);
+        Log.d("test", "estimated position Lat: " + result[1]);
 
         Location estimation = new Location("");
 
         estimation.setLongitude(result[0]);
-        estimation.setLongitude(result[1]);
+        estimation.setLatitude(result[1]);
 
         updatePlayerScore(playerIndex, estimation);
     }
 
     private void updatePlayerScore(int playerIndex, Location estimation) {
 
-
-        Location calculatedPosition = estimation;
-
-        float distanceGuessPlayer = playerPosition.distanceTo(calculatedPosition);
+        float distanceGuessPlayer = playerPosition.distanceTo(estimation);
+        Log.d("test", "estimated distance: " + distanceGuessPlayer);
 
         int score = (int) distanceGuessPlayer; // TODO for testing only! -> remove
 

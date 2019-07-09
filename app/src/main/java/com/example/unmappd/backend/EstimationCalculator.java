@@ -70,8 +70,6 @@ public class EstimationCalculator {
             estimation[0] = estimation[0] + correctionV.get(0);
             estimation[1] = estimation[1] + correctionV.get(1);
 
-            Log.d("test", Double.toString(estimation[0]));
-            Log.d("test", Double.toString(estimation[1]));
             System.out.println();
 
             counter++;
