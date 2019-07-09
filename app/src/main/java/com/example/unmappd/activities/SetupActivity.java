@@ -216,7 +216,6 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
      */
     public void updatePlayerPosition(Location location){
         // do nothing
-        Log.d("test", "Setup is updating player position");
     }
 
     public void playerReachedTarget(boolean endOfGame){

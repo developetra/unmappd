@@ -54,14 +54,18 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Intent bindIntent = new Intent(EstimationActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
 
-        Log.d("test", "numberOfPlayers is" + String.valueOf(numberOfPlayers));
-        Log.d("test", "playerIndex is" + String.valueOf(playerIndex));
+        Log.d("test", "numberOfPlayers is" + numberOfPlayers);
+        Log.d("test", "playerIndex is" + playerIndex);
 
     }
 
+    /**
+     * This method initializes the activities user interface by loading current player's name,
+     * the four landmarks' names and the four landmarks' images.
+     */
     private void initUI() {
         // Init UI with player name
-        TextView nameView = (TextView)findViewById(R.id.playerName);
+        TextView nameView = findViewById(R.id.playerName);
         ArrayList<Player> players = gameService.getGame().getPlayers();
         nameView.setText(players.get(playerIndex-1).getName());
 
@@ -95,6 +99,13 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         Log.d("test", "Estimation UI initialized");
     }
 
+    /**
+     * This method is called after the click on the "next" button.
+     * It saves the user input to the current player and calls the gameservice to process the guess information.
+     * If there is another player, the activity starts itself again, if there is no next player
+     * the ranking activity is started.
+     * @param view
+     */
     public void startRanking (View view){
 
         // Get user input
@@ -103,8 +114,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         EditText inputdistance3 = findViewById(R.id.distanceLandmark3);
         EditText inputdistance4 = findViewById(R.id.distanceLandmark4);
 
-        // Check that input is given (not empty)
-        // TODO check for wrong user input e.g. "200,03"
+        // Check that input is not empty, if empty notify user
         if( TextUtils.isEmpty(inputdistance1.getText())){
             inputdistance1.setError( "Please enter a distance." );}
         else if (TextUtils.isEmpty(inputdistance2.getText())){
@@ -138,12 +148,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
                 startActivity(refresh);
             }
             else {
-                // if no next player -> start map activity
-                //TODO start Ranking Aktivity, not Map
-                // Ranking starts Map or shows new game button
-
+                // if no next player -> start ranking activity
                 Intent intent = new Intent(this, RankingActivity.class);
-                //Intent intent = new Intent(this, MapsActivity.class);
                 startActivity(intent);
             }
         }
@@ -151,6 +157,9 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     // ===== Game Service Connection =====
 
+    /**
+     * Game Service Connection
+     */
     private ServiceConnection gameServiceCon = new ServiceConnection() {
 
         @Override
@@ -173,11 +182,16 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     // ===== Listener Methods =====
 
+    /**
+     * Listener method - NOT used in this activity.
+     */
     public void updatePlayerPosition(Location location){
         // do nothing
-        Log.d("test", "Setup is updating player position");
     }
 
+    /**
+     * Listener method - NOT used in this activity.
+     */
     public void playerReachedTarget(boolean endOfGame){
         // do nothing
     }
