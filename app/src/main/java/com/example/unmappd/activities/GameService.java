@@ -191,28 +191,42 @@ public class GameService extends Service {
      */
     public void processGuess(int playerIndex){
 
-        // TODO finalize calculation
-        // calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
-        // TODO updatePlayerScore();
-        //updatePlayerScore(game.getPlayers().get(0));
+        double[] result = calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
+
+        Log.d("test", Double.toString(result[0]));
+        Log.d("test", Double.toString(result[0]));
+
+        Location estimation = new Location("");
+
+        estimation.setLongitude(result[0]);
+        estimation.setLongitude(result[1]);
+
+        updatePlayerScore(playerIndex, estimation);
     }
 
-    private void updatePlayerScore(Player player) {
-        int score = player.getScore();
-        //Was bekommt man vom EstimationCalculator? Eine Location? LatLng?
-        Location calculatedPosition = null;     //TODO get Calculated Position from EstimationCalculator + evtl resolce as Location
+    private void updatePlayerScore(int playerIndex, Location estimation) {
+
+
+        Location calculatedPosition = estimation;
+
         float distanceGuessPlayer = playerPosition.distanceTo(calculatedPosition);
-        if (distanceGuessPlayer < 100){
-            //score = score + ?
-        }else if(distanceGuessPlayer >100 && distanceGuessPlayer <200 ){
-            //score = score + ?
-        }else if(distanceGuessPlayer >200 && distanceGuessPlayer <300 ){
-            //score = score + ?
-        }else if(distanceGuessPlayer >300 && distanceGuessPlayer <400 ){
-            //score = score + ?
-        }else if(distanceGuessPlayer <500){
-            //score = score + ?
-        }
+
+        int score = (int) distanceGuessPlayer; // TODO for testing only! -> remove
+
+        game.getPlayers().get(playerIndex).setScore(score); // TODO for testing only! -> remove
+
+        // TODO finalize score calculation
+//        if (distanceGuessPlayer < 100){
+//            //score = score + ?
+//        }else if(distanceGuessPlayer >100 && distanceGuessPlayer <200 ){
+//            //score = score + ?
+//        }else if(distanceGuessPlayer >200 && distanceGuessPlayer <300 ){
+//            //score = score + ?
+//        }else if(distanceGuessPlayer >300 && distanceGuessPlayer <400 ){
+//            //score = score + ?
+//        }else if(distanceGuessPlayer <500){
+//            //score = score + ?
+//        }
 
 
     }
@@ -263,7 +277,7 @@ public class GameService extends Service {
                 listener.playerReachedTarget(false);
             }
         } else{
-            //TODO show end score
+
             for (GameServiceListener listener : listeners){
                 listener.playerReachedTarget(true);
             }

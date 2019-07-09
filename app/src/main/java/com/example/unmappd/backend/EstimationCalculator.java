@@ -1,12 +1,12 @@
 package com.example.unmappd.backend;
 
 import android.location.Location;
+import android.util.Log;
 
 import com.example.unmappd.data.Landmark;
 
 import org.ejml.simple.SimpleMatrix;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,16 +16,12 @@ import java.util.ArrayList;
  */
 public class EstimationCalculator {
 
-    private static final double MAX_DEVIATION = 0.001;
+    private static final double MAX_DEVIATION = 0.01;
+    private static final double MAX_ITERATIONS = 100;
     private static final double baseLong = 10;
     private static final double baseLat = 49;
 
     public static double[] calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
-
-        // TODO remove, just for testing
-        getOffset(12.118865);
-        double[] array = {118865, 118867};
-        getLocationFromEstimationArray(array);
 
         double [] playerPos = {getOffset(playerPosition.getLongitude()), getOffset(playerPosition.getLatitude())};
         int[] distances = {distanceList.get(0), distanceList.get(1), distanceList.get(2), distanceList.get(3)};
@@ -47,6 +43,8 @@ public class EstimationCalculator {
         // long = x
         // lat = y
 
+        int counter = 0;
+
         double [] estimation = playerPos; // initiated with player position
         int [] guesses = distances;
         int [][] landmarks = landmarkArray;
@@ -58,7 +56,7 @@ public class EstimationCalculator {
 
         double correctionVLength = Double.MAX_VALUE; // set initial value to highest value so that loop always executes
 
-        while(correctionVLength >= MAX_DEVIATION) {
+        while(correctionVLength >= MAX_DEVIATION && counter < MAX_ITERATIONS) {
 
             residualV = computeResDataMatrix(guesses, landmarks, estimation);
             designM = computeDesignMatrix(landmarks, estimation);
@@ -72,18 +70,20 @@ public class EstimationCalculator {
             estimation[0] = estimation[0] + correctionV.get(0);
             estimation[1] = estimation[1] + correctionV.get(1);
 
-            System.out.println(estimation[0]);
-            System.out.println(estimation[1]);
+            Log.d("test", Double.toString(estimation[0]));
+            Log.d("test", Double.toString(estimation[1]));
             System.out.println();
+
+            counter++;
         }
 
         return estimation;
     }
 
-    private static int getOffset(double value) {
+    public static int getOffset(double value) {
 
         // Get offset from Lat / Long value
-        int offset = (int) Math.round(((value) % 1) * 1000000);
+        int offset = (int) Math.round(((value) % 1) * 100000);
 
         System.out.println(offset);
 
@@ -91,10 +91,10 @@ public class EstimationCalculator {
 
     }
 
-    private static double[] getLocationFromEstimationArray(double[] estimation) {
+    public static double[] getLocationFromEstimationArray(double[] estimation) {
 
-        double longitude = baseLong + estimation[0] * 0.000001;
-        double latitude = baseLat + estimation[1] * 0.000001;
+        double longitude = baseLong + estimation[0] * 0.00001;
+        double latitude = baseLat + estimation[1] * 0.00001;
 
         double[] estimationLoc = {longitude, latitude};
 
