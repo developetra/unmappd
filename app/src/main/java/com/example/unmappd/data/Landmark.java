@@ -73,30 +73,30 @@ public class Landmark {
     }
 
     /**
-     * Returns the name of a landmark.
-     * @return name of the landmark
+     * Getter - Returns the name of a landmark.
+     * @return name of the landmark as String
      */
     public String getName(){
         return name;
     }
     /**
-     * Returns the longitude of the location of a landmark.
-     * @return longitude as String
+     * Getter - Returns the longitude of the location of a landmark.
+     * @return longitude as double
      */
     public double getLongitude(){
         return longitude;
     }
 
     /**
-     * Returns the latitude of the location of a landmark.
-     * @return latitude as String
+     * Getter - Returns the latitude of the location of a landmark.
+     * @return latitude as double
      */
     public double getLatitude(){
         return latitude;
     }
 
     /**
-     * Returns the path to the picture of a landmark.
+     * Getter - Returns the path to the picture of a landmark.
      * @return path as a String
      */
     public String getPath(){
