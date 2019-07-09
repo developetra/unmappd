@@ -124,7 +124,7 @@ public class GameService extends Service {
     public interface GameServiceListener {
 
         void updatePlayerPosition(Location location);
-        // void playerReachedTarget(); // TODO Add function in MapsActivity (hier geht es im Game weiter)
+        void playerReachedTarget(boolean endOfGame); // TODO Add function in MapsActivity (hier geht es im Game weiter)
     }
 
 
@@ -155,7 +155,7 @@ public class GameService extends Service {
 
                     //TODO Festlegen einer maximalen Nähe zur target landmark
 //                    if (distance < PROXY_RADIUS) {
-//                        onPlayerReachedTarget(false);
+                    initNextRound();
 //                    }
                 }
             }
@@ -252,9 +252,15 @@ public class GameService extends Service {
             selectedLandmarks = pickLandmarks();
             Log.d("test", String.valueOf(selectedLandmarks));
 
-            //TODO notify listeners
+            // notify listeners
+            for (GameServiceListener listener : listeners){
+                listener.playerReachedTarget(false);
+            }
         } else{
             //TODO show end score
+            for (GameServiceListener listener : listeners){
+                listener.playerReachedTarget(true);
+            }
         }
 
 
