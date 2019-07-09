@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Class Landmark - Represents a landmark that is defined by its name, picture and location.
+ * Class Landmark - Represents a landmark that is defined by its name, picture and location (LatLong).
  *
  * @author Petra Langenbacher, Franziska Barckmann
  */
@@ -58,19 +58,6 @@ public class Landmark {
         return landmarkList;
     }
 
-    /**
-     * Use mercator projection to transform latitude and longitude values to cartesian coordinates.
-     */
-    // TODO
-    // public static double[] toCartesian(double lat, double lng) {}
-
-    /**
-     * Use mercator projection to transform cartesian coordinates to latitude and longitude values.
-     */
-    // TODO
-    // public static double[] toLatLng(double x, double y) {}
-
-    // Constructor
     /**
      * Constructor.
      * @param name
