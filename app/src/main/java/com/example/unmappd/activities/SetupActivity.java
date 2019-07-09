@@ -107,6 +107,13 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
     public void startEstimation (View view){
         int numberOfPlayers = initGame();
 
+//        while(gameService.getPlayerPosition() == null){
+//
+//            gameService.
+//            // Spinner
+//
+//        }
+
         // Open new Activity
         Intent intent = new Intent(this, EstimationActivity.class);
         Bundle b = new Bundle();

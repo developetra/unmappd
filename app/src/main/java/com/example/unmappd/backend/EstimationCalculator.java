@@ -16,30 +16,40 @@ import java.util.ArrayList;
  */
 public class EstimationCalculator {
 
-    // TODO Andere Repräsentation Lat Long Werte (siehe Folien)
-    // TODO Parameterübergabe guesses, landmarks, playerPos
-    // TODO Parameterwerte in Arrays speichern
-
     private static final double MAX_DEVIATION = 0.001;
+    private static final double baseLong = 10;
+    private static final double baseLat = 49;
 
-    public static void calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
-    //public static void main(String[] args){
-        int [] guesses = {70,90,30,70};
-        int [][] landmarks = {{-10,20},{100,30},{-20,-40},{120,-20}};
-        double [] estimation = {0,0};
+    public static double[] calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
 
+        // TODO remove, just for testing
+        getOffset(12.118865);
+        double[] array = {118865, 118867};
+        getLocationFromEstimationArray(array);
 
-//        // TODO Refactoring
-//        // Get offset from Lat / Long value
-//        long base = Math.round(((12.118765 * 100) % 1) * 10000);
-//        System.out.println(base);
-//
-//        // Get base from coordinates
-//        double i = 12.118765 * 100;
-//        int o = (int) i;
-//        double p = o;
-//        p = p / 100;
-//        System.out.println(p);
+        double [] playerPos = {getOffset(playerPosition.getLongitude()), getOffset(playerPosition.getLatitude())};
+        int[] distances = {distanceList.get(0), distanceList.get(1), distanceList.get(2), distanceList.get(3)};
+        int [][] landmarks = {
+                {getOffset(landmarkList.get(0).getLongitude()), getOffset(landmarkList.get(0).getLatitude())},
+                {getOffset(landmarkList.get(1).getLongitude()), getOffset(landmarkList.get(1).getLatitude())},
+                {getOffset(landmarkList.get(2).getLongitude()), getOffset(landmarkList.get(2).getLatitude())},
+                {getOffset(landmarkList.get(3).getLongitude()), getOffset(landmarkList.get(3).getLatitude())},
+        };
+
+        double[] estimation = calculateEstimationWithOffset(playerPos, distances, landmarks);
+
+        return getLocationFromEstimationArray(estimation);
+
+    }
+
+    public static double[] calculateEstimationWithOffset(double[] playerPos, int[] distances, int[][] landmarkArray){
+
+        // long = x
+        // lat = y
+
+        double [] estimation = playerPos; // initiated with player position
+        int [] guesses = distances;
+        int [][] landmarks = landmarkArray;
 
 
         SimpleMatrix residualV;
@@ -67,6 +77,31 @@ public class EstimationCalculator {
             System.out.println();
         }
 
+        return estimation;
+    }
+
+    private static int getOffset(double value) {
+
+        // Get offset from Lat / Long value
+        int offset = (int) Math.round(((value) % 1) * 1000000);
+
+        System.out.println(offset);
+
+        return offset;
+
+    }
+
+    private static double[] getLocationFromEstimationArray(double[] estimation) {
+
+        double longitude = baseLong + estimation[0] * 0.000001;
+        double latitude = baseLat + estimation[1] * 0.000001;
+
+        double[] estimationLoc = {longitude, latitude};
+
+        System.out.println(longitude);
+        System.out.println(latitude);
+
+        return estimationLoc;
     }
 
     private static double calcVecLength(SimpleMatrix correctionV) {

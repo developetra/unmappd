@@ -132,7 +132,7 @@ public class GameService extends Service {
 
     private void initLocationManager() {
         Log.d("test", "LocationManager initialized");
-        LocationManager locService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener locListener = new LocationListener() {
 
             @Override
@@ -223,6 +223,12 @@ public class GameService extends Service {
 //        }
 //        voidinitNextRound();
 //    }
+
+    public void requestGPSupdate (){
+
+        // locService.requestLocationUpdates(locationProvider, 0, 0, this);
+    }
+
 
     /**
      * This method initializes the next round by
