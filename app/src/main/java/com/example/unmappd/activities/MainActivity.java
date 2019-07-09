@@ -18,12 +18,13 @@ import com.example.unmappd.R;
  *
  * @authors: Franziska Barckmann, Petra Langenbacher, Ann-Kathrin Schmid
  */
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 5;
 
     /**
      * Calls methods to request permissions and initialise the UI elements when activity is created.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity{
 
         startGameButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SetupActivity.class);
                 startGameService();
                 startActivity(intent);

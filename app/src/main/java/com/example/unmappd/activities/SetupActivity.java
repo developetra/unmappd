@@ -26,7 +26,7 @@ import java.util.ArrayList;
  *
  * @author Petra Langenbscher
  */
-public class SetupActivity extends AppCompatActivity implements GameService.GameServiceListener{
+public class SetupActivity extends AppCompatActivity implements GameService.GameServiceListener {
 
     protected GameService gameService;
     protected boolean gameServiceBound;
@@ -34,6 +34,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
     /**
      * Initialises Ui elements and adapts name input fields to chosen number of players.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -71,7 +72,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
                 View player2 = findViewById(R.id.InputPlayer2);
                 View player3 = findViewById(R.id.InputPlayer3);
                 View player4 = findViewById(R.id.InputPlayer4);
-                switch (pos){
+                switch (pos) {
                     case 0:
                         player2.setVisibility(View.GONE);
                         player3.setVisibility(View.GONE);
@@ -94,6 +95,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
                         break;
                 }
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -102,9 +104,10 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
     /**
      * Calls method to create a new game and starts a new activity to start estimation process.
+     *
      * @param view
      */
-    public void startEstimation (View view){
+    public void startEstimation(View view) {
         int numberOfPlayers = initGame();
 
 //        while(gameService.getPlayerPosition() == null){
@@ -117,7 +120,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         // Open new Activity
         Intent intent = new Intent(this, EstimationActivity.class);
         Bundle b = new Bundle();
-        b.putInt("numberOfPlayers", numberOfPlayers+1);
+        b.putInt("numberOfPlayers", numberOfPlayers + 1);
         b.putInt("playerIndex", 1);
         intent.putExtras(b);
         startActivity(intent);
@@ -126,12 +129,13 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
     /**
      * Creates a new game with chosen number of rounds, number of players and names of players.
+     *
      * @return number of players
      */
     private int initGame() {
         // Get number of rounds and players
         Spinner roundsspinner = findViewById(R.id.rounds_spinner);
-        int numberOfRounds = roundsspinner.getSelectedItemPosition() +1;
+        int numberOfRounds = roundsspinner.getSelectedItemPosition() + 1;
         Spinner playersspinner = findViewById(R.id.players_spinner);
         int numberOfPlayers = playersspinner.getSelectedItemPosition();
 
@@ -153,7 +157,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         ArrayList<Player> players = new ArrayList<>();
 
         // Add players to List
-        switch (numberOfPlayers){
+        switch (numberOfPlayers) {
             case 0:
                 players.add(player1);
                 break;
@@ -181,8 +185,8 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
         gameService.initFirstGame();
 
-        Log.d("test", "Number of Rounds is "+ String.valueOf(currentGame.getRounds()));
-        Log.d("test", "Number of Players is "+ String.valueOf(numberOfPlayers));
+        Log.d("test", "Number of Rounds is " + String.valueOf(currentGame.getRounds()));
+        Log.d("test", "Number of Players is " + String.valueOf(numberOfPlayers));
         return numberOfPlayers;
     }
 
@@ -212,13 +216,14 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
     /**
      * Updates player position - NOT used in this activity.
+     *
      * @param location
      */
-    public void updatePlayerPosition(Location location){
+    public void updatePlayerPosition(Location location) {
         // do nothing
     }
 
-    public void playerReachedTarget(boolean endOfGame){
+    public void playerReachedTarget(boolean endOfGame) {
         // do nothing
     }
 }

@@ -27,6 +27,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Game Service - Stores all the variables of the game that the different activities need.
+ *
+ * @author Petra Langenbacher, Franziska Barckmann
+ */
 public class GameService extends Service {
 
     // ===== Service
@@ -56,35 +61,44 @@ public class GameService extends Service {
 
     private final EstimationCalculator calculator = new EstimationCalculator();
 
-    // ===== Getter and Setter Methods
 
-    public Location getPlayerPosition(){
+    /**
+     * Getter and Setter Methods.
+     */
+
+    public Location getPlayerPosition() {
 
         return playerPosition;
     }
 
-    public void setGame(Game game){
+    public void setGame(Game game) {
 
         this.game = game;
     }
 
-    public Game getGame(){
+    public Game getGame() {
 
         return this.game;
     }
 
-    public ArrayList<Landmark> getSelectedLandmarks(){
+    public ArrayList<Landmark> getSelectedLandmarks() {
 
         return selectedLandmarks;
     }
 
-    public void setTargetLandmark(Landmark targetLandmark){
+    public void setTargetLandmark(Landmark targetLandmark) {
 
         this.targetLandmark = targetLandmark;
     }
 
-    // ===== Service Methods
-
+    /**
+     * Initialises landmarkList with landmarks from json file and calls method to initialise the LocationManager.
+     *
+     * @param intent
+     * @param flags
+     * @param startId
+     * @return
+     */
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -103,7 +117,9 @@ public class GameService extends Service {
     }
 
 
-    // ===== Local Binder
+    /**
+     * Local Binder.
+     */
 
     public class LocalBinder extends Binder {
         GameService getService() {
@@ -111,8 +127,12 @@ public class GameService extends Service {
         }
     }
 
-    // ===== Game Service Listener Methods
 
+    /**
+     * Game Service Listener Methods.
+     *
+     * @param listener
+     */
     public void registerListener(GameServiceListener listener) {
         listeners.add(listener);
     }
@@ -124,12 +144,16 @@ public class GameService extends Service {
     public interface GameServiceListener {
 
         void updatePlayerPosition(Location location);
+
         void playerReachedTarget(boolean endOfGame); // TODO Add function in MapsActivity (hier geht es im Game weiter)
     }
 
 
     // ===== Event Handling - Location Manager
 
+    /**
+     * Initialises LocationManager.
+     */
     private void initLocationManager() {
         Log.d("test", "LocationManager initialized");
         locService = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -140,18 +164,18 @@ public class GameService extends Service {
                 Log.d("test", "Location changed");
                 playerPosition = location;
                 // Inform all listeners about changed player position
-                for (GameServiceListener listener : listeners){
+                for (GameServiceListener listener : listeners) {
                     listener.updatePlayerPosition(location);
                 }
 
                 // Notify listeners when player is near  target landmark
-                if(targetLandmark != null) {
+                if (targetLandmark != null) {
                     Location targetLocation = new Location("");
                     targetLocation.setLatitude(targetLandmark.getLatitude());
                     targetLocation.setLongitude(targetLandmark.getLongitude());
 
                     float distance = playerPosition.distanceTo(targetLocation);
-                    Log.d("test", "Distance to target: "+distance);
+                    Log.d("test", "Distance to target: " + distance);
 
                     //TODO Festlegen einer maximalen Nähe zur target landmark
 //                    if (distance < PROXY_RADIUS) {
@@ -161,13 +185,16 @@ public class GameService extends Service {
             }
 
             @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+            }
 
             @Override
-            public void onProviderEnabled(String provider) {}
+            public void onProviderEnabled(String provider) {
+            }
 
             @Override
-            public void onProviderDisabled(String provider) {}
+            public void onProviderDisabled(String provider) {
+            }
         };
 
         if (ActivityCompat.checkSelfPermission(this,
@@ -182,14 +209,13 @@ public class GameService extends Service {
 
     }
 
-    // ===== private Methods
-
     /**
      * This method processes the guess of a player after estimations are entered.
      * The estimation position is calculated and the score updated.
+     *
      * @param playerIndex
      */
-    public void processGuess(int playerIndex){
+    public void processGuess(int playerIndex) {
 
         double[] result = calculator.calculateEstimation(playerPosition, selectedLandmarks, game.getPlayers().get(playerIndex).getGuesses());
 
@@ -206,27 +232,37 @@ public class GameService extends Service {
         updatePlayerScore(playerIndex, estimation);
     }
 
+    /**
+     * Calculates the distance of the player position to the estimated
+     * location of the player and changes the score accordingly.
+     *
+     * @param playerIndex
+     * @param estimation
+     * @author Petra Langenbacher, Ann-Kathrin Schmid
+     */
     private void updatePlayerScore(int playerIndex, Location estimation) {
 
         float distanceGuessPlayer = playerPosition.distanceTo(estimation);
+        Log.d("test", "playerposition Long: " + playerPosition.getLongitude());
         Log.d("test", "estimated distance: " + distanceGuessPlayer);
 
-        int score = (int) distanceGuessPlayer; // TODO for testing only! -> remove
+        int score = game.getPlayers().get(playerIndex).getScore();
 
-        game.getPlayers().get(playerIndex).setScore(score); // TODO for testing only! -> remove
-
-        // TODO finalize score calculation
-//        if (distanceGuessPlayer < 100){
-//            //score = score + ?
-//        }else if(distanceGuessPlayer >100 && distanceGuessPlayer <200 ){
-//            //score = score + ?
-//        }else if(distanceGuessPlayer >200 && distanceGuessPlayer <300 ){
-//            //score = score + ?
-//        }else if(distanceGuessPlayer >300 && distanceGuessPlayer <400 ){
-//            //score = score + ?
-//        }else if(distanceGuessPlayer <500){
-//            //score = score + ?
-//        }
+        // score calculation
+        if (distanceGuessPlayer < 100) {
+            score = score + 50;
+        } else if (distanceGuessPlayer > 200 && distanceGuessPlayer < 300) {
+            score = score + 40;
+        } else if (distanceGuessPlayer > 300 && distanceGuessPlayer < 400) {
+            score = score + 30;
+        } else if (distanceGuessPlayer > 400 && distanceGuessPlayer < 500) {
+            score = score + 20;
+        } else if (distanceGuessPlayer > 500 && distanceGuessPlayer < 600) {
+            score = score + 10;
+        } else if (distanceGuessPlayer > 600) {
+            score = score + 5;
+        }
+        game.getPlayers().get(playerIndex).setScore(score);
 
 
     }
@@ -238,23 +274,23 @@ public class GameService extends Service {
 //        voidinitNextRound();
 //    }
 
-    public void requestGPSupdate (){
+    public void requestGPSupdate() {
 
         // locService.requestLocationUpdates(locationProvider, 0, 0, this);
     }
 
 
     /**
-     * This method initializes the next round by
-     * removing current selected landmarks,
-     * removing the players guesses and
-     * picking new landmarks.
+     * Initializes the next round by removing current selected landmarks,
+     * removing the players guesses and picking new landmarks.
+     *
+     * @author Franziska Barckmann
      */
-    public void initNextRound(){
+    public void initNextRound() {
 
         //check if there is a next round
-        if(gameRounds>=1){
-            gameRounds = gameRounds -1;
+        if (gameRounds >= 1) {
+            gameRounds = gameRounds - 1;
 
             //empty current selected landmarks
             selectedLandmarks.clear();
@@ -273,21 +309,26 @@ public class GameService extends Service {
             Log.d("test", String.valueOf(selectedLandmarks));
 
             // notify listeners
-            for (GameServiceListener listener : listeners){
+            for (GameServiceListener listener : listeners) {
                 listener.playerReachedTarget(false);
             }
-        } else{
+        } else {
 
-            for (GameServiceListener listener : listeners){
+            for (GameServiceListener listener : listeners) {
                 listener.playerReachedTarget(true);
             }
         }
 
-
-
-
     }
-    public ArrayList<Landmark> pickLandmarks(){
+
+    /**
+     * Sorts all landmarks by the distance to the player position and
+     * returns the four landmarks that are closest to the player.
+     *
+     * @return ArrayList with the four closest landmarks
+     * @author Petra Langenbacher
+     */
+    public ArrayList<Landmark> pickLandmarks() {
 
         // arraylist with the closest landmarks
         ArrayList<Landmark> closestLandmarks = new ArrayList<Landmark>();
@@ -296,7 +337,7 @@ public class GameService extends Service {
         HashMap<Float, Landmark> landmarkMap = new HashMap<Float, Landmark>();
 
         // fill hashmap with landmarks
-        for (Landmark current : landmarkList){
+        for (Landmark current : landmarkList) {
             Location currentLocation = new Location("");
             currentLocation.setLatitude(current.getLatitude());
             currentLocation.setLongitude(current.getLongitude());
@@ -317,8 +358,10 @@ public class GameService extends Service {
         return closestLandmarks;
     }
 
-    public void initFirstGame(){
-
+    /**
+     * Initialises first game by calling the method to pick the closest landmarks.
+     */
+    public void initFirstGame() {
         selectedLandmarks = pickLandmarks();
     }
 }

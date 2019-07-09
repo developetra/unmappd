@@ -22,8 +22,9 @@ public class Game {
 
     /**
      * Constructor.
+     *
      * @param gameRounds - a number between 1 and 4
-     * @param players - a number between 1 and 4
+     * @param players    - a number between 1 and 4
      */
     public Game(int gameRounds, ArrayList<Player> players) {
         this.gameRounds = gameRounds;
@@ -32,6 +33,7 @@ public class Game {
 
     /**
      * Sets number of rounds for the current game.
+     *
      * @param gameRounds - number between 1 and 4
      */
     public void setRounds(int gameRounds) {
@@ -40,6 +42,7 @@ public class Game {
 
     /**
      * Returns number of rounds of the current game.
+     *
      * @return number of rounds
      */
     public int getRounds() {
@@ -48,6 +51,7 @@ public class Game {
 
     /**
      * Sets players for the current game.
+     *
      * @param players - ArrayList of players
      */
     public void setPlayers(ArrayList<Player> players) {
@@ -56,6 +60,7 @@ public class Game {
 
     /**
      * Returns the players of the current game.
+     *
      * @return ArrayList of players
      */
     public ArrayList<Player> getPlayers() {
@@ -64,17 +69,18 @@ public class Game {
 
     /**
      * Returns the number of players.
+     *
      * @return
      */
-    public int getNumberOfPlayers(){
+    public int getNumberOfPlayers() {
         return players.size();
     }
 
     /**
      * Clears the guesses of all players.
      */
-    public void clearAllGuesses(){
-        for(Player p : players){
+    public void clearAllGuesses() {
+        for (Player p : players) {
             p.removeGuesses();
         }
     }

@@ -28,11 +28,11 @@ public class Landmark {
 
     /**
      * Static method that creates and returns a list of landmark objects from a json file.
+     *
      * @param context
-     * @return
-     *  list of landmark objects
+     * @return list of landmark objects
      */
-    public static List<Landmark> readJson (Context context) {
+    public static List<Landmark> readJson(Context context) {
         String json = null;
         // convert json to String
         try {
@@ -60,6 +60,7 @@ public class Landmark {
 
     /**
      * Constructor.
+     *
      * @param name
      * @param longitude
      * @param latitude
@@ -74,32 +75,37 @@ public class Landmark {
 
     /**
      * Getter - Returns the name of a landmark.
+     *
      * @return name of the landmark as String
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
+
     /**
      * Getter - Returns the longitude of the location of a landmark.
+     *
      * @return longitude as double
      */
-    public double getLongitude(){
+    public double getLongitude() {
         return longitude;
     }
 
     /**
      * Getter - Returns the latitude of the location of a landmark.
+     *
      * @return latitude as double
      */
-    public double getLatitude(){
+    public double getLatitude() {
         return latitude;
     }
 
     /**
      * Getter - Returns the path to the picture of a landmark.
+     *
      * @return path as a String
      */
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 
