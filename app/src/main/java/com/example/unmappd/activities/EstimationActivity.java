@@ -105,7 +105,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     }
 
     /**
-     * Initialises spinners.
+     * This method initialises the spinners for the direction guesses.
      * @author Petra Langenbacher
      *
      */
@@ -139,6 +139,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
      * If there is another player, the activity starts itself again, if there is no next player
      * the ranking activity is started.
      * @param view
+     * @author Franziska Barckmann
+     *
      */
     public void startRanking (View view){
 
@@ -230,7 +232,6 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         }
     };
 
-    // ===== Listener Methods =====
 
     /**
      * Listener method - NOT used in this activity.
