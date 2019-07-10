@@ -41,6 +41,7 @@ public class GameService extends Service {
 
     private int gameRounds; // TODO refactor as enum
 
+
     protected LocationManager locService;
     protected LocationListener locListener;
 
@@ -48,7 +49,6 @@ public class GameService extends Service {
 
     private Location playerPosition = null;
 
-    // TODO set targetlandmark in Map Activity
     private Landmark targetLandmark = null;
 
     private Game game;
@@ -154,9 +154,11 @@ public class GameService extends Service {
                     Log.d("test", "Distance to target: "+distance);
 
                     //TODO Festlegen einer maximalen Nähe zur target landmark
-//                    if (distance < PROXY_RADIUS) {
+                    float PROXY_RADIUS = 20;
+                    if (distance < PROXY_RADIUS) {
+                        Log.d("test", "Player reached target");
                     initNextRound();
-//                    }
+                    }
                 }
             }
 
@@ -253,14 +255,18 @@ public class GameService extends Service {
     public void initNextRound(){
 
         //check if there is a next round
+        gameRounds=game.getRounds();
         if(gameRounds>=1){
             gameRounds = gameRounds -1;
+            game.setRounds(gameRounds);
 
             //empty current selected landmarks
             selectedLandmarks.clear();
 
             // remove visited landmark from landmarkLIst
-            landmarkList.remove(targetLandmark);
+            //TODO remove targetLandmark from  landmarkList
+            //landmarkList.remove(targetLandmark);
+            // -> unsupportedOperationException: da List fixed length hat, ist remove nicht möglich
 
             //remove current guesses of players
             game.clearAllGuesses();

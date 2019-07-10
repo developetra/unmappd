@@ -1,7 +1,9 @@
 package com.example.unmappd.activities;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Location;
@@ -9,10 +11,12 @@ import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.unmappd.R;
 import com.example.unmappd.data.Landmark;
@@ -72,18 +76,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
-
-        // TODO fix
         // get and set markers of landmarks
         mapReady=true;
         displayMarkers();
+
+        //Evtl etwas anderes als Toast zum Anzeigen der Info verwenden?
+        int duration = Toast.LENGTH_LONG;
+
+        Toast choose = Toast.makeText(MapsActivity.this, "Choose a location, where you want to go", duration);
+        choose.setGravity(Gravity.TOP, 0, 200);
+        choose.show();
+
 
 
     }
 
     private void displayMarkers() {
-        if(serviceConnected == true && mapReady ==true){
+        if(serviceConnected && mapReady){
 
             // get current position of player and set blue marker
             currentLocation = gameService.getPlayerPosition();
@@ -174,16 +183,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void playerReachedTarget(boolean endOfGame) {
 
+        int duration = Toast.LENGTH_LONG;
+
+        Toast choose = Toast.makeText(MapsActivity.this, "Reached target", duration);
+        choose.setGravity(Gravity.TOP, 0, 200);
+
         // end of game reached
         if(endOfGame){
+            AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+            //chooseTarget.setTitle("Choose your target location");
+            chooseTarget.setMessage("Reached target position. The game is over");
 
-            // show button that leads to final ranking
+            chooseTarget.setNeutralButton("Show final result",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            //got to ranking
+                            Intent intent = new Intent(MapsActivity.this, RankingActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            chooseTarget.create().show();
+
+            //TODO RankingActivity ohne "Continue" Button
+
         }
 
         // end of game not reached
         if(!endOfGame){
+            AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+            //chooseTarget.setTitle("Choose your target location");
+            chooseTarget.setMessage("You reached your target position");
 
-            // show button that leads to estimation activity
+            chooseTarget.setNeutralButton("Continue with next round",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            //got to next round
+                            Intent intent = new Intent(MapsActivity.this, EstimationActivity.class);
+                            Bundle b = new Bundle();
+                            int numberOfPlayers = gameService.getGame().getNumberOfPlayers();
+                            b.putInt("numberOfPlayers", numberOfPlayers);
+                            b.putInt("playerIndex", 1);
+                            intent.putExtras(b);
+                            startActivity(intent);
+
+                        }
+                    });
+            chooseTarget.create().show();
         }
 
     }
@@ -192,7 +239,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (((RadioButton) view).isChecked()) {
             RadioGroup raGroup = (RadioGroup) findViewById(R.id.radioGroup);
             raGroup.setVisibility(View.GONE);
-            //mMap.clear();
+
         }
 
         switch (view.getId()) {
@@ -200,21 +247,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lm2Marker.remove();
                 lm3Marker.remove();
                 lm4Marker.remove();
+
+                gameService.setTargetLandmark(landmarks.get(0));
                 break;
             case R.id.radioButton2:
                 lm1Marker.remove();
                 lm3Marker.remove();
                 lm4Marker.remove();
+                gameService.setTargetLandmark(landmarks.get(1));
                 break;
             case R.id.radioButton3:
                 lm2Marker.remove();
                 lm1Marker.remove();
                 lm4Marker.remove();
+                gameService.setTargetLandmark(landmarks.get(2));
                 break;
             case R.id.radioButton4:
                 lm2Marker.remove();
                 lm3Marker.remove();
                 lm1Marker.remove();
+                gameService.setTargetLandmark(landmarks.get(3));
                 break;
 
         }

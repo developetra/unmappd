@@ -27,16 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!--<Button
-            <!-android:id="@+id/button2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="61dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:background="@drawable/button_background"-->
-        <!--android:fontFamily="sans-serif-medium"-->
-        <!--android:text="Landmark 2 &#10; Straße &#10; Entfernung"-->
-        <!--android:textColor="#FFFCFC" />-->
 
 
         <RadioGroup
