@@ -3,145 +3,169 @@
     "name": "Brauerei Mahr",
     "latitude": 49.890151,
     "longitude": 10.906529,
-    "path": "brauerei_mahr"
+    "path": "brauerei_mahr",
+    "info": "Small fact: The brewery is in family property since 1895."
   },
   {
     "name": "Brauerei Keesmann",
     "latitude": 49.890351,
     "longitude": 10.905623,
-    "path": "brauerei_keesmann"
+    "path": "brauerei_keesmann",
+    "info": "Small fact: Quite untypical for a Franconian brewery, the Herren Pils has emerged as a special classic at the Keesmann in Bamberg."
   },
   {
     "name": "Brauerei Greifenklau",
     "latitude": 49.883805,
     "longitude": 10.882089,
-    "path": "brauerei_greifenklau"
+    "path": "brauerei_greifenklau",
+    "info": "Small fact: First mentioned in 1585, the actual brewing history begins with the canon Franz Friedrich von Greifenklau."
   },
   {
     "name": "Rauchbierbrauerei Schlenkerla",
     "latitude": 49.891701,
     "longitude": 10.884848,
-    "path": "brauerei_schlenkerla"
+    "path": "brauerei_schlenkerla",
+    "info": "Small fact: According to old tradition the smoked beer is still drawn from oak barrels."
   },
   {
     "name": "Brauerei Spezial",
     "latitude": 49.896861,
     "longitude": 10.892806,
-    "path": "brauerei_spezial"
+    "path": "brauerei_spezial",
+    "info": "Small fact: Beer has been brewed here for over 475 years on the former Steinweg, an old, supra-regionally important trade route. "
   },
   {
-    "name": "Brauerei KLosterbräu",
+    "name": "Brauerei Klosterbräu",
     "latitude": 49.889261,
     "longitude": 10.887198,
-    "path": "brauerei_klosterbraeu"
+    "path": "brauerei_klosterbraeu",
+    "info": "Small fact: Glossy, amber-coloured and with a fine-pored creamy foam crown, Braunbier makes you want to take your first sip. "
   },
   {
     "name": "Brauerei Fässla",
     "latitude": 49.897116,
     "longitude": 10.892757,
-    "path": "brauerei_faessla"
+    "path": "brauerei_faessla",
+    "info": "Small fact: Zwergla is a dark, almost mahogany-coloured beer, soft in the mouth, slightly malty with a soft and round finish."
   },
   {
     "name": "Fässla Keller",
     "latitude": 49.893092,
     "longitude": 10.911655,
-    "path": "faessla_keller"
+    "path": "faessla_keller",
+    "info": "Small fact: In the Fässla Keller you sit under old chestnut trees as the unwritten law requires and enjoy your snack. "
   },
   {
     "name": "Spezial Keller",
     "latitude": 49.884715,
     "longitude": 10.887602,
-    "path": "spezial_keller"
+    "path": "spezial_keller",
+    "info": "Small fact: The Spezial Keller is a family business and is now managed by the third generation."
   },
   {
     "name": "Wilde Rose Keller",
     "latitude": 49.883949,
     "longitude": 10.886695,
-    "path": "wilderose_keller"
+    "path": "wilderose_keller",
+    "info": "Small fact: During and after the Second World War the beer cellar remained closed."
   },
   {
     "name": "Einhornskeller",
     "latitude": 49.890962,
     "longitude": 10.874896,
-    "path": "einhornskeller"
+    "path": "einhornskeller",
+    "info": "Small fact: Einhornskeller, a traditional inn with the oldest beer cellar in Bamberg that has been revived."
   },
   {
     "name": "Ambräusianum",
     "latitude": 49.891759,
     "longitude": 10.884592,
-    "path": "ambraeusianum"
+    "path": "ambraeusianum",
+    "info": "Small fact: Once a year, at Bamberg's fifth season, the Sandkerwa, the city's beer hub lies in the middle of the pub brewery, which also brews the official festival beer."
   },
   {
     "name": "Bamberger Dom",
     "latitude": 49.890776,
     "longitude": 10.882514,
-    "path": "dom"
+    "path": "dom",
+    "info": "Small fact: The Romanesque Bamberg Cathedral St. Peter and St. Georg is one of the German imperial cathedrals and, with its four towers, is the dominant building of the world cultural heritage Bamberg Old Town."
   },
   {
     "name": "Rosengarten",
     "latitude": 49.892122,
     "longitude": 10.881260,
-    "path": "rosengarten"
+    "path": "rosengarten",
+    "info": "Small fact: Framed by cut lime trees and the graceful garden pavilion, around 4500 roses spread their fragrance and flower splendour in over 70 beds during the summer months."
   },
   {
     "name": "Untere Brücke",
     "latitude": 49.891867,
     "longitude": 10.886782,
-    "path": "untere_bruecke"
+    "path": "untere_bruecke",
+    "info": "Small fact: The Untere Brücke was originally a private bridge."
   },
   {
     "name": "Neue Residenz",
     "latitude": 49.891792,
     "longitude": 10.882203,
-    "path": "neue_residenz"
+    "path": "neue_residenz",
+    "info": "Small fact: Today, the sandstone complex houses the Bamberg State Library and State Gallery."
   },
   {
     "name": "Residenzschloss Geyerswörth",
     "latitude": 49.891107,
     "longitude": 10.887595,
-    "path": "residenzschloss_geyerswoerth"
+    "path": "residenzschloss_geyerswoerth",
+    "info": "Small fact: The castle is used by authorities of the city of Bamberg."
   },
   {
     "name": "Altes Rathaus",
     "latitude": 49.891560,
     "longitude": 10.886894,
-    "path": "altes_rathaus"
+    "path": "altes_rathaus",
+    "info": "Small fact: Inside, the porcelain collection Ludwig, which belongs to the museums of the city of Bamberg, is exhibited, one of the largest of its kind in Europe."
   },
   {
     "name": "Am Kranen",
     "latitude": 49.892689,
     "longitude": 10.886467,
-    "path": "am_kranen"
+    "path": "am_kranen",
+    "info": "Small fact:  In 1156, Emperor Frederick I Barbarossa granted Bamberg the right of stacking. From then on, every ship that passed through Bamberg had to stop and offer its goods for sale in the city for three days."
   },
   {
     "name": "Alte Hofhaltung",
     "latitude": 49.891170,
     "longitude": 10.881419,
-    "path": "alte_hofhaltung"
+    "path": "alte_hofhaltung",
+    "info": "Small fact: It consists of former residential and farm buildings of the episcopal court."
   },
   {
     "name": "Kloster St. Michael",
     "latitude": 49.893675,
     "longitude": 10.877191,
-    "path": "kloster"
+    "path": "kloster",
+    "info": "Small fact: Kloster Michelsberg (also known as Michaelsberg) is a former Benedictine monastery in Bamberg in Bavaria in the archdiocese of Bamberg."
   },
   {
     "name": "Schleuse 100 Ludwig-Main-Donau-Kanal",
     "latitude": 49.887990,
     "longitude": 10.890228,
-    "path": "schleuse100"
+    "path": "schleuse100",
+    "info": "Small fact: The lock 100 is still active today for sport boats and canoes and is operated by hand. "
   },
   {
     "name": "Kunstgalerien Böttingerhaus",
     "latitude": 49.889232,
     "longitude": 10.886257,
-    "path": "kunstgallerie_boettingerhaus"
+    "path": "kunstgallerie_boettingerhaus",
+    "info": "Small fact: It is one of the most important bourgeois baroque buildings in southern Germany."
   },
   {
     "name": "Internationales Künstlerhaus Villa Concordia",
     "latitude": 49.888095,
     "longitude": 10.888553,
-    "path": "villa_concordia"
+    "path": "villa_concordia",
+    "info": "Small fact: Villa Concordia, built between 1716 and 1722 on the banks of the Regnitz, is an important monument to Baroque architecture and culture."
   }
 
 ]
