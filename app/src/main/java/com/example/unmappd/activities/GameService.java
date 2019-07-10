@@ -268,7 +268,9 @@ public class GameService extends Service {
         } else if (distanceGuessPlayer > 600) {
             score = score + 5;
         }
-        game.getPlayers().get(playerIndex).setScore(score);
+        int directionScore = processDirectionGuesses(playerIndex);
+
+        game.getPlayers().get(playerIndex).setScore(score + directionScore);
 
 
     }
@@ -358,37 +360,80 @@ public class GameService extends Service {
         closestLandmarks.add(landmarkMap.get(sortedDistances.get(2)));
         closestLandmarks.add(landmarkMap.get(sortedDistances.get(3)));
 
-        Location l1 = new Location("");
-        l1.setLatitude(landmarkMap.get(sortedDistances.get(0)).getLatitude());
-        l1.setLongitude(landmarkMap.get(sortedDistances.get(0)).getLongitude());
-        Log.d("test", "direction " + getDirectionOfLandmark(l1));
-
-        Location l2 = new Location("");
-        l2.setLatitude(landmarkMap.get(sortedDistances.get(1)).getLatitude());
-        l2.setLongitude(landmarkMap.get(sortedDistances.get(1)).getLongitude());
-        Log.d("test", "direction " + getDirectionOfLandmark(l2));
-
-        Location l3 = new Location("");
-        l3.setLatitude(landmarkMap.get(sortedDistances.get(2)).getLatitude());
-        l3.setLongitude(landmarkMap.get(sortedDistances.get(2)).getLongitude());
-        Log.d("test", "direction " + getDirectionOfLandmark(l3));
-
-        Location l4 = new Location("");
-        l4.setLatitude(landmarkMap.get(sortedDistances.get(3)).getLatitude());
-        l4.setLongitude(landmarkMap.get(sortedDistances.get(3)).getLongitude());
-        Log.d("test", "direction " + getDirectionOfLandmark(l4));
-
         return closestLandmarks;
     }
 
     /**
      * Initialises first game by calling the method to pick the closest landmarks.
+     *
      */
     public void initFirstGame() {
         selectedLandmarks = pickLandmarks();
     }
 
+    /**
+     * Processes the direction guesses of a given player.
+     * @param playerIndex
+     * @return
+     * @author Petra Langenbacher
+     *
+     */
+    public int processDirectionGuesses(int playerIndex) {
 
+        int directionScore = 0;
+
+        // get guesses of player
+        ArrayList<String> directionGuesses = game.getPlayers().get(playerIndex).getDirections();
+
+        // Landmark 1 - get direction and compare it to the players guess
+        Location l1 = new Location("");
+        l1.setLatitude(selectedLandmarks.get(0).getLatitude());
+        l1.setLongitude(selectedLandmarks.get(0).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l1));
+        Log.d("test", "direction guess is " + directionGuesses.get(0));
+        if (directionGuesses.get(0).equals(getDirectionOfLandmark(l1).toString())){
+            directionScore = directionScore + 5 ;
+        }
+
+        // Landmark 2 - get direction and compare it to the players guess
+        Location l2 = new Location("");
+        l2.setLatitude(selectedLandmarks.get(1).getLatitude());
+        l2.setLongitude(selectedLandmarks.get(1).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l2));
+        Log.d("test", "direction guess is " + directionGuesses.get(1));
+        if (directionGuesses.get(1).equals(getDirectionOfLandmark(l2).toString())){
+            directionScore = directionScore + 5 ;
+        }
+
+        // Landmark 3 - get direction and compare it to the players guess
+        Location l3 = new Location("");
+        l3.setLatitude(selectedLandmarks.get(2).getLatitude());
+        l3.setLongitude(selectedLandmarks.get(2).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l3));
+        Log.d("test", "direction guess is " + directionGuesses.get(2));
+        if (directionGuesses.get(2).equals(getDirectionOfLandmark(l3).toString())){
+            directionScore = directionScore + 5 ;
+        }
+
+        // Landmark 4 - get direction and compare it to the players guess
+        Location l4 = new Location("");
+        l4.setLatitude(selectedLandmarks.get(3).getLatitude());
+        l4.setLongitude(selectedLandmarks.get(3).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l4));
+        Log.d("test", "direction guess is " + directionGuesses.get(3));
+        if (directionGuesses.get(3).equals(getDirectionOfLandmark(l4).toString())){
+            directionScore = directionScore + 5 ;
+        }
+        Log.d("test", "direction score is " + directionScore);
+        return directionScore;
+    }
+
+    /**
+     * Get geographic direction of given landmark.
+     * @param location
+     * @return
+     * @author Petra Langenbacher
+     */
     public GeoDirection getDirectionOfLandmark(Location location){
 
         GeoDirection direction = GeoDirection.UNKNOWN;

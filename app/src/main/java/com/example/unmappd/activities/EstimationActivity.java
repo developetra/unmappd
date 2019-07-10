@@ -29,7 +29,7 @@ import java.util.ArrayList;
 /**
  * EstimationActivity - This class serves as activity where the players can enter their distance guesses.
  *
- * @author Franziska Barckmann
+ * @author Franziska Barckmann, Petra Langenbacher
  */
 public class EstimationActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
@@ -64,6 +64,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     /**
      * This method initializes the activities user interface by loading current player's name,
      * the four landmarks' names and the four landmarks' images.
+     * @author Franziska Barckmann
      */
     private void initUI() {
         // Init UI with player name
@@ -121,15 +122,15 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
         // Direction Spinner 2
         Spinner directionSpinner2 = (Spinner) findViewById(R.id.spinnerDirection2);
-        directionSpinner1.setAdapter(directionAdapter);
+        directionSpinner2.setAdapter(directionAdapter);
 
         // Direction Spinner 3
         Spinner directionSpinner3 = (Spinner) findViewById(R.id.spinnerDirection3);
-        directionSpinner1.setAdapter(directionAdapter);
+        directionSpinner3.setAdapter(directionAdapter);
 
         // Direction Spinner 4
         Spinner directionSpinner4 = (Spinner) findViewById(R.id.spinnerDirection4);
-        directionSpinner1.setAdapter(directionAdapter);
+        directionSpinner4.setAdapter(directionAdapter);
     }
 
     /**
@@ -167,6 +168,22 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance2);
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance3);
             gameService.getGame().getPlayers().get(playerIndex-1).addGuess(distance4);
+
+
+            Spinner direction1 = findViewById(R.id.spinnerDirection1);
+            Spinner direction2 = findViewById(R.id.spinnerDirection2);
+            Spinner direction3 = findViewById(R.id.spinnerDirection3);
+            Spinner direction4 = findViewById(R.id.spinnerDirection4);
+
+            String direction01 = direction1.getSelectedItem().toString();
+            String direction02 = direction2.getSelectedItem().toString();
+            String direction03 = direction3.getSelectedItem().toString();
+            String direction04 = direction4.getSelectedItem().toString();
+
+            gameService.getGame().getPlayers().get(playerIndex-1).addDirection(direction01);
+            gameService.getGame().getPlayers().get(playerIndex-1).addDirection(direction02);
+            gameService.getGame().getPlayers().get(playerIndex-1).addDirection(direction03);
+            gameService.getGame().getPlayers().get(playerIndex-1).addDirection(direction04);
 
             // start processing of the guess of a player
             gameService.processGuess(playerIndex-1);
