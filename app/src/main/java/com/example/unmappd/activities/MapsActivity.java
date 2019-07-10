@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unmappd.R;
@@ -80,15 +81,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapReady=true;
         displayMarkers();
 
-        //Evtl etwas anderes als Toast zum Anzeigen der Info verwenden?
-        int duration = Toast.LENGTH_LONG;
-
-        Toast choose = Toast.makeText(MapsActivity.this, "Choose a location, where you want to go", duration);
-        choose.setGravity(Gravity.TOP, 0, 200);
-        choose.show();
-
-
-
+        TextView info = findViewById(R.id.infoText);
+        info.setText("Please choose the location you want to visit next");
     }
 
     private void displayMarkers() {
@@ -239,6 +233,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (((RadioButton) view).isChecked()) {
             RadioGroup raGroup = (RadioGroup) findViewById(R.id.radioGroup);
             raGroup.setVisibility(View.GONE);
+            TextView info = findViewById(R.id.infoText);
+            info.setText("please walk to your chosen location");
 
         }
 

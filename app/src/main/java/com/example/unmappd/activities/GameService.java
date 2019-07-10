@@ -39,8 +39,6 @@ public class GameService extends Service {
 
     // ===== Game
 
-    private int gameRounds; // TODO refactor as enum
-
 
     protected LocationManager locService;
     protected LocationListener locListener;
@@ -255,8 +253,8 @@ public class GameService extends Service {
     public void initNextRound(){
 
         //check if there is a next round
-        gameRounds=game.getRounds();
-        if(gameRounds>=1){
+        int gameRounds=game.getRounds();
+        if(gameRounds>1){
             gameRounds = gameRounds -1;
             game.setRounds(gameRounds);
 
