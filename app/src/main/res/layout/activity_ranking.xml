@@ -193,11 +193,33 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_background"
                     android:onClick="startMap"
+                    android:visibility="visible"
                     android:paddingLeft="50dp"
                     android:paddingTop="10dp"
                     android:paddingRight="50dp"
                     android:paddingBottom="10dp"
                     android:text="Continue"
+                    android:textColor="#FFFCFC" />
+
+                <Button
+                    android:id="@+id/startSetupButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentEnd="false"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginBottom="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:onClick="startSetup"
+                    android:visibility="gone"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="50dp"
+                    android:paddingBottom="10dp"
+                    android:text="Start New Game"
                     android:textColor="#FFFCFC" />
 
             </LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
@@ -28,6 +29,12 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
         Intent bindIntent = new Intent(RankingActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
 
+    }
+
+    public void startSetup (View view){
+
+        Intent intent = new Intent(this, SetupActivity.class);
+        startActivity(intent);
     }
 
     public void startMap(View view){
@@ -157,10 +164,25 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
 
     public void updatePlayerPosition(Location location){
         // do nothing
-        Log.d("test", "Setup is updating player position");
     }
 
     public void playerReachedTarget(boolean endOfGame){
-        // do nothing
+
+        if(endOfGame == true){
+            Button buttonMap = findViewById(R.id.startMapButton);
+            buttonMap.setVisibility((View.GONE));
+
+            Button buttonSetup = findViewById(R.id.startSetupButton);
+            buttonSetup.setVisibility((View.VISIBLE));
+
+            Log.d("test", "Ranking changed button for final ranking");
+        }
+        else {
+            Button buttonMap = findViewById(R.id.startMapButton);
+            buttonMap.setVisibility((View.VISIBLE));
+
+            Button buttonSetup = findViewById(R.id.startSetupButton);
+            buttonSetup.setVisibility((View.GONE));
+        }
     }
 }

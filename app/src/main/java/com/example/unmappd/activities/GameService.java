@@ -17,14 +17,10 @@ import android.util.Log;
 import com.example.unmappd.backend.EstimationCalculator;
 import com.example.unmappd.data.Game;
 import com.example.unmappd.data.Landmark;
-import com.example.unmappd.data.Player;
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -42,23 +38,20 @@ public class GameService extends Service {
     private final IBinder binder = new LocalBinder();
     private final List<GameServiceListener> listeners = new ArrayList<GameServiceListener>();
 
-    // ===== Game
-
-    private int gameRounds; // TODO refactor as enum
+    // ===== Location
 
     protected LocationManager locService;
-    protected LocationListener locListener;
 
     private List<Landmark> landmarkList;
 
     private Location playerPosition = null;
 
-    // TODO set targetlandmark in Map Activity
-    private Landmark targetLandmark = null;
+    // ===== Game
 
+    private Landmark targetLandmark = null;
+    // TODO set targetlandmark in Map Activity
     private Game game;
     private ArrayList<Landmark> selectedLandmarks;
-
     private final EstimationCalculator calculator = new EstimationCalculator();
 
 
@@ -267,13 +260,6 @@ public class GameService extends Service {
 
     }
 
-//    public void onPlayerReachedLandmark() {
-//         for(GameServiceListener listener : listeners) {
-//            listener.updatePlayerScore();
-//        }
-//        voidinitNextRound();
-//    }
-
     public void requestGPSupdate() {
 
         // locService.requestLocationUpdates(locationProvider, 0, 0, this);
@@ -289,8 +275,11 @@ public class GameService extends Service {
     public void initNextRound() {
 
         //check if there is a next round
-        if (gameRounds >= 1) {
-            gameRounds = gameRounds - 1;
+
+        int rounds = game.getRounds();
+
+        if (rounds >= 1) {
+            game.setRounds(rounds - 1);
 
             //empty current selected landmarks
             selectedLandmarks.clear();
