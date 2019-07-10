@@ -101,6 +101,17 @@
                             android:ems="10"
                             android:inputType="number" />
 
+                        <TextView
+                            android:id="@+id/textViewDirection1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Geographical Direction:" />
+
+                        <Spinner
+                            android:id="@+id/spinnerDirection1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -160,6 +171,17 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/textViewDirection2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Geographical Direction:" />
+
+                        <Spinner
+                            android:id="@+id/spinnerDirection2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -222,6 +244,17 @@
                             android:ems="10"
                             android:inputType="number" />
 
+                        <TextView
+                            android:id="@+id/textViewDirection3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Geographical Direction:" />
+
+                        <Spinner
+                            android:id="@+id/spinnerDirection3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -282,6 +315,17 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/textViewDirection4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Geographical Direction:" />
+
+                        <Spinner
+                            android:id="@+id/spinnerDirection4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 

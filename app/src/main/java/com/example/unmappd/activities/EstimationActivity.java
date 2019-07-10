@@ -13,8 +13,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
@@ -96,7 +98,38 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             landmarkImageView1.setImageDrawable(drawable);
         }
 
+        initSpinners();
+
         Log.d("test", "Estimation UI initialized");
+    }
+
+    /**
+     * Initialises spinners.
+     * @author Petra Langenbacher
+     *
+     */
+    private void initSpinners() {
+        // Array Adapter for Spinners
+        ArrayAdapter<CharSequence> directionAdapter = ArrayAdapter.createFromResource(this,
+                R.array.directions, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        directionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Direction Spinner 1
+        Spinner directionSpinner1 = (Spinner) findViewById(R.id.spinnerDirection1);
+        directionSpinner1.setAdapter(directionAdapter);
+
+        // Direction Spinner 2
+        Spinner directionSpinner2 = (Spinner) findViewById(R.id.spinnerDirection2);
+        directionSpinner1.setAdapter(directionAdapter);
+
+        // Direction Spinner 3
+        Spinner directionSpinner3 = (Spinner) findViewById(R.id.spinnerDirection3);
+        directionSpinner1.setAdapter(directionAdapter);
+
+        // Direction Spinner 4
+        Spinner directionSpinner4 = (Spinner) findViewById(R.id.spinnerDirection4);
+        directionSpinner1.setAdapter(directionAdapter);
     }
 
     /**
