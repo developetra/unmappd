@@ -23,6 +23,7 @@ public class Landmark {
     private double longitude;
     private double latitude;
     private String path;
+    private String info;
 
     // ===== Static Class Methods =====
 
@@ -107,6 +108,15 @@ public class Landmark {
      */
     public String getPath() {
         return path;
+    }
+
+    /**
+     * Getter - Returns the info of a landmark.
+     *
+     * @return info as a String
+     */
+    public String getInfo() {
+        return info;
     }
 
 }
