@@ -54,6 +54,17 @@ public class GameService extends Service {
     private ArrayList<Landmark> selectedLandmarks;
     private final EstimationCalculator calculator = new EstimationCalculator();
 
+    enum GeoDirection {
+        NORTH,
+        NORTHEAST,
+        EAST,
+        SOUTHEAST,
+        SOUTH,
+        SOUTHWEST,
+        WEST,
+        NORTHWEST,
+        UNKNOWN
+    }
 
     /**
      * Getter and Setter Methods.
@@ -347,6 +358,26 @@ public class GameService extends Service {
         closestLandmarks.add(landmarkMap.get(sortedDistances.get(2)));
         closestLandmarks.add(landmarkMap.get(sortedDistances.get(3)));
 
+        Location l1 = new Location("");
+        l1.setLatitude(landmarkMap.get(sortedDistances.get(0)).getLatitude());
+        l1.setLongitude(landmarkMap.get(sortedDistances.get(0)).getLongitude());
+        Log.d("test", "direction " + getDirectionOfLandmark(l1));
+
+        Location l2 = new Location("");
+        l2.setLatitude(landmarkMap.get(sortedDistances.get(1)).getLatitude());
+        l2.setLongitude(landmarkMap.get(sortedDistances.get(1)).getLongitude());
+        Log.d("test", "direction " + getDirectionOfLandmark(l2));
+
+        Location l3 = new Location("");
+        l3.setLatitude(landmarkMap.get(sortedDistances.get(2)).getLatitude());
+        l3.setLongitude(landmarkMap.get(sortedDistances.get(2)).getLongitude());
+        Log.d("test", "direction " + getDirectionOfLandmark(l3));
+
+        Location l4 = new Location("");
+        l4.setLatitude(landmarkMap.get(sortedDistances.get(3)).getLatitude());
+        l4.setLongitude(landmarkMap.get(sortedDistances.get(3)).getLongitude());
+        Log.d("test", "direction " + getDirectionOfLandmark(l4));
+
         return closestLandmarks;
     }
 
@@ -356,4 +387,35 @@ public class GameService extends Service {
     public void initFirstGame() {
         selectedLandmarks = pickLandmarks();
     }
+
+
+    public GeoDirection getDirectionOfLandmark(Location location){
+
+        GeoDirection direction = GeoDirection.UNKNOWN;
+        float bearTo = playerPosition.bearingTo(location);
+
+        if (bearTo < 0) {
+            bearTo = bearTo + 360;
+        }
+        if(bearTo > 0 && bearTo < 22.5 | bearTo > 337.5 && bearTo < 360) {
+            direction = GeoDirection.NORTH;
+        }else if (bearTo > 22.5 && bearTo < 67.5){
+            direction = GeoDirection.NORTHEAST;
+        } else if (bearTo > 67.5 && bearTo < 112.5){
+            direction = GeoDirection.EAST;
+        } else if (bearTo > 112.5 && bearTo < 157.5){
+            direction = GeoDirection.SOUTHEAST;
+        } else if (bearTo > 157.5 && bearTo < 202.5) {
+            direction = GeoDirection.SOUTH;
+        }else if (bearTo > 202.5 && bearTo < 247.5){
+            direction = GeoDirection.SOUTHWEST;
+        } else if (bearTo > 247.5 && bearTo < 292.5){
+            direction = GeoDirection.WEST;
+        }else if (bearTo > 292.5 && bearTo < 337.5){
+            direction = GeoDirection.NORTHWEST;
+        }
+
+        return direction;
+    }
 }
+
