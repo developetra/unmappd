@@ -31,6 +31,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+
+import static android.graphics.Color.parseColor;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
 
@@ -177,15 +179,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void playerReachedTarget(boolean endOfGame) {
 
-        int duration = Toast.LENGTH_LONG;
-
-        Toast choose = Toast.makeText(MapsActivity.this, "Reached target", duration);
-        choose.setGravity(Gravity.TOP, 0, 200);
-
         // end of game reached
         if(endOfGame){
             AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-            //chooseTarget.setTitle("Choose your target location");
             chooseTarget.setMessage("Reached target position. The game is over");
 
             chooseTarget.setNeutralButton("Show final result",
@@ -197,8 +193,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(intent);
                         }
                     });
-            chooseTarget.create().show();
 
+            chooseTarget.create().show();
+            //dialog.show();
+            //dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(parseColor("##FFFCFC"));
             //TODO RankingActivity ohne "Continue" Button
 
         }

@@ -30,7 +30,8 @@ public class EstimationCalculator {
      */
     public static double[] calculateEstimation(Location playerPosition, ArrayList<Landmark> landmarkList, ArrayList<Integer> distanceList) {
 
-        double [] playerPos = {getOffset(playerPosition.getLongitude()), getOffset(playerPosition.getLatitude())};
+        //double [] playerPos = {getOffset(playerPosition.getLongitude()), getOffset(playerPosition.getLatitude())};
+        double [] playerPos = {getOffset(10.88572), getOffset(49.89259)};
         int[] distances = {distanceList.get(0), distanceList.get(1), distanceList.get(2), distanceList.get(3)};
         int [][] landmarks = {
                 {getOffset(landmarkList.get(0).getLongitude()), getOffset(landmarkList.get(0).getLatitude())},
