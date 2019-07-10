@@ -27,16 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!--<Button
-            <!-android:id="@+id/button2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="61dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:background="@drawable/button_background"-->
-        <!--android:fontFamily="sans-serif-medium"-->
-        <!--android:text="Landmark 2 &#10; Straße &#10; Entfernung"-->
-        <!--android:textColor="#FFFCFC" />-->
 
 
         <RadioGroup
@@ -109,5 +99,23 @@
         </RadioGroup>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/infoText"
+        android:layout_width="314dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:paddingLeft="10dp"
+        android:text="choose the location you want to visit next"
+
+        android:textAlignment="center"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map" />
 
 </android.support.constraint.ConstraintLayout>
