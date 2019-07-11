@@ -178,12 +178,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void playerReachedTarget(boolean endOfGame) {
-
+        AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+        chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
         // end of game reached
         if(endOfGame){
-            AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-            chooseTarget.setMessage("Reached target position. The game is over");
-
+            chooseTarget.setTitle("Reached target position. The game is over");
+            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
             chooseTarget.setNeutralButton("Show final result",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -193,20 +193,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(intent);
                         }
                     });
-
-            chooseTarget.create().show();
             //dialog.show();
             //dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(parseColor("##FFFCFC"));
             //TODO RankingActivity ohne "Continue" Button
-
         }
 
         // end of game not reached
         if(!endOfGame){
-            AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+            //AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
             //chooseTarget.setTitle("Choose your target location");
-            chooseTarget.setMessage("You reached your target position");
-
+            chooseTarget.setTitle("You reached your target position");
+            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
+            gameService.setTargetLandmark(null);
             chooseTarget.setNeutralButton("Continue with next round",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -219,12 +217,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             b.putInt("playerIndex", 1);
                             intent.putExtras(b);
                             startActivity(intent);
-
                         }
                     });
-            chooseTarget.create().show();
+            //chooseTarget.create().show();
         }
-
+        chooseTarget.create().show();
     }
 
     public void onRadioButtonClicked(View view) {

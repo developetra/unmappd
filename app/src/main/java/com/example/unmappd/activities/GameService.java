@@ -84,6 +84,9 @@ public class GameService extends Service {
         this.targetLandmark = targetLandmark;
     }
 
+    public Landmark  getTargetLandmark(){
+        return this.targetLandmark;
+    }
     /**
      * Initialises landmarkList with landmarks from json file and calls method to initialise the LocationManager.
      *
@@ -138,7 +141,7 @@ public class GameService extends Service {
 
         void updatePlayerPosition(Location location);
 
-        void playerReachedTarget(boolean endOfGame); // TODO Add function in MapsActivity (hier geht es im Game weiter)
+        void playerReachedTarget(boolean endOfGame);
     }
 
 
@@ -170,7 +173,6 @@ public class GameService extends Service {
                     float distance = playerPosition.distanceTo(targetLocation);
                     Log.d("test", "Distance to target: " + distance);
 
-                    //TODO Festlegen einer maximalen Nähe zur target landmark
                     float PROXY_RADIUS = 20;
                     if (distance < PROXY_RADIUS) {
                         Log.d("test", "Player reached target");
@@ -294,7 +296,7 @@ public class GameService extends Service {
             game.clearAllGuesses();
 
             //clear target landmark
-            targetLandmark = null;
+            //targetLandmark = null;    //clear target landmark later to be able to show info texts in Map-Activity
 
             // pick closest landmarks
             selectedLandmarks = pickLandmarks();
