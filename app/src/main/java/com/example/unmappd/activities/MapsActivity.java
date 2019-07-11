@@ -163,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float distance = currentPos.distanceTo(targetLocation);
         int distanceRounded = Math.round(distance);
         Button btn = (Button) findViewById(radioButton);
-        btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m");
+        btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getDirectionOfLandmark(targetLocation) );
 
     }
 
