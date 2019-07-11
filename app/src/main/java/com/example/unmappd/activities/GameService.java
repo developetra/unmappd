@@ -95,9 +95,11 @@ public class GameService extends Service {
         this.targetLandmark = targetLandmark;
     }
 
-    public Landmark  getTargetLandmark(){
-        return this.targetLandmark;
+    public Landmark getTargetLandmark() {
+
+        return targetLandmark;
     }
+
     /**
      * Initialises landmarkList with landmarks from json file and calls method to initialise the LocationManager.
      *
