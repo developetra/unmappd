@@ -15,6 +15,11 @@ import android.widget.TextView;
 
 import com.example.unmappd.R;
 
+/**
+ * RankingActivity - This class serves as activity that shows the ranking of the players.
+ *
+ * @author Franziska Barckmann
+ */
 public class RankingActivity extends AppCompatActivity implements GameService.GameServiceListener {
 
     protected GameService gameService;
@@ -31,13 +36,13 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
 
     }
 
-    public void startSetup (View view){
+    public void startSetup(View view) {
 
         Intent intent = new Intent(this, SetupActivity.class);
         startActivity(intent);
     }
 
-    public void startMap(View view){
+    public void startMap(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         //Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
@@ -53,20 +58,20 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
         // Init UI with player name and player score
 
 
-        TextView nameP1View = (TextView)findViewById(R.id.namePlayer1);
-        TextView scoreP1View = (TextView)findViewById(R.id.scorePlayer1);
+        TextView nameP1View = (TextView) findViewById(R.id.namePlayer1);
+        TextView scoreP1View = (TextView) findViewById(R.id.scorePlayer1);
 
-        TextView nameP2View = (TextView)findViewById(R.id.namePlayer2);
-        TextView scoreP2View = (TextView)findViewById(R.id.scorePlayer2);
+        TextView nameP2View = (TextView) findViewById(R.id.namePlayer2);
+        TextView scoreP2View = (TextView) findViewById(R.id.scorePlayer2);
 
-        TextView nameP3View = (TextView)findViewById(R.id.namePlayer3);
-        TextView scoreP3View = (TextView)findViewById(R.id.scorePlayer3);
+        TextView nameP3View = (TextView) findViewById(R.id.namePlayer3);
+        TextView scoreP3View = (TextView) findViewById(R.id.scorePlayer3);
 
-        TextView nameP4View = (TextView)findViewById(R.id.namePlayer4);
-        TextView scoreP4View = (TextView)findViewById(R.id.scorePlayer4);
+        TextView nameP4View = (TextView) findViewById(R.id.namePlayer4);
+        TextView scoreP4View = (TextView) findViewById(R.id.scorePlayer4);
 
 
-        switch (numberOfPlayers){
+        switch (numberOfPlayers) {
             case 1:
                 nameP2View.setVisibility(View.GONE);
                 scoreP2View.setVisibility(View.GONE);
@@ -135,7 +140,6 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
     }
 
 
-
     // ===== Game Service Connection =====
 
     private ServiceConnection gameServiceCon = new ServiceConnection() {
@@ -162,13 +166,13 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
 
     // ===== Listener Methods =====
 
-    public void updatePlayerPosition(Location location){
+    public void updatePlayerPosition(Location location) {
         // do nothing
     }
 
-    public void playerReachedTarget(boolean endOfGame){
+    public void playerReachedTarget(boolean endOfGame) {
 
-        if(endOfGame == true){
+        if (endOfGame == true) {
             Button buttonMap = findViewById(R.id.startMapButton);
             buttonMap.setVisibility((View.GONE));
 
@@ -176,8 +180,7 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
             buttonSetup.setVisibility((View.VISIBLE));
 
             Log.d("test", "Ranking changed button for final ranking");
-        }
-        else {
+        } else {
             Button buttonMap = findViewById(R.id.startMapButton);
             buttonMap.setVisibility((View.VISIBLE));
 

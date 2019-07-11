@@ -36,6 +36,11 @@ import static android.graphics.Color.parseColor;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
 
+/**
+ * MapsActivity - This class serves as activity that shows the map with the players position and the position of the four selected landmarks.
+ *
+ * @author Ann-Kathrin Schmid
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GameService.GameServiceListener {
 
     private GoogleMap mMap;
@@ -43,8 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected boolean gameServiceBound;
     private Location currentLocation;
 
-    private boolean serviceConnected= false;
-    private boolean mapReady=false;
+    private boolean serviceConnected = false;
+    private boolean mapReady = false;
     // markers
     private Marker pMarker;
     private MarkerOptions playerMarkerOptions = new MarkerOptions();
@@ -73,14 +78,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**This method manipulates the map once available.
+    /**
+     * This method manipulates the map once available.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // get and set markers of landmarks
-        mapReady=true;
+        mapReady = true;
         displayMarkers();
 
         TextView info = findViewById(R.id.infoText);
@@ -88,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void displayMarkers() {
-        if(serviceConnected && mapReady){
+        if (serviceConnected && mapReady) {
 
             // get current position of player and set blue marker
             currentLocation = gameService.getPlayerPosition();
@@ -102,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f ) );
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(14.0f));
             mMap.getUiSettings().setMapToolbarEnabled(false);
 
             LatLng lm1 = new LatLng(landmarks.get(0).getLatitude(), landmarks.get(0).getLongitude());
@@ -138,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             landmarks = gameService.getSelectedLandmarks();
 
-            serviceConnected=true;
+            serviceConnected = true;
             displayMarkers();
 
         }
@@ -165,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // ===== Listener Methods
 
-    public void updatePlayerPosition(Location location){
+    public void updatePlayerPosition(Location location) {
         currentLocation = location;
         LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -196,6 +202,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //dialog.show();
             //dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(parseColor("##FFFCFC"));
             //TODO RankingActivity ohne "Continue" Button
+
         }
 
         // end of game not reached
@@ -223,6 +230,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         chooseTarget.create().show();
     }
+
 
     public void onRadioButtonClicked(View view) {
         if (((RadioButton) view).isChecked()) {

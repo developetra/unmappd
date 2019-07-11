@@ -23,4 +23,15 @@
         <item>4</item>
     </string-array>
 
+    <string-array name="directions">
+        <item>NORTH</item>
+        <item>NORTHEAST</item>
+        <item>EAST</item>
+        <item>SOUTHEAST</item>
+        <item>SOUTH</item>
+        <item>SOUTHWEST</item>
+        <item>WEST</item>
+        <item>NORTHWEST</item>
+    </string-array>
+
 </resources>

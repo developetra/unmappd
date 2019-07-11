@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Game Service - Stores all the variables of the game that the different activities need.
+ * GameService - Stores all the variables of the game that the different activities need.
  *
  * @author Petra Langenbacher, Franziska Barckmann, Ann-Kathrin Schmid
  */
@@ -54,6 +54,17 @@ public class GameService extends Service {
     private ArrayList<Landmark> selectedLandmarks;
     private final EstimationCalculator calculator = new EstimationCalculator();
 
+    enum GeoDirection {
+        NORTH,
+        NORTHEAST,
+        EAST,
+        SOUTHEAST,
+        SOUTH,
+        SOUTHWEST,
+        WEST,
+        NORTHWEST,
+        UNKNOWN
+    }
 
     /**
      * Getter and Setter Methods.
@@ -176,7 +187,7 @@ public class GameService extends Service {
                     float PROXY_RADIUS = 20;
                     if (distance < PROXY_RADIUS) {
                         Log.d("test", "Player reached target");
-                    initNextRound();
+                        initNextRound();
                     }
                 }
             }
@@ -211,6 +222,7 @@ public class GameService extends Service {
      * The estimation position is calculated and the score updated.
      *
      * @param playerIndex
+     * @author Franziska Barckmann
      */
     public void processGuess(int playerIndex) {
 
@@ -259,7 +271,9 @@ public class GameService extends Service {
         } else if (distanceGuessPlayer > 600) {
             score = score + 5;
         }
-        game.getPlayers().get(playerIndex).setScore(score);
+        int directionScore = processDirectionGuesses(playerIndex);
+
+        game.getPlayers().get(playerIndex).setScore(score + directionScore);
 
 
     }
@@ -279,9 +293,9 @@ public class GameService extends Service {
     public void initNextRound() {
 
         //check if there is a next round
-        int gameRounds=game.getRounds();
-        if(gameRounds>1){
-            gameRounds = gameRounds -1;
+        int gameRounds = game.getRounds();
+        if (gameRounds > 1) {
+            gameRounds = gameRounds - 1;
             game.setRounds(gameRounds);
 
             //empty current selected landmarks
@@ -358,4 +372,98 @@ public class GameService extends Service {
     public void initFirstGame() {
         selectedLandmarks = pickLandmarks();
     }
+
+    /**
+     * Processes the direction guesses of a given player.
+     *
+     * @param playerIndex
+     * @return
+     * @author Petra Langenbacher
+     */
+    public int processDirectionGuesses(int playerIndex) {
+
+        int directionScore = 0;
+
+        // get guesses of player
+        ArrayList<String> directionGuesses = game.getPlayers().get(playerIndex).getDirections();
+
+        // Landmark 1 - get direction and compare it to the players guess
+        Location l1 = new Location("");
+        l1.setLatitude(selectedLandmarks.get(0).getLatitude());
+        l1.setLongitude(selectedLandmarks.get(0).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l1));
+        Log.d("test", "direction guess is " + directionGuesses.get(0));
+        if (directionGuesses.get(0).equals(getDirectionOfLandmark(l1).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 2 - get direction and compare it to the players guess
+        Location l2 = new Location("");
+        l2.setLatitude(selectedLandmarks.get(1).getLatitude());
+        l2.setLongitude(selectedLandmarks.get(1).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l2));
+        Log.d("test", "direction guess is " + directionGuesses.get(1));
+        if (directionGuesses.get(1).equals(getDirectionOfLandmark(l2).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 3 - get direction and compare it to the players guess
+        Location l3 = new Location("");
+        l3.setLatitude(selectedLandmarks.get(2).getLatitude());
+        l3.setLongitude(selectedLandmarks.get(2).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l3));
+        Log.d("test", "direction guess is " + directionGuesses.get(2));
+        if (directionGuesses.get(2).equals(getDirectionOfLandmark(l3).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 4 - get direction and compare it to the players guess
+        Location l4 = new Location("");
+        l4.setLatitude(selectedLandmarks.get(3).getLatitude());
+        l4.setLongitude(selectedLandmarks.get(3).getLongitude());
+        Log.d("test", "direction is " + getDirectionOfLandmark(l4));
+        Log.d("test", "direction guess is " + directionGuesses.get(3));
+        if (directionGuesses.get(3).equals(getDirectionOfLandmark(l4).toString())) {
+            directionScore = directionScore + 5;
+        }
+        Log.d("test", "direction score is " + directionScore);
+        return directionScore;
+    }
+
+    /**
+     * Calculates geographic direction of given landmark.
+     *
+     * @param location
+     * @return
+     * @author Petra Langenbacher
+     */
+    public GeoDirection getDirectionOfLandmark(Location location) {
+
+        GeoDirection direction = GeoDirection.UNKNOWN;
+        float bearTo = playerPosition.bearingTo(location);
+
+        if (bearTo < 0) {
+            bearTo = bearTo + 360;
+        }
+        if (bearTo > 0 && bearTo < 22.5 | bearTo > 337.5 && bearTo < 360) {
+            direction = GeoDirection.NORTH;
+        } else if (bearTo > 22.5 && bearTo < 67.5) {
+            direction = GeoDirection.NORTHEAST;
+        } else if (bearTo > 67.5 && bearTo < 112.5) {
+            direction = GeoDirection.EAST;
+        } else if (bearTo > 112.5 && bearTo < 157.5) {
+            direction = GeoDirection.SOUTHEAST;
+        } else if (bearTo > 157.5 && bearTo < 202.5) {
+            direction = GeoDirection.SOUTH;
+        } else if (bearTo > 202.5 && bearTo < 247.5) {
+            direction = GeoDirection.SOUTHWEST;
+        } else if (bearTo > 247.5 && bearTo < 292.5) {
+            direction = GeoDirection.WEST;
+        } else if (bearTo > 292.5 && bearTo < 337.5) {
+            direction = GeoDirection.NORTHWEST;
+        }
+
+        return direction;
+    }
 }
+
