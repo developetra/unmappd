@@ -1,6 +1,8 @@
 package com.example.unmappd.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -85,6 +87,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void onInfoButtonClicked(View view){
+
+        AlertDialog.Builder infoDialog = new AlertDialog.Builder(MainActivity.this);
+        infoDialog.setTitle("How Unmappd works:");
+        infoDialog.setMessage("Set up the game by choosing number of rounds, number of players and player names. " +
+                "Every player guesses the distance and direction from the current position to the four shown landmarks. " +
+                "The better the guesses, the higher your received score. Your scores are shown in the ranking. " +
+                "On the map you can see your position and the four landmarks. Choose a landmark you want to visit next " +
+                "by clicking on its button. " +
+                "As soon as you arrived that location, you'll get a small fact about it and you can continue with the " +
+                "next round. Have fun! - Your Unmappd Team");
+        infoDialog.setNeutralButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        infoDialog.show();
     }
 
     /**
