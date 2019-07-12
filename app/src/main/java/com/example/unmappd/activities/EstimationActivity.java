@@ -247,4 +247,13 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         // do nothing
     }
 
+    /**
+     * This method overrides the onBackPressed() method and
+     * disables the back button so that the players can't navigate back and forward during a game.
+     */
+    @Override
+    public void onBackPressed() {
+        // do nothing
+    }
+
 }

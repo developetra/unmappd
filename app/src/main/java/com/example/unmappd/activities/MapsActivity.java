@@ -271,5 +271,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * This method overrides the onBackPressed() method and
+     * disables the back button so that the players can't navigate back and forward during a game.
+     */
+    @Override
+    public void onBackPressed() {
+        // do nothing
+    }
+
 
 }
