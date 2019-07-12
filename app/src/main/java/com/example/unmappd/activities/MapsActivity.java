@@ -90,7 +90,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         displayMarkers();
 
         TextView info = findViewById(R.id.infoText);
-        info.setText("Please choose the location you want to visit next");
+        info.setText("Please choose the location you want to visit next.");
     }
 
     private void displayMarkers() {
@@ -188,7 +188,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
         // end of game reached
         if(endOfGame){
-            chooseTarget.setTitle("Reached target position. The game is over");
+            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "! The game is over.");
             chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
             chooseTarget.setNeutralButton("Show final result",
                     new DialogInterface.OnClickListener() {
@@ -209,7 +209,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(!endOfGame){
             //AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
             //chooseTarget.setTitle("Choose your target location");
-            chooseTarget.setTitle("You reached your target position");
+            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "!");
             chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
             gameService.setTargetLandmark(null);
             chooseTarget.setNeutralButton("Continue with next round",
@@ -237,7 +237,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             RadioGroup raGroup = (RadioGroup) findViewById(R.id.radioGroup);
             raGroup.setVisibility(View.GONE);
             TextView info = findViewById(R.id.infoText);
-            info.setText("please walk to your chosen location");
+            info.setText("Please walk to your chosen location.");
 
         }
 
