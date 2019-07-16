@@ -7,6 +7,8 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".activities.MainActivity">
 
+    <!-- author: Franziska Barckmann -->
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"

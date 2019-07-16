@@ -104,6 +104,12 @@ public class Player implements Comparable<Player>{
         directions.clear();
     }
 
+    /**
+     * This method is used to compare the score of two players.
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Player o) {
         if(this.getScore() > o.getScore()){

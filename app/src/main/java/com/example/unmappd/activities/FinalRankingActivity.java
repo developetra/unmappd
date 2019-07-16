@@ -53,7 +53,7 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
 
     /**
-     * This method initializes the UI elements with the player names and scores.
+     * This method initializes the UI elements with the images, player names and scores.
      * @author Petra Langenbacher
      */
     private void initUI() {
@@ -144,7 +144,7 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
     }
 
     /**
-     * Sorts the players of a game by their score.
+     * Sorts the players by their score.
      * @return ArrayList of players sorted by their score
      * @author Petra Langenbacher
      */
