@@ -42,7 +42,7 @@ public class GameService extends Service {
 
     protected LocationManager locService;
 
-    private List<Landmark> landmarkList;
+    private ArrayList<Landmark> landmarkList;
 
     private Location playerPosition = null;
 
@@ -100,6 +100,7 @@ public class GameService extends Service {
         return targetLandmark;
     }
 
+
     /**
      * Initialises landmarkList with landmarks from json file and calls method to initialise the LocationManager.
      *
@@ -113,6 +114,7 @@ public class GameService extends Service {
 
         // load landmarks from json
         this.landmarkList = Landmark.readJson(this);
+        Landmark.readJson(this);
 
         initLocationManager();
         Log.d("test", "GameService started");
@@ -191,7 +193,21 @@ public class GameService extends Service {
                     float radius = 20;
                     if (distance < radius) {
                         Log.d("test", "Player reached target");
-                        initNextRound();
+                        int gameRounds = game.getRounds();
+                        if (gameRounds > 1) {
+                            gameRounds = gameRounds - 1;
+                            game.setRounds(gameRounds);
+                            // notify listeners
+                            for (GameServiceListener listener : listeners) {
+                                listener.playerReachedTarget(false);
+                            }
+                        } else {
+
+                            for (GameServiceListener listener : listeners) {
+                                listener.playerReachedTarget(true);
+                            }
+                        }
+
                     }
                 }
             }
@@ -304,40 +320,20 @@ public class GameService extends Service {
      */
     public void initNextRound() {
 
-        //check if there is a next round
-        int gameRounds = game.getRounds();
-        if (gameRounds > 1) {
-            gameRounds = gameRounds - 1;
-            game.setRounds(gameRounds);
-
-            //empty current selected landmarks
             selectedLandmarks.clear();
 
             // remove visited landmark from landmarkLIst
-            //TODO remove targetLandmark from  landmarkList
-            //landmarkList.remove(targetLandmark);
-            // -> unsupportedOperationException: da List fixed length hat, ist remove nicht möglich
+            landmarkList.remove(targetLandmark);
 
             //remove current guesses of players
             game.clearAllGuesses();
 
             //clear target landmark
-            //targetLandmark = null;    //clear target landmark later to be able to show info texts in Map-Activity
+            targetLandmark = null;
 
             // pick closest landmarks
             selectedLandmarks = pickLandmarks();
             Log.d("test", String.valueOf(selectedLandmarks));
-
-            // notify listeners
-            for (GameServiceListener listener : listeners) {
-                listener.playerReachedTarget(false);
-            }
-        } else {
-
-            for (GameServiceListener listener : listeners) {
-                listener.playerReachedTarget(true);
-            }
-        }
 
     }
 
