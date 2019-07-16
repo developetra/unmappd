@@ -89,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Shows an alert dialog that explains the game mechanics.
+     *
+     * @param view
+     *
+     * @author Franziska Barckmann
+     */
     public void onInfoButtonClicked(View view){
 
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(MainActivity.this);

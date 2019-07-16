@@ -11,7 +11,6 @@ import java.util.ArrayList;
 /**
  * EstimationCalculator - This class calculates the estimated position of the player by using the information of distances to four landmarks.
  *
- *
  * @author Franziska Barckmann, Ann-Kathrin Schmid, Petra Langenbacher
  */
 public class EstimationCalculator {
@@ -54,9 +53,6 @@ public class EstimationCalculator {
      * @return estimated position as double[][]
      */
     public static double[] calculateEstimationWithOffset(double[] playerPos, int[] distances, int[][] landmarkArray){
-
-        // long = x
-        // lat = y
 
         int counter = 0;
 

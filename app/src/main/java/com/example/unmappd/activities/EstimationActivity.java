@@ -41,7 +41,12 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     // playerIndex starting with 1
     private int playerIndex;
 
-
+    /**
+     * OnCreate method that updates the player index and number of players and binds to the game service.
+     *
+     * @param savedInstanceState
+     * @author Franziska Barckmann
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +69,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     /**
      * This method initializes the activities user interface by loading current player's name,
      * the four landmarks' names and the four landmarks' images.
+     *
      * @author Franziska Barckmann
      */
     private void initUI() {
@@ -111,8 +117,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     /**
      * This method initialises the spinners for the direction guesses (Mode: simple).
-     * @author Petra Langenbacher
      *
+     * @author Petra Langenbacher
      */
     private void initSpinnersSimple() {
         // Array Adapter for Spinners
@@ -140,8 +146,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
     /**
      * This method initialises the spinners for the direction guesses (Mode: advanced).
-     * @author Petra Langenbacher
      *
+     * @author Petra Langenbacher
      */
     private void initSpinnersAdvanced() {
         // Array Adapter for Spinners
@@ -173,8 +179,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
      * If there is another player, the activity starts itself again, if there is no next player
      * the ranking activity is started.
      * @param view
-     * @author Franziska Barckmann
      *
+     * @author Franziska Barckmann
      */
     public void startRanking (View view){
 
@@ -268,15 +274,17 @@ public class EstimationActivity extends AppCompatActivity implements GameService
 
 
     /**
-     * Listener method - NOT used in this activity.
+     * Listener method when player position is updated by game service - NOT used in this activity.
      */
+    @Override
     public void updatePlayerPosition(Location location){
         // do nothing
     }
 
     /**
-     * Listener method - NOT used in this activity.
+     * Listener method when player reached target - NOT used in this activity. - NOT used in this activity.
      */
+    @Override
     public void playerReachedTarget(boolean endOfGame){
         // do nothing
     }
@@ -284,6 +292,8 @@ public class EstimationActivity extends AppCompatActivity implements GameService
     /**
      * This method overrides the onBackPressed() method and
      * disables the back button so that the players can't navigate back and forward during a game.
+     *
+     * @author Franziska Barckmann
      */
     @Override
     public void onBackPressed() {

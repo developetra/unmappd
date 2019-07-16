@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
@@ -43,6 +42,8 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
 
     /**
      * This method initializes the UI elements with the player names and scores.
+     *
+     * @author Franziska Barckmann
      */
     private void initUI() {
 
@@ -170,6 +171,8 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
     /**
      * This method overrides the onBackPressed() method and
      * disables the back button so that the players can't navigate back and forward during a game.
+     *
+     * @author Franziska Barckmann
      */
     @Override
     public void onBackPressed() {

@@ -29,8 +29,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
 
 /**
  * MapsActivity - This class serves as activity that shows the map with the players position and the position of the four selected landmarks.
@@ -76,6 +74,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     /**
      * This method manipulates the map once available.
+     *
+     * @param googleMap as GoogleMap
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -89,6 +89,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         info.setText("Please choose the location you want to visit next.");
     }
 
+    /**
+     * This method shows the four landmark markers and the current position of the player on the map if the game
+     * service is connected and the map is ready. It also sets the text of the landmark buttons.
+     */
     private void displayMarkers() {
         if (serviceConnected && mapReady) {
 
@@ -152,7 +156,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
-
+    /**
+     * Changes the text of the landmark buttons using the specific information about the landmark.
+     *
+     * @param lmMarker
+     * @param currentPos
+     * @param radioButton
+     */
     private void changeTextOfButton(Marker lmMarker, Location currentPos, int radioButton) {
         Location targetLocation = new Location("");
         targetLocation.setLongitude(lmMarker.getPosition().longitude);
@@ -167,72 +177,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getSimpleDirectionOfLandmark(targetLocation) );
         }
 
-
     }
 
-    // ===== Listener Methods
-
-    public void updatePlayerPosition(Location location) {
-        currentLocation = location;
-        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        pMarker.setPosition(currentLatLng);
-
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
-        Log.d("test", "Maps is updating player position");
-
-    }
-
-    @Override
-    public void playerReachedTarget(boolean endOfGame) {
-        AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-        chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
-        // end of game reached
-        if(endOfGame){
-            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "! The game is over.");
-            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
-            chooseTarget.setNeutralButton("Show final result",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                            //got to ranking
-                            Intent intent = new Intent(MapsActivity.this, FinalRankingActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-            //dialog.show();
-            //dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(parseColor("##FFFCFC"));
-            //TODO RankingActivity ohne "Continue" Button
-
-        }
-
-        // end of game not reached
-        if(!endOfGame){
-            //AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-            //chooseTarget.setTitle("Choose your target location");
-            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "!");
-            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
-            gameService.setTargetLandmark(null);
-            chooseTarget.setNeutralButton("Continue with next round",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                            //got to next round
-                            Intent intent = new Intent(MapsActivity.this, EstimationActivity.class);
-                            Bundle b = new Bundle();
-                            int numberOfPlayers = gameService.getGame().getNumberOfPlayers();
-                            b.putInt("numberOfPlayers", numberOfPlayers);
-                            b.putInt("playerIndex", 1);
-                            intent.putExtras(b);
-                            startActivity(intent);
-                        }
-                    });
-            //chooseTarget.create().show();
-        }
-        chooseTarget.create().show();
-    }
-
-
+    /**
+     * Changes information text when location to visit is picked by the user.
+     *
+     * @param view
+     */
     public void onRadioButtonClicked(View view) {
         if (((RadioButton) view).isChecked()) {
             RadioGroup raGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -272,6 +223,79 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    // ===== Listener Methods
+
+    /**
+     * Listener method when player position is updated by game service.
+     * Saves player position as current location.
+     *
+     * @param location of player as Location
+     */
+    @Override
+    public void updatePlayerPosition(Location location) {
+        currentLocation = location;
+        LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        pMarker.setPosition(currentLatLng);
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
+        Log.d("test", "Maps is updating player position");
+
+    }
+
+    /**
+     * Listener method when player reached target.
+     * Shows dialog to user with small fact about landmark and button that leads to the next activity.
+     *
+     * @parak endOfGame as boolean
+     *
+     */
+    @Override
+    public void playerReachedTarget(boolean endOfGame) {
+        AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+        chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
+
+        // end of game reached
+        if(endOfGame){
+            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "! The game is over.");
+            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
+            chooseTarget.setNeutralButton("Show final result",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            //got to ranking
+                            Intent intent = new Intent(MapsActivity.this, FinalRankingActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+        }
+
+        // end of game not reached
+        if(!endOfGame){
+            //AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
+            //chooseTarget.setTitle("Choose your target location");
+            chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "!");
+            chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
+            gameService.setTargetLandmark(null);
+            chooseTarget.setNeutralButton("Continue with next round",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            //got to next round
+                            Intent intent = new Intent(MapsActivity.this, EstimationActivity.class);
+                            Bundle b = new Bundle();
+                            int numberOfPlayers = gameService.getGame().getNumberOfPlayers();
+                            b.putInt("numberOfPlayers", numberOfPlayers);
+                            b.putInt("playerIndex", 1);
+                            intent.putExtras(b);
+                            startActivity(intent);
+                        }
+                    });
+            //chooseTarget.create().show();
+        }
+        chooseTarget.create().show();
+    }
+
     /**
      * This method overrides the onBackPressed() method and
      * disables the back button so that the players can't navigate back and forward during a game.
@@ -280,6 +304,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onBackPressed() {
         // do nothing
     }
-
 
 }

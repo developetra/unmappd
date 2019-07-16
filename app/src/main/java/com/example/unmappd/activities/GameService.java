@@ -162,6 +162,8 @@ public class GameService extends Service {
 
     /**
      * Initialises LocationManager.
+     *
+     * @author Franziska Barckmann
      */
     private void initLocationManager() {
         Log.d("test", "LocationManager initialized");
@@ -186,8 +188,8 @@ public class GameService extends Service {
                     float distance = playerPosition.distanceTo(targetLocation);
                     Log.d("test", "Distance to target: " + distance);
 
-                    float PROXY_RADIUS = 20;
-                    if (distance < PROXY_RADIUS) {
+                    float radius = 20;
+                    if (distance < radius) {
                         Log.d("test", "Player reached target");
                         initNextRound();
                     }
