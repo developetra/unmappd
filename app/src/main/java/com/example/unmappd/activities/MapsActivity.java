@@ -177,7 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         pMarker.setPosition(currentLatLng);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLng));
         Log.d("test", "Maps is updating player position");
 
     }
