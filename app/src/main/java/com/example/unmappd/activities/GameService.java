@@ -46,6 +46,8 @@ public class GameService extends Service {
 
     private Location playerPosition = null;
 
+    private int gameroundsLeft;
+
     // ===== Game
 
     private Landmark targetLandmark = null;
@@ -98,6 +100,10 @@ public class GameService extends Service {
     public Landmark getTargetLandmark() {
 
         return targetLandmark;
+    }
+
+    public void initGameroundsLeft(int rounds){
+        this.gameroundsLeft = rounds;
     }
 
 
@@ -193,10 +199,10 @@ public class GameService extends Service {
                     float radius = 20;
                     if (distance < radius) {
                         Log.d("test", "Player reached target");
-                        int gameRounds = game.getRounds();
-                        if (gameRounds > 1) {
-                            gameRounds = gameRounds - 1;
-                            game.setRounds(gameRounds);
+                        //int gameRounds = game.getRounds();
+                        if (gameroundsLeft > 1) {
+                            gameroundsLeft = gameroundsLeft - 1;
+                            game.setRounds(gameroundsLeft);
                             // notify listeners
                             for (GameServiceListener listener : listeners) {
                                 listener.playerReachedTarget(false);
@@ -305,12 +311,6 @@ public class GameService extends Service {
 
 
     }
-
-    public void requestGPSupdate() {
-
-        // locService.requestLocationUpdates(locationProvider, 0, 0, this);
-    }
-
 
     /**
      * Initializes the next round by removing current selected landmarks,

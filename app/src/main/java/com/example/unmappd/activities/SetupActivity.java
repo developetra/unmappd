@@ -190,6 +190,8 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
         gameService.setGame(currentGame);
 
+        gameService.initGameroundsLeft(numberOfRounds);
+
         gameService.initFirstGame();
 
         Log.d("test", "Number of Rounds is " + String.valueOf(currentGame.getRounds()));
