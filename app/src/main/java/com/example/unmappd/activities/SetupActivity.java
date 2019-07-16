@@ -8,9 +8,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,7 +83,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                View player2 = findViewById(R.id.InputPlayer2);
+                View player2 = findViewById(R.id.last);
                 View player3 = findViewById(R.id.InputPlayer3);
                 View player4 = findViewById(R.id.InputPlayer4);
                 switch (pos) {

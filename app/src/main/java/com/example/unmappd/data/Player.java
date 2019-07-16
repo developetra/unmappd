@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Franziska Barckmann, Petra Langenbacher
  */
-public class Player {
+public class Player implements Comparable<Player>{
 
     private String name;
     private int score;
@@ -102,5 +102,16 @@ public class Player {
      */
     public void removeDirections() {
         directions.clear();
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        if(this.getScore() > o.getScore()){
+            return -1;
+        } else if (this.getScore() < o.getScore()){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

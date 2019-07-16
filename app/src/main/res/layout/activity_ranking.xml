@@ -26,7 +26,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/playerName"
+                    android:id="@+id/rankingText"
                     android:layout_width="402dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -120,7 +120,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/InputPlayer1"
+                android:id="@+id/third"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -149,7 +149,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/InputPlayer2"
+                android:id="@+id/last"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">

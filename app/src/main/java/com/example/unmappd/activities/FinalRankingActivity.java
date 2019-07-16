@@ -14,6 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
+import com.example.unmappd.data.Landmark;
+import com.example.unmappd.data.Player;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * FinalRankingActivity - This class serves as activity that shows the final ranking of the players at the end of the game.
@@ -38,7 +46,6 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
     }
 
     public void startNewGame(View view) {
-
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -46,13 +53,13 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
     /**
      * This method initializes the UI elements with the player names and scores.
+     * @author Petra Langenbacher
      */
     private void initUI() {
 
         int numberOfPlayers = gameService.getGame().getNumberOfPlayers();
 
         // Init UI with player name and player score
-
 
         TextView nameP1View = (TextView) findViewById(R.id.namePlayer1);
         TextView scoreP1View = (TextView) findViewById(R.id.scorePlayer1);
@@ -67,6 +74,9 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
         TextView scoreP4View = (TextView) findViewById(R.id.scorePlayer4);
 
 
+        // sort players by their score
+        ArrayList<Player> sortedPlayers = sortPlayersByScore();
+
         switch (numberOfPlayers) {
             case 1:
                 nameP2View.setVisibility(View.GONE);
@@ -76,8 +86,8 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
-                nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
+                nameP1View.setText(sortedPlayers.get(0).getName());
+                scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
                 break;
             case 2:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -87,11 +97,11 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
-                nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
+                nameP1View.setText(sortedPlayers.get(0).getName());
+                scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
                 // player 2
-                nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
+                nameP2View.setText(sortedPlayers.get(1).getName());
+                scoreP2View.setText(String.valueOf(sortedPlayers.get(1).getScore()));
                 break;
             case 3:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -101,14 +111,14 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
                 // player 1
-                nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
+                nameP1View.setText(sortedPlayers.get(0).getName());
+                scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
                 // player 2
-                nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
+                nameP2View.setText(sortedPlayers.get(1).getName());
+                scoreP2View.setText(String.valueOf(sortedPlayers.get(1).getScore()));
                 // player 3
-                nameP3View.setText(gameService.getGame().getPlayers().get(2).getName());
-                scoreP3View.setText(String.valueOf(gameService.getGame().getPlayers().get(2).getScore()));
+                nameP3View.setText(sortedPlayers.get(2).getName());
+                scoreP3View.setText(String.valueOf(sortedPlayers.get(2).getScore()));
                 break;
             case 4:
                 nameP2View.setVisibility(View.VISIBLE);
@@ -118,21 +128,36 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 nameP4View.setVisibility(View.VISIBLE);
                 scoreP4View.setVisibility(View.VISIBLE);
                 // player 1
-                nameP1View.setText(gameService.getGame().getPlayers().get(0).getName());
-                scoreP1View.setText(String.valueOf(gameService.getGame().getPlayers().get(0).getScore()));
+                nameP1View.setText(sortedPlayers.get(0).getName());
+                scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
                 // player 2
-                nameP2View.setText(gameService.getGame().getPlayers().get(1).getName());
-                scoreP2View.setText(String.valueOf(gameService.getGame().getPlayers().get(1).getScore()));
+                nameP2View.setText(sortedPlayers.get(1).getName());
+                scoreP2View.setText(String.valueOf(sortedPlayers.get(1).getScore()));
                 // player 3
-                nameP3View.setText(gameService.getGame().getPlayers().get(2).getName());
-                scoreP3View.setText(String.valueOf(gameService.getGame().getPlayers().get(2).getScore()));
+                nameP3View.setText(sortedPlayers.get(2).getName());
+                scoreP3View.setText(String.valueOf(sortedPlayers.get(2).getScore()));
                 // player 4
-                nameP4View.setText(gameService.getGame().getPlayers().get(3).getName());
-                scoreP4View.setText(String.valueOf(gameService.getGame().getPlayers().get(3).getScore()));
+                nameP4View.setText(sortedPlayers.get(3).getName());
+                scoreP4View.setText(String.valueOf(sortedPlayers.get(3).getScore()));
                 break;
         }
 
         Log.d("test", "Ranking UI initialized");
+    }
+
+    /**
+     * Sorts the players of a game by their score.
+     * @return ArrayList of players sorted by their score
+     * @author Petra Langenbacher
+     */
+    public ArrayList<Player> sortPlayersByScore() {
+
+        // arraylist with sorted players
+        ArrayList<Player> sortedPlayers = gameService.getGame().getPlayers();
+
+        Collections.sort(sortedPlayers);
+
+        return sortedPlayers;
     }
 
 

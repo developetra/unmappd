@@ -68,7 +68,7 @@ public class EstimationActivity extends AppCompatActivity implements GameService
      */
     private void initUI() {
         // Init UI with player name
-        TextView nameView = findViewById(R.id.playerName);
+        TextView nameView = findViewById(R.id.rankingText);
         ArrayList<Player> players = gameService.getGame().getPlayers();
         nameView.setText(players.get(playerIndex-1).getName());
 
