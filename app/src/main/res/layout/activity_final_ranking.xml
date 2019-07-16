@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RankingActivity">
+    tools:context=".activities.FinalRankingActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginEnd="5dp"
-                    android:text="Ranking"
+                    android:text="Final Ranking"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -192,13 +192,34 @@
                     android:layout_marginBottom="100dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_background"
-                    android:onClick="startMap"
-                    android:visibility="visible"
+                    android:onClick="startNewGame"
                     android:paddingLeft="50dp"
                     android:paddingTop="10dp"
                     android:paddingRight="50dp"
                     android:paddingBottom="10dp"
-                    android:text="Continue"
+                    android:text="Start New Game"
+                    android:textColor="#FFFCFC"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/continuueButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentEnd="false"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_marginBottom="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:onClick="startSetup"
+                    android:visibility="gone"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="50dp"
+                    android:paddingBottom="10dp"
+                    android:text="Start New Game"
                     android:textColor="#FFFCFC" />
 
             </LinearLayout>
