@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
@@ -63,16 +64,19 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
         TextView nameP1View = (TextView) findViewById(R.id.namePlayer1);
         TextView scoreP1View = (TextView) findViewById(R.id.scorePlayer1);
+        ImageView imageP1View = (ImageView) findViewById(R.id.ranking_first);
 
         TextView nameP2View = (TextView) findViewById(R.id.namePlayer2);
         TextView scoreP2View = (TextView) findViewById(R.id.scorePlayer2);
+        ImageView imageP2View = (ImageView) findViewById(R.id.ranking_second);
 
         TextView nameP3View = (TextView) findViewById(R.id.namePlayer3);
         TextView scoreP3View = (TextView) findViewById(R.id.scorePlayer3);
+        ImageView imageP3View = (ImageView) findViewById(R.id.ranking_third);
 
         TextView nameP4View = (TextView) findViewById(R.id.namePlayer4);
         TextView scoreP4View = (TextView) findViewById(R.id.scorePlayer4);
-
+        ImageView imageP4View = (ImageView) findViewById(R.id.ranking_last);
 
         // sort players by their score
         ArrayList<Player> sortedPlayers = sortPlayersByScore();
@@ -81,21 +85,24 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
             case 1:
                 nameP2View.setVisibility(View.GONE);
                 scoreP2View.setVisibility(View.GONE);
+                imageP2View.setVisibility(View.GONE);
                 nameP3View.setVisibility(View.GONE);
                 scoreP3View.setVisibility(View.GONE);
+                imageP3View.setVisibility(View.GONE);
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
+                imageP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(sortedPlayers.get(0).getName());
                 scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
                 break;
             case 2:
-                nameP2View.setVisibility(View.VISIBLE);
-                scoreP2View.setVisibility(View.VISIBLE);
                 nameP3View.setVisibility(View.GONE);
                 scoreP3View.setVisibility(View.GONE);
+                imageP3View.setVisibility(View.GONE);
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
+                imageP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(sortedPlayers.get(0).getName());
                 scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
@@ -104,12 +111,9 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 scoreP2View.setText(String.valueOf(sortedPlayers.get(1).getScore()));
                 break;
             case 3:
-                nameP2View.setVisibility(View.VISIBLE);
-                scoreP2View.setVisibility(View.VISIBLE);
-                nameP3View.setVisibility(View.VISIBLE);
-                scoreP3View.setVisibility(View.VISIBLE);
                 nameP4View.setVisibility(View.GONE);
                 scoreP4View.setVisibility(View.GONE);
+                imageP4View.setVisibility(View.GONE);
                 // player 1
                 nameP1View.setText(sortedPlayers.get(0).getName());
                 scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));
@@ -121,12 +125,6 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
                 scoreP3View.setText(String.valueOf(sortedPlayers.get(2).getScore()));
                 break;
             case 4:
-                nameP2View.setVisibility(View.VISIBLE);
-                scoreP2View.setVisibility(View.VISIBLE);
-                nameP3View.setVisibility(View.VISIBLE);
-                scoreP3View.setVisibility(View.VISIBLE);
-                nameP4View.setVisibility(View.VISIBLE);
-                scoreP4View.setVisibility(View.VISIBLE);
                 // player 1
                 nameP1View.setText(sortedPlayers.get(0).getName());
                 scoreP1View.setText(String.valueOf(sortedPlayers.get(0).getScore()));

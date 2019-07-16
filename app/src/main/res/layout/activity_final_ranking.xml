@@ -70,6 +70,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
+                    android:layout_marginEnd="50dp"
                     android:text="Score Player 1"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -107,6 +108,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
+                    android:layout_marginEnd="50dp"
                     android:text="Score Player 2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -144,6 +146,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
+                    android:layout_marginEnd="50dp"
                     android:text="Score Player 3"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -182,6 +185,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
+                    android:layout_marginEnd="50dp"
                     android:text="Score Player 4"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
             </LinearLayout>
