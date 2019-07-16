@@ -245,8 +245,9 @@
                     android:paddingTop="10dp"
                     android:paddingRight="50dp"
                     android:paddingBottom="10dp"
-                    android:text="@string/setup_game"
-                    android:textColor="#FFFCFC" />
+                    android:text="waiting for GPS"
+                    android:textColor="#FFFCFC"
+                    android:enabled="false"/>
             </LinearLayout>
 
         </LinearLayout>

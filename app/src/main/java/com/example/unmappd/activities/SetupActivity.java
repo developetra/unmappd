@@ -1,5 +1,6 @@
 package com.example.unmappd.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -234,8 +236,13 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
      *
      * @param location
      */
+    @SuppressLint("ResourceAsColor")
     public void updatePlayerPosition(Location location) {
-        // do nothing
+        Button setupButton = (Button)findViewById(R.id.startButton);
+        setupButton.setEnabled(true);
+        setupButton.setText("Setup Game");
+        setupButton.setBackgroundColor(R.color.colorPrimary);
+
     }
 
     public void playerReachedTarget(boolean endOfGame) {
