@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.unmappd.R;
@@ -196,6 +197,12 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
 
         // Create new Game and set rounds and players
         Game currentGame = new Game(numberOfRounds, players);
+
+        // Set mode of the game
+        Switch switchAdvanced = findViewById(R.id.switchAdvanced);
+        boolean mode = switchAdvanced.isChecked();
+        currentGame.setMode(mode);
+        Log.d("test", "Advanced mode on?  " + mode);
 
         gameService.setGame(currentGame);
 

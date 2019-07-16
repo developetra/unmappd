@@ -11,13 +11,11 @@ import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.unmappd.R;
 import com.example.unmappd.data.Landmark;
@@ -31,8 +29,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-
-import static android.graphics.Color.parseColor;
 //import com.google.android.gms.tasks.OnCompleteListener;
 //import com.google.android.gms.tasks.Task;
 
@@ -165,7 +161,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float distance = currentPos.distanceTo(targetLocation);
         int distanceRounded = Math.round(distance);
         Button btn = (Button) findViewById(radioButton);
-        btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getDirectionOfLandmark(targetLocation) );
+        if (gameService.getGame().getMode() == true) {
+            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getAdvancedDirectionOfLandmark(targetLocation) );
+        } else {
+            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getSimpleDirectionOfLandmark(targetLocation) );
+        }
+
 
     }
 

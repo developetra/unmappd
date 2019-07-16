@@ -99,20 +99,25 @@ public class EstimationActivity extends AppCompatActivity implements GameService
             landmarkImageView1.setImageDrawable(drawable);
         }
 
-        initSpinners();
+        //init Spinners for Direction guesses
+        if (gameService.getGame().getMode() == true) {
+            initSpinnersAdvanced();
+        } else {
+            initSpinnersSimple();
+        }
 
         Log.d("test", "Estimation UI initialized");
     }
 
     /**
-     * This method initialises the spinners for the direction guesses.
+     * This method initialises the spinners for the direction guesses (Mode: simple).
      * @author Petra Langenbacher
      *
      */
-    private void initSpinners() {
+    private void initSpinnersSimple() {
         // Array Adapter for Spinners
         ArrayAdapter<CharSequence> directionAdapter = ArrayAdapter.createFromResource(this,
-                R.array.directions, android.R.layout.simple_spinner_item);
+                R.array.directions_simple, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         directionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -131,6 +136,35 @@ public class EstimationActivity extends AppCompatActivity implements GameService
         // Direction Spinner 4
         Spinner directionSpinner4 = (Spinner) findViewById(R.id.spinnerDirection4);
         directionSpinner4.setAdapter(directionAdapter);
+    }
+
+    /**
+     * This method initialises the spinners for the direction guesses (Mode: advanced).
+     * @author Petra Langenbacher
+     *
+     */
+    private void initSpinnersAdvanced() {
+        // Array Adapter for Spinners
+        ArrayAdapter<CharSequence> advancedDirectionAdapter = ArrayAdapter.createFromResource(this,
+                R.array.directions_advanced, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        advancedDirectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Direction Spinner 1
+        Spinner directionSpinner1 = (Spinner) findViewById(R.id.spinnerDirection1);
+        directionSpinner1.setAdapter(advancedDirectionAdapter);
+
+        // Direction Spinner 2
+        Spinner directionSpinner2 = (Spinner) findViewById(R.id.spinnerDirection2);
+        directionSpinner2.setAdapter(advancedDirectionAdapter);
+
+        // Direction Spinner 3
+        Spinner directionSpinner3 = (Spinner) findViewById(R.id.spinnerDirection3);
+        directionSpinner3.setAdapter(advancedDirectionAdapter);
+
+        // Direction Spinner 4
+        Spinner directionSpinner4 = (Spinner) findViewById(R.id.spinnerDirection4);
+        directionSpinner4.setAdapter(advancedDirectionAdapter);
     }
 
     /**

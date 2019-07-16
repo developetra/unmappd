@@ -23,7 +23,7 @@
         <item>4</item>
     </string-array>
 
-    <string-array name="directions">
+    <string-array name="directions_advanced">
         <item>NORTH</item>
         <item>NORTHEAST</item>
         <item>EAST</item>
@@ -32,6 +32,13 @@
         <item>SOUTHWEST</item>
         <item>WEST</item>
         <item>NORTHWEST</item>
+    </string-array>
+
+    <string-array name="directions_simple">
+        <item>NORTH</item>
+        <item>EAST</item>
+        <item>SOUTH</item>
+        <item>WEST</item>
     </string-array>
 
 </resources>

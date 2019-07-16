@@ -85,4 +85,12 @@ public class Game {
             p.removeGuesses();
         }
     }
+
+    public void setMode (boolean advancedMode){
+        this.advancedMode = advancedMode;
+    }
+
+    public boolean getMode(){
+        return advancedMode;
+    }
 }

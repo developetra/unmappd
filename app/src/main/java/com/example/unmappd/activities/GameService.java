@@ -273,7 +273,15 @@ public class GameService extends Service {
         } else if (distanceGuessPlayer > 600) {
             score = score + 5;
         }
-        int directionScore = processDirectionGuesses(playerIndex);
+
+        int directionScore= 0;
+
+        if (game.getMode() == true) {
+            directionScore = processDirectionGuessesAdvanced(playerIndex);
+        } else {
+            directionScore = processDirectionGuessesSimple(playerIndex);
+        }
+
 
         game.getPlayers().get(playerIndex).setScore(score + directionScore);
 
@@ -376,13 +384,13 @@ public class GameService extends Service {
     }
 
     /**
-     * Processes the direction guesses of a given player.
+     * Processes the direction guesses of a given player (Mode: simple).
      *
      * @param playerIndex
      * @return
      * @author Petra Langenbacher
      */
-    public int processDirectionGuesses(int playerIndex) {
+    public int processDirectionGuessesSimple(int playerIndex) {
 
         int directionScore = 0;
 
@@ -393,9 +401,9 @@ public class GameService extends Service {
         Location l1 = new Location("");
         l1.setLatitude(selectedLandmarks.get(0).getLatitude());
         l1.setLongitude(selectedLandmarks.get(0).getLongitude());
-        Log.d("test", "direction is " + getDirectionOfLandmark(l1));
+        Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l1));
         Log.d("test", "direction guess is " + directionGuesses.get(0));
-        if (directionGuesses.get(0).equals(getDirectionOfLandmark(l1).toString())) {
+        if (directionGuesses.get(0).equals(getSimpleDirectionOfLandmark(l1).toString())) {
             directionScore = directionScore + 5;
         }
 
@@ -403,9 +411,9 @@ public class GameService extends Service {
         Location l2 = new Location("");
         l2.setLatitude(selectedLandmarks.get(1).getLatitude());
         l2.setLongitude(selectedLandmarks.get(1).getLongitude());
-        Log.d("test", "direction is " + getDirectionOfLandmark(l2));
+        Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l2));
         Log.d("test", "direction guess is " + directionGuesses.get(1));
-        if (directionGuesses.get(1).equals(getDirectionOfLandmark(l2).toString())) {
+        if (directionGuesses.get(1).equals(getSimpleDirectionOfLandmark(l2).toString())) {
             directionScore = directionScore + 5;
         }
 
@@ -413,9 +421,9 @@ public class GameService extends Service {
         Location l3 = new Location("");
         l3.setLatitude(selectedLandmarks.get(2).getLatitude());
         l3.setLongitude(selectedLandmarks.get(2).getLongitude());
-        Log.d("test", "direction is " + getDirectionOfLandmark(l3));
+        Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l3));
         Log.d("test", "direction guess is " + directionGuesses.get(2));
-        if (directionGuesses.get(2).equals(getDirectionOfLandmark(l3).toString())) {
+        if (directionGuesses.get(2).equals(getSimpleDirectionOfLandmark(l3).toString())) {
             directionScore = directionScore + 5;
         }
 
@@ -423,9 +431,67 @@ public class GameService extends Service {
         Location l4 = new Location("");
         l4.setLatitude(selectedLandmarks.get(3).getLatitude());
         l4.setLongitude(selectedLandmarks.get(3).getLongitude());
-        Log.d("test", "direction is " + getDirectionOfLandmark(l4));
+        Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l4));
         Log.d("test", "direction guess is " + directionGuesses.get(3));
-        if (directionGuesses.get(3).equals(getDirectionOfLandmark(l4).toString())) {
+        if (directionGuesses.get(3).equals(getSimpleDirectionOfLandmark(l4).toString())) {
+            directionScore = directionScore + 5;
+        }
+        Log.d("test", "direction score is " + directionScore);
+        return directionScore;
+    }
+
+
+    /**
+     * Processes the direction guesses of a given player (Mode: advanced).
+     *
+     * @param playerIndex
+     * @return
+     * @author Petra Langenbacher
+     */
+    public int processDirectionGuessesAdvanced(int playerIndex) {
+
+        int directionScore = 0;
+
+        // get guesses of player
+        ArrayList<String> directionGuesses = game.getPlayers().get(playerIndex).getDirections();
+
+        // Landmark 1 - get direction and compare it to the players guess
+        Location l1 = new Location("");
+        l1.setLatitude(selectedLandmarks.get(0).getLatitude());
+        l1.setLongitude(selectedLandmarks.get(0).getLongitude());
+        Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l1));
+        Log.d("test", "direction guess is " + directionGuesses.get(0));
+        if (directionGuesses.get(0).equals(getAdvancedDirectionOfLandmark(l1).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 2 - get direction and compare it to the players guess
+        Location l2 = new Location("");
+        l2.setLatitude(selectedLandmarks.get(1).getLatitude());
+        l2.setLongitude(selectedLandmarks.get(1).getLongitude());
+        Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l2));
+        Log.d("test", "direction guess is " + directionGuesses.get(1));
+        if (directionGuesses.get(1).equals(getAdvancedDirectionOfLandmark(l2).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 3 - get direction and compare it to the players guess
+        Location l3 = new Location("");
+        l3.setLatitude(selectedLandmarks.get(2).getLatitude());
+        l3.setLongitude(selectedLandmarks.get(2).getLongitude());
+        Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l3));
+        Log.d("test", "direction guess is " + directionGuesses.get(2));
+        if (directionGuesses.get(2).equals(getAdvancedDirectionOfLandmark(l3).toString())) {
+            directionScore = directionScore + 5;
+        }
+
+        // Landmark 4 - get direction and compare it to the players guess
+        Location l4 = new Location("");
+        l4.setLatitude(selectedLandmarks.get(3).getLatitude());
+        l4.setLongitude(selectedLandmarks.get(3).getLongitude());
+        Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l4));
+        Log.d("test", "direction guess is " + directionGuesses.get(3));
+        if (directionGuesses.get(3).equals(getAdvancedDirectionOfLandmark(l4).toString())) {
             directionScore = directionScore + 5;
         }
         Log.d("test", "direction score is " + directionScore);
@@ -433,13 +499,41 @@ public class GameService extends Service {
     }
 
     /**
-     * Calculates geographic direction of given landmark.
+     * Calculates geographic direction of given landmark (Mode: simple).
      *
      * @param location
      * @return
      * @author Petra Langenbacher
      */
-    public GeoDirection getDirectionOfLandmark(Location location) {
+    public GeoDirection getSimpleDirectionOfLandmark(Location location) {
+
+        GeoDirection direction = GeoDirection.UNKNOWN;
+        float bearTo = playerPosition.bearingTo(location);
+
+        if (bearTo < 0) {
+            bearTo = bearTo + 360;
+        }
+        if (bearTo > 0 && bearTo < 45 | bearTo > 315 && bearTo < 360) {
+            direction = GeoDirection.NORTH;
+        } else if (bearTo > 45 && bearTo < 135) {
+            direction = GeoDirection.EAST;
+        } else if (bearTo > 135 && bearTo < 225) {
+            direction = GeoDirection.SOUTH;
+        } else if (bearTo > 225 && bearTo < 315) {
+            direction = GeoDirection.WEST;
+        }
+
+        return direction;
+    }
+
+    /**
+     * Calculates geographic direction of given landmark (Mode: advanced).
+     *
+     * @param location
+     * @return
+     * @author Petra Langenbacher
+     */
+    public GeoDirection getAdvancedDirectionOfLandmark(Location location) {
 
         GeoDirection direction = GeoDirection.UNKNOWN;
         float bearTo = playerPosition.bearingTo(location);
