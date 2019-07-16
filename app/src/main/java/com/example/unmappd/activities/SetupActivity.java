@@ -240,7 +240,6 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         Button setupButton = (Button)findViewById(R.id.startButton);
         setupButton.setEnabled(true);
         setupButton.setText("Setup Game");
-        setupButton.setBackgroundColor(R.color.colorPrimary);
 
     }
 
