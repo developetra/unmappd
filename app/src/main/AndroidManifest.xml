@@ -16,8 +16,11 @@
         android:roundIcon="@mipmap/unmappd"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.FinalRankingActivity"></activity>
+
         <service android:name=".activities.GameService" />
-        <activity android:name=".activities.RankingActivity"></activity>
+
+        <activity android:name=".activities.RankingActivity" />
         <activity android:name=".activities.EstimationActivity" />
         <activity android:name=".activities.SetupActivity" />
         <activity android:name=".activities.MainActivity">

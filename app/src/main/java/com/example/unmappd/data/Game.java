@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Game {
     private int gameRounds;
     private ArrayList<Player> players = new ArrayList<>();
+    private boolean advancedMode;
 
     /**
      * Default Constructor.

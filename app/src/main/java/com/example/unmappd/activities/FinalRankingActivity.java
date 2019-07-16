@@ -16,11 +16,12 @@ import android.widget.TextView;
 import com.example.unmappd.R;
 
 /**
- * RankingActivity - This class serves as activity that shows the ranking of the players.
+ * FinalRankingActivity - This class serves as activity that shows the final ranking of the players at the end of the game.
  *
- * @author Franziska Barckmann
+ * @author Petra Langenbacher
  */
-public class RankingActivity extends AppCompatActivity implements GameService.GameServiceListener {
+
+public class FinalRankingActivity extends AppCompatActivity implements GameService.GameServiceListener{
 
     protected GameService gameService;
     protected boolean gameServiceBound;
@@ -28,18 +29,20 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranking);
+        setContentView(R.layout.activity_final_ranking);
 
         // Bind to Game Service
-        Intent bindIntent = new Intent(RankingActivity.this, GameService.class);
+        Intent bindIntent = new Intent(FinalRankingActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
 
     }
 
-    public void startMap(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
+    public void startNewGame(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 
     /**
      * This method initializes the UI elements with the player names and scores.
@@ -142,7 +145,7 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
             GameService.LocalBinder binder = (GameService.LocalBinder) service;
             gameService = binder.getService();
             gameServiceBound = true;
-            gameService.registerListener(RankingActivity.this);
+            gameService.registerListener(FinalRankingActivity.this);
             Log.d("test", "created Setup");
             Log.d("test", "Service bound to Estimation");
 
@@ -163,9 +166,11 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
         // do nothing
     }
 
+    @Override
     public void playerReachedTarget(boolean endOfGame) {
         // do nothing
     }
+
 
     /**
      * This method overrides the onBackPressed() method and

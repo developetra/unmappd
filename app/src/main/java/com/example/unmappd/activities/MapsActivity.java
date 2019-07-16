@@ -194,7 +194,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                             //got to ranking
-                            Intent intent = new Intent(MapsActivity.this, RankingActivity.class);
+                            Intent intent = new Intent(MapsActivity.this, FinalRankingActivity.class);
                             startActivity(intent);
                         }
                     });
