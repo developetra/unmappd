@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class EstimationCalculator {
 
-    private static final double MAX_DEVIATION = 0.01;
+    private static final double THRESHOLD = 0.01;
     private static final double MAX_ITERATIONS = 100;
     private static final double baseLong = 10;
     private static final double baseLat = 49;
@@ -67,7 +67,7 @@ public class EstimationCalculator {
 
         double correctionVLength = Double.MAX_VALUE; // set initial value to highest value so that loop always executes
 
-        while(correctionVLength >= MAX_DEVIATION && counter < MAX_ITERATIONS) {
+        while(correctionVLength >= THRESHOLD && counter < MAX_ITERATIONS) {
 
             residualV = computeResVec(guesses, landmarks, estimation);
             designM = computeDesignMatrix(landmarks, estimation);
