@@ -185,7 +185,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void playerReachedTarget(boolean endOfGame) {
         AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-        chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
         // end of game reached
         if(endOfGame){
             chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "! The game is over.");
@@ -199,24 +198,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(intent);
                         }
                     });
-            //dialog.show();
-            //dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(parseColor("##FFFCFC"));
-            //TODO RankingActivity ohne "Continue" Button
 
         }
 
         // end of game not reached
         if(!endOfGame){
-            //AlertDialog.Builder chooseTarget = new AlertDialog.Builder(MapsActivity.this);
-            //chooseTarget.setTitle("Choose your target location");
             chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "!");
             chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
-            gameService.setTargetLandmark(null);
             chooseTarget.setNeutralButton("Continue with next round",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                             //got to next round
+                            gameService.initNextRound();
                             Intent intent = new Intent(MapsActivity.this, EstimationActivity.class);
                             Bundle b = new Bundle();
                             int numberOfPlayers = gameService.getGame().getNumberOfPlayers();
@@ -226,7 +220,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             startActivity(intent);
                         }
                     });
-            //chooseTarget.create().show();
         }
         chooseTarget.create().show();
     }

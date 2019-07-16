@@ -33,7 +33,7 @@ public class Landmark {
      * @param context
      * @return list of landmark objects
      */
-    public static List<Landmark> readJson(Context context) {
+    public static ArrayList<Landmark> readJson(Context context) {
         String json = null;
         // convert json to String
         try {
@@ -54,7 +54,8 @@ public class Landmark {
 
         Log.d("test", "LM List: " + landmarkArray[0].getLongitude());
 
-        List<Landmark> landmarkList = Arrays.asList(landmarkArray);
+        ArrayList<Landmark> landmarkList = new ArrayList<Landmark>(Arrays.asList(landmarkArray));
+        //List<Landmark> landmarkList = Arrays.asList(landmarkArray);
 
         return landmarkList;
     }
