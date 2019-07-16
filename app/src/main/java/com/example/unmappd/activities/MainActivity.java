@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder infoDialog = new AlertDialog.Builder(MainActivity.this);
         infoDialog.setTitle("How Unmappd works:");
         infoDialog.setMessage("Set up the game by choosing number of rounds, number of players and player names. " +
+                "If you want the game to be more challenging, you can switch to advanced mode. " +
+                "It challenges you to make more accurate guesses. " +
                 "Every player guesses the distance and direction from the current position to the four shown landmarks. " +
                 "The better the guesses, the higher your received score. Your scores are shown in the ranking. " +
                 "On the map you can see your position and the four landmarks. Choose a landmark you want to visit next " +

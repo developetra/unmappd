@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
 
                     android:paddingBottom="20dp"
-                    android:text="Please estimate the distances from your position to the four landmarks listed below."
+                    android:text="Please estimate the distances and directions from your position to the four landmarks listed below."
                     android:textAlignment="center" />
             </LinearLayout>
 
