@@ -58,7 +58,6 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
-
         // Bind to Game Service
         Intent bindIntent = new Intent(SetupActivity.this, GameService.class);
         bindService(bindIntent, gameServiceCon, Context.BIND_AUTO_CREATE);
