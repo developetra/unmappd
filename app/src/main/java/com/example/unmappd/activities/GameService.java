@@ -284,18 +284,18 @@ public class GameService extends Service {
         int score = game.getPlayers().get(playerIndex).getScore();
 
         // score calculation
-        if (distanceGuessPlayer < 100) {
-            score = score + 50;
-        } else if (distanceGuessPlayer > 200 && distanceGuessPlayer < 300) {
-            score = score + 40;
-        } else if (distanceGuessPlayer > 300 && distanceGuessPlayer < 400) {
-            score = score + 30;
-        } else if (distanceGuessPlayer > 400 && distanceGuessPlayer < 500) {
-            score = score + 20;
-        } else if (distanceGuessPlayer > 500 && distanceGuessPlayer < 600) {
-            score = score + 10;
-        } else if (distanceGuessPlayer > 600) {
+        if (distanceGuessPlayer < 50) {
             score = score + 5;
+        } else if (distanceGuessPlayer >= 50 && distanceGuessPlayer < 100) {
+            score = score + 4;
+        } else if (distanceGuessPlayer >= 100 && distanceGuessPlayer < 150) {
+            score = score + 3;
+        } else if (distanceGuessPlayer >= 150 && distanceGuessPlayer < 200) {
+            score = score + 2;
+        } else if (distanceGuessPlayer >= 200 && distanceGuessPlayer < 250) {
+            score = score + 1;
+        } else{
+            //no points
         }
 
         int directionScore= 0;
@@ -402,7 +402,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l1));
         Log.d("test", "direction guess is " + directionGuesses.get(0));
         if (directionGuesses.get(0).equals(getSimpleDirectionOfLandmark(l1).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 2 - get direction and compare it to the players guess
@@ -412,7 +412,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l2));
         Log.d("test", "direction guess is " + directionGuesses.get(1));
         if (directionGuesses.get(1).equals(getSimpleDirectionOfLandmark(l2).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 3 - get direction and compare it to the players guess
@@ -422,7 +422,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l3));
         Log.d("test", "direction guess is " + directionGuesses.get(2));
         if (directionGuesses.get(2).equals(getSimpleDirectionOfLandmark(l3).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 4 - get direction and compare it to the players guess
@@ -432,7 +432,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getSimpleDirectionOfLandmark(l4));
         Log.d("test", "direction guess is " + directionGuesses.get(3));
         if (directionGuesses.get(3).equals(getSimpleDirectionOfLandmark(l4).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
         Log.d("test", "direction score is " + directionScore);
         return directionScore;
@@ -460,7 +460,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l1));
         Log.d("test", "direction guess is " + directionGuesses.get(0));
         if (directionGuesses.get(0).equals(getAdvancedDirectionOfLandmark(l1).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 2 - get direction and compare it to the players guess
@@ -470,7 +470,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l2));
         Log.d("test", "direction guess is " + directionGuesses.get(1));
         if (directionGuesses.get(1).equals(getAdvancedDirectionOfLandmark(l2).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 3 - get direction and compare it to the players guess
@@ -480,7 +480,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l3));
         Log.d("test", "direction guess is " + directionGuesses.get(2));
         if (directionGuesses.get(2).equals(getAdvancedDirectionOfLandmark(l3).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
 
         // Landmark 4 - get direction and compare it to the players guess
@@ -490,7 +490,7 @@ public class GameService extends Service {
         Log.d("test", "direction is " + getAdvancedDirectionOfLandmark(l4));
         Log.d("test", "direction guess is " + directionGuesses.get(3));
         if (directionGuesses.get(3).equals(getAdvancedDirectionOfLandmark(l4).toString())) {
-            directionScore = directionScore + 5;
+            directionScore = directionScore + 1;
         }
         Log.d("test", "direction score is " + directionScore);
         return directionScore;
