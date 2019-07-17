@@ -134,7 +134,9 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
     }
 
 
-    // ===== Game Service Connection =====
+    /**
+     * Game Service Connection
+     */
 
     private ServiceConnection gameServiceCon = new ServiceConnection() {
 
@@ -158,7 +160,9 @@ public class RankingActivity extends AppCompatActivity implements GameService.Ga
         }
     };
 
-    // ===== Listener Methods =====
+    /**
+     * Listener Methods
+     */
 
     public void updatePlayerPosition(Location location) {
         // do nothing

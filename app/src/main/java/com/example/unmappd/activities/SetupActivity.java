@@ -34,9 +34,6 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
     protected GameService gameService;
     protected boolean gameServiceBound;
 
-    boolean hasLocation = false;
-
-
     /**
      * Initialises Ui elements and adapts name input fields to chosen number of players.
      *
@@ -231,7 +228,7 @@ public class SetupActivity extends AppCompatActivity implements GameService.Game
      */
     @SuppressLint("ResourceAsColor")
     public void updatePlayerPosition(Location location) {
-        Button setupButton = (Button)findViewById(R.id.startButton);
+        Button setupButton = (Button) findViewById(R.id.startButton);
         int resId = getResources().getIdentifier("@drawable/button_background", "id", getPackageName());
         setupButton.setBackgroundResource(resId);
         setupButton.setEnabled(true);

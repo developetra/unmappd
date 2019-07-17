@@ -102,7 +102,7 @@ public class GameService extends Service {
         return targetLandmark;
     }
 
-    public void initGameroundsLeft(int rounds){
+    public void initGameroundsLeft(int rounds) {
         this.gameroundsLeft = rounds;
     }
 
@@ -294,11 +294,11 @@ public class GameService extends Service {
             score = score + 2;
         } else if (distanceGuessPlayer >= 200 && distanceGuessPlayer < 250) {
             score = score + 1;
-        } else{
+        } else {
             //no points
         }
 
-        int directionScore= 0;
+        int directionScore = 0;
 
         if (game.getMode() == true) {
             directionScore = processDirectionGuessesAdvanced(playerIndex);
@@ -320,20 +320,20 @@ public class GameService extends Service {
      */
     public void initNextRound() {
 
-            selectedLandmarks.clear();
+        selectedLandmarks.clear();
 
-            // remove visited landmark from landmarkLIst
-            landmarkList.remove(targetLandmark);
+        // remove visited landmark from landmarkLIst
+        landmarkList.remove(targetLandmark);
 
-            //remove current guesses of players
-            game.clearAllGuesses();
+        //remove current guesses of players
+        game.clearAllGuesses();
 
-            //clear target landmark
-            targetLandmark = null;
+        //clear target landmark
+        targetLandmark = null;
 
-            // pick closest landmarks
-            selectedLandmarks = pickLandmarks();
-            Log.d("test", String.valueOf(selectedLandmarks));
+        // pick closest landmarks
+        selectedLandmarks = pickLandmarks();
+        Log.d("test", String.valueOf(selectedLandmarks));
 
     }
 
@@ -437,7 +437,6 @@ public class GameService extends Service {
         Log.d("test", "direction score is " + directionScore);
         return directionScore;
     }
-
 
     /**
      * Processes the direction guesses of a given player (Mode: advanced).

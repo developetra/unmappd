@@ -30,7 +30,7 @@ import java.util.List;
  * @author Petra Langenbacher
  */
 
-public class FinalRankingActivity extends AppCompatActivity implements GameService.GameServiceListener{
+public class FinalRankingActivity extends AppCompatActivity implements GameService.GameServiceListener {
 
     protected GameService gameService;
     protected boolean gameServiceBound;
@@ -46,6 +46,11 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
     }
 
+    /**
+     * This mathod starts a new game by starting the MainActivity.
+     *
+     * @param view
+     */
     public void startNewGame(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -54,6 +59,7 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
     /**
      * This method initializes the UI elements with the images, player names and scores.
+     *
      * @author Petra Langenbacher
      */
     private void initUI() {
@@ -145,6 +151,7 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
 
     /**
      * Sorts the players by their score.
+     *
      * @return ArrayList of players sorted by their score
      * @author Petra Langenbacher
      */
@@ -158,9 +165,9 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
         return sortedPlayers;
     }
 
-
-    // ===== Game Service Connection =====
-
+    /**
+     * Game Service Connection
+     */
     private ServiceConnection gameServiceCon = new ServiceConnection() {
 
         @Override
@@ -183,7 +190,9 @@ public class FinalRankingActivity extends AppCompatActivity implements GameServi
         }
     };
 
-    // ===== Listener Methods =====
+    /**
+     * Listener Methods
+     */
 
     public void updatePlayerPosition(Location location) {
         // do nothing

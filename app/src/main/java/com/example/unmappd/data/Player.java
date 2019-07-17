@@ -7,12 +7,13 @@ import java.util.ArrayList;
  *
  * @author Franziska Barckmann, Petra Langenbacher
  */
-public class Player implements Comparable<Player>{
+public class Player implements Comparable<Player> {
 
     private String name;
     private int score;
     private ArrayList<Integer> guesses = new ArrayList<>();
     private ArrayList<String> directions = new ArrayList<>();
+
 
     /**
      * Constructor.
@@ -25,6 +26,7 @@ public class Player implements Comparable<Player>{
         this.score = score;
     }
 
+
     /**
      * Getter - Returns the name of the player.
      *
@@ -33,6 +35,7 @@ public class Player implements Comparable<Player>{
     public String getName() {
         return name;
     }
+
 
     /**
      * Getter - Returns the score of the player.
@@ -43,15 +46,16 @@ public class Player implements Comparable<Player>{
         return score;
     }
 
+
     /**
      * Setter - Sets the score of the player.
      *
      * @param score as int
      */
     public void setScore(int score) {
-
         this.score = score;
     }
+
 
     /**
      * Getter - Returns the guesses of the player.
@@ -62,6 +66,7 @@ public class Player implements Comparable<Player>{
         return guesses;
     }
 
+
     /**
      * This method adds a guess to the players list of distance guesses.
      *
@@ -70,6 +75,7 @@ public class Player implements Comparable<Player>{
     public void addGuess(Integer distance) {
         guesses.add(distance);
     }
+
 
     /**
      * This method removes all guesses from the players list of distance guesses.
@@ -88,6 +94,7 @@ public class Player implements Comparable<Player>{
         return directions;
     }
 
+
     /**
      * This method adds a direction to the players list of direction guesses.
      *
@@ -97,12 +104,14 @@ public class Player implements Comparable<Player>{
         directions.add(direction);
     }
 
+
     /**
      * This method removes all guesses from the players list of direction guesses.
      */
     public void removeDirections() {
         directions.clear();
     }
+
 
     /**
      * This method is used to compare the score of two players.
@@ -112,9 +121,9 @@ public class Player implements Comparable<Player>{
      */
     @Override
     public int compareTo(Player o) {
-        if(this.getScore() > o.getScore()){
+        if (this.getScore() > o.getScore()) {
             return -1;
-        } else if (this.getScore() < o.getScore()){
+        } else if (this.getScore() < o.getScore()) {
             return 1;
         } else {
             return 0;

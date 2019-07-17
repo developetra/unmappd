@@ -131,8 +131,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // ===== Game Service Connection =====
-
+    /**
+     * Game Service Connection
+     */
     private ServiceConnection gameServiceCon = new ServiceConnection() {
 
         @Override
@@ -172,9 +173,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         int distanceRounded = Math.round(distance);
         Button btn = (Button) findViewById(radioButton);
         if (gameService.getGame().getMode() == true) {
-            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getAdvancedDirectionOfLandmark(targetLocation) );
+            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getAdvancedDirectionOfLandmark(targetLocation));
         } else {
-            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getSimpleDirectionOfLandmark(targetLocation) );
+            btn.setText(lmMarker.getTitle() + " - " + distanceRounded + "m - " + gameService.getSimpleDirectionOfLandmark(targetLocation));
         }
 
     }
@@ -223,8 +224,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // ===== Listener Methods
-
     /**
      * Listener method when player position is updated by game service.
      * Saves player position as current location.
@@ -248,7 +247,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * Shows dialog to user with small fact about landmark and button that leads to the next activity.
      *
      * @parak endOfGame as boolean
-     *
      */
     @Override
     public void playerReachedTarget(boolean endOfGame) {
@@ -256,7 +254,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
 
         // end of game reached
-        if(endOfGame){
+        if (endOfGame) {
             chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "! The game is over.");
             chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
             chooseTarget.setNeutralButton("Show final result",
@@ -271,7 +269,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // end of game not reached
-        if(!endOfGame){
+        if (!endOfGame) {
             chooseTarget.setTitle("You reached " + gameService.getTargetLandmark().getName() + "!");
             chooseTarget.setMessage(gameService.getTargetLandmark().getInfo());
             chooseTarget.setNeutralButton("Continue with next round",

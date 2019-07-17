@@ -14,12 +14,14 @@ public class Game {
     private ArrayList<Player> players = new ArrayList<>();
     private boolean advancedMode;
 
+
     /**
      * Default Constructor.
      */
     public Game() {
         super();
     }
+
 
     /**
      * Constructor.
@@ -32,6 +34,7 @@ public class Game {
         this.players = players;
     }
 
+
     /**
      * Sets number of rounds for the current game.
      *
@@ -40,6 +43,7 @@ public class Game {
     public void setRounds(int gameRounds) {
         this.gameRounds = gameRounds;
     }
+
 
     /**
      * Returns number of rounds of the current game.
@@ -50,6 +54,7 @@ public class Game {
         return gameRounds;
     }
 
+
     /**
      * Sets players for the current game.
      *
@@ -58,6 +63,7 @@ public class Game {
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+
 
     /**
      * Returns the players of the current game.
@@ -68,6 +74,7 @@ public class Game {
         return players;
     }
 
+
     /**
      * Returns the number of players.
      *
@@ -76,6 +83,7 @@ public class Game {
     public int getNumberOfPlayers() {
         return players.size();
     }
+
 
     /**
      * Clears the guesses of all players.
@@ -86,11 +94,23 @@ public class Game {
         }
     }
 
-    public void setMode (boolean advancedMode){
+
+    /**
+     * Sets mode for the current game.
+     *
+     * @param advancedMode
+     */
+    public void setMode(boolean advancedMode) {
         this.advancedMode = advancedMode;
     }
 
-    public boolean getMode(){
+
+    /**
+     * Gets mode of the current game.
+     *
+     * @return
+     */
+    public boolean getMode() {
         return advancedMode;
     }
 }

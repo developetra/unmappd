@@ -1,7 +1,5 @@
 package com.example.unmappd.data;
 
-import com.example.unmappd.R;
-
 import android.content.Context;
 import android.util.Log;
 
@@ -11,13 +9,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 /**
  * Class Landmark - Represents a landmark that is defined by its name, picture and location (LatLong).
  *
  * @author Petra Langenbacher, Franziska Barckmann
  */
+
+
 public class Landmark {
     private String name;
     private double longitude;
@@ -25,7 +25,6 @@ public class Landmark {
     private String path;
     private String info;
 
-    // ===== Static Class Methods =====
 
     /**
      * Static method that creates and returns a list of landmark objects from a json file.
@@ -60,6 +59,7 @@ public class Landmark {
         return landmarkList;
     }
 
+
     /**
      * Constructor.
      *
@@ -75,6 +75,7 @@ public class Landmark {
         this.path = path;
     }
 
+
     /**
      * Getter - Returns the name of a landmark.
      *
@@ -83,6 +84,7 @@ public class Landmark {
     public String getName() {
         return name;
     }
+
 
     /**
      * Getter - Returns the longitude of the location of a landmark.
@@ -93,6 +95,7 @@ public class Landmark {
         return longitude;
     }
 
+
     /**
      * Getter - Returns the latitude of the location of a landmark.
      *
@@ -102,6 +105,7 @@ public class Landmark {
         return latitude;
     }
 
+
     /**
      * Getter - Returns the path to the picture of a landmark.
      *
@@ -110,6 +114,7 @@ public class Landmark {
     public String getPath() {
         return path;
     }
+
 
     /**
      * Getter - Returns the info of a landmark.
